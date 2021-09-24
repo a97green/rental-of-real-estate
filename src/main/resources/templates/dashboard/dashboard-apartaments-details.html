@@ -1,0 +1,171 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title th:text="${title}"></title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
+    <link href="/css/btn-myst.css" rel="stylesheet" type="text/css">
+    <!--Анимации-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+    <style type="text/css">
+        .img{
+            margin: 10px;
+            padding: 0;
+            position: relative;
+            width: 620px;
+            height:620px;
+            background: #c2c2c2;
+            border: 1px solid #000;
+            border-radius:3px;
+        }
+
+        .img img{
+            position: absolute;
+            left:50%;
+            top:50%;
+            transform: translate(-50%, -50%);
+            max-width:100%;
+            max-height: 100%;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <header class="d-flex justify-content-center py-3 border-bottom">
+        <ul class="nav nav-pills">
+            <li class="btn-lerg"><a href="/dashboard/apartaments" class="btn btn-success btn-mrgn active" data-bs-toggle="button">Список квартир</a></li>
+            <li class="btn-lerg"><a href="/dashboard/apartaments/add" class="btn btn-success btn-mrgn" data-bs-toggle="button">Добавить квартиру</a></li>
+            <li class="btn-lerg"><a href="/dashboard/district/add" class="btn btn-success btn-mrgn" data-bs-toggle="button">Районы</a></li>
+            <li class="btn-lerg"><a href="/dashboard/type/add" class="btn btn-success btn-mrgn" data-bs-toggle="button">Типы жилья</a></li>
+            <li class="btn-lerg"><a href="/dashboard/class/add" class="btn btn-success btn-mrgn" data-bs-toggle="button">Классы жилья</a></li>
+        </ul>
+    </header>
+</div>
+
+<div class="container mt-5 mb-5">
+    <h5 th:text="${apartaments.getTitle()}"></h5>
+    <div class="alert alert-success mt-2">
+        <div class="row">
+            <div class="col">
+                <div class="container">
+                    <div class="row row-cols-3">
+                        <div class="col" th:each="element : ${strings}">
+                            <img th:src="${element}" class="img-thumbnail" alt="...">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+                <form th:action="'/dashboard/apartaments/' + ${apartaments.getId()} + '/save'" method="post">
+                    <div class="row">
+                        <div class="col">
+                            <div class="input-group mb-3">
+                                <span class="input-group-text">Заголовок</span>
+                                <input th:value="${apartaments.getTitle()}" type="text" class="form-control" name="title" disabled>
+                            </div>
+                            <div class="input-group mb-3">
+                                <label class="input-group-text" for="inputGroupSelect01">Район</label>
+                                <select th:value="${apartaments.getDistrict().getId()}" name="district" class="form-select" id="inputGroupSelect01" disabled>
+                                    <option th:value="${apartaments.getDistrict().getId()}" th:text="${apartaments.getDistrict().getTitle()}" selected></option>
+                                    <div th:each="element : ${districts}">
+                                        <option th:value="${element.getId()}" th:text="${element.getTitle()}"></option>
+                                    </div>
+                                </select>
+                            </div>
+                            <div class="input-group mb-3">
+                                <label class="input-group-text" for="inputGroupSelect02">Тип</label>
+                                <select name="housingType" class="form-select" id="inputGroupSelect02" disabled>
+                                    <option th:value="${apartaments.getHousingType().getId()}" th:text="${apartaments.getHousingType().getTitle()}" selected></option>
+                                    <div th:each="element : ${housingTypes}">
+                                        <option th:value="${element.getId()}" th:text="${element.getTitle()}"></option>
+                                    </div>
+                                </select>
+                            </div>
+                            <div class="input-group mb-3">
+                                <label class="input-group-text" for="inputGroupSelect03">Класс</label>
+                                <select name="housingClass" class="form-select" id="inputGroupSelect03" disabled>
+                                    <option th:value="${apartaments.getHousingClass().getId()}" th:text="${apartaments.getHousingClass().getTitle()}" selected></option>
+                                    <div th:each="element : ${housingClasses}">
+                                        <option th:value="${element.getId()}" th:text="${element.getTitle()}"></option>
+                                    </div>
+                                </select>
+                            </div>
+                            <div class="input-group mb-3">
+                                <span class="input-group-text">Адрес</span>
+                                <input th:value="${apartaments.getAddress()}" type="text" class="form-control" name="address" disabled>
+                            </div>
+                            <div class="input-group mb-3">
+                                <span class="input-group-text">Этаж</span>
+                                <input th:value="${apartaments.getFloor()}" type="number" class="form-control" name="floor" disabled>
+                            </div>
+                            <div class="input-group mb-3">
+                                <span class="input-group-text">Кол-во спальных мест</span>
+                                <input th:value="${apartaments.getBedsNumber()}" type="number" class="form-control" name="bedsNumber" disabled>
+                            </div>
+                            <div class="input-group mb-3">
+                                <label class="input-group-text" for="inputGroupSelect04">Стоянка</label>
+                                <select name="parking" class="form-select" id="inputGroupSelect04" disabled>
+                                    <option th:value="${apartaments.getParking()}" th:text="${apartaments.getParking()}" selected></option>
+                                    <option th:value="Есть" th:text="Есть"></option>
+                                    <option th:value="Нет" th:text="Нет"></option>
+                                </select>
+                            </div>
+                            <div class="input-group mb-3">
+                                <label class="input-group-text" for="inputGroupSelect05">Санузел</label>
+                                <select name="bathroom" class="form-select" id="inputGroupSelect05" disabled>
+                                    <option th:value="${apartaments.getBathroom()}" th:text="${apartaments.getBathroom()}" selected></option>
+                                    <option th:value="Совмещённый" th:text="Совмещённый"></option>
+                                    <option th:value="Раздельный" th:text="Раздельный"></option>
+                                </select>
+                            </div>
+                            <div class="input-group mb-3">
+                                <span class="input-group-text">Площадь</span>
+                                <input th:value="${apartaments.getTotalArea()}" type="number" class="form-control" name="totalArea" disabled>
+                            </div>
+                            <div class="input-group mb-3">
+                                <span class="input-group-text">Цена</span>
+                                <input th:value="${apartaments.getPrice()}" type="number" class="form-control" name="price" disabled>
+                            </div>
+                            <div class="input-group">
+                                <span class="input-group-text">Описание</span>
+                                <textarea th:text="${apartaments.getDescription()}"  class="form-control" name="description" disabled></textarea>
+                            </div>
+                        </div>
+                    </div><br>
+                    <div id="hide-row" class="row animate__animated animate__flipInX animate__fast" style="display: none" >
+                        <div class="col">
+                            <button id="btn-save" class="btn btn-success btn-sm" type="submit">Сохранить</button>
+                        </div>
+                    </div>
+                </form>
+                <div id="show-row" class="row">
+                    <div class="col">
+                        <button id="btn-edit" class="btn btn-success btn-sm">Редактировать</button>
+                    </div>
+                    <div class="col">
+                        <form th:action="'/dashboard/apartaments/' + ${apartaments.getId()} + '/remove'" method="post">
+                            <button class="btn btn-danger btn-sm" type="submit">Удалить</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+<script type="text/javascript" th:inline="javascript">
+    $(document).ready(
+        function () {
+            $('#btn-edit').click(editApartaments);
+        }
+    )
+    function editApartaments() {
+        $('#show-row').hide();
+        $('#hide-row').show();
+        $('.form-select').removeAttr("disabled")
+        $('.form-control').removeAttr("disabled")
+    }
+</script>
+<!--<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-/bQdsTh/da6pkI1MST/rWKFNjaCP5gBSY4sEBT38Q/9RBh9AH40zEOg7Hlq2THRZ" crossorigin="anonymous"></script>-->
+</body>
+</html>
