@@ -1,0 +1,69 @@
+<div th:fragment="footer">
+    <div id="contact">
+        <div class="container">
+            <div class="section-title text-center">
+                <h2>СВЯЗАТЬСЯ С НАМИ</h2>
+                <hr>
+            </div>
+            <div class="col-md-4">
+                <h3>КОНТАКТНАЯ ИНФОРМАЦИЯ</h3>
+                <div class="contact-item"> <span>Мы находимся по адресу</span>
+                    <p th:text="${homeHeaders.getAddress()}"></p>
+                </div>
+                <div class="contact-item"> <span>E-mail адрес</span>
+                    <p th:text="${homeHeaders.getEmail()}"></p>
+                </div>
+                <div class="contact-item"> <span>Телефон для связи</span>
+                    <p th:text="${homeHeaders.getPhoneNumber()}"></p>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <h3>ЗАКАЖИТЕ ОБРАТНЫЙ ЗВОНОК</h3>
+                <p>И мы сразу с вами свяжемся</p>
+                <form name="sentMessage" id="contactForm" novalidate>
+                    <div class="row">
+                        <div class="col">
+                            <div class="form-group">
+                                <input type="text" id="name" class="form-control" placeholder="Имя" required="required">
+                                <p class="help-block text-danger"></p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col">
+                            <div class="form-group">
+                                <input type="number" id="email" class="form-control" placeholder="Номер телефона" required="required">
+                                <p class="help-block text-danger"></p>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="success"></div>
+                    <button type="submit" class="btn btn-custom btn-lg">Заказать звонок</button>
+                </form>
+            </div>
+            <div class="col-md-4 text-right">
+                <h3>ИНФОРМАЦИЯ</h3>
+                <a href="/" class="contact-item"> <span>Правила проживания</span></a><br>
+                <a href="/" class="contact-item"> <span>Полезная информация</span></a><br>
+                <a href="/" class="contact-item"> <span>Отзывы</span></a><br>
+            </div>
+        </div>
+    </div>
+
+    <div id="footer">
+        <div class="container text-center">
+            <div class="social">
+                <ul>
+                    <li><a href="#"><i class="fa fa-facebook"></i></a></li>
+                    <li><a href="#"><i class="fa fa-twitter"></i></a></li>
+                    <li><a href="#"><i class="fa fa-google-plus"></i></a></li>
+                    <li><a href="#"><i class="fa fa-pinterest"></i></a></li>
+                    <li><a href="#"><i class="fa fa-youtube"></i></a></li>
+                </ul>
+            </div>
+            <div>
+                <p>&copy; aGreen. Все права защищены. Разработано <a href="" rel="nofollow">aGreen</a></p>
+            </div>
+        </div>
+    </div>
+</div>
