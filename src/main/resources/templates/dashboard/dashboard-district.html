@@ -5,9 +5,9 @@
     <title th:text="'Панель управления - ' + ${title}"></title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta content="Панель управления для сайта - квартиры посуточно в Красноярске" name="description" />
-    <meta content="Михаил Евгеньевич" name="author" />
+    <meta content="Панель управления" name="Михаил Евгеньевич" />
     <!-- App favicon -->
-    <link rel="shortcut icon" href="/../assets/images/favicon.ico">
+    <link href="/../assets/images/favicon.ico" rel="shortcut icon">
     <!-- Bootstrap Css -->
     <link href="/../assets/css/bootstrap.min.css" id="bootstrap-style" rel="stylesheet" type="text/css" />
     <!-- Icons Css -->
@@ -17,7 +17,6 @@
 </head>
 
 <body data-topbar="dark" data-layout="horizontal">
-
 <div id="layout-wrapper">
     <header th:insert="dashboard/header-dashboard :: header"></header>
     <div class="main-content">
@@ -34,7 +33,7 @@
                     </div>
                     <div class="col-sm-6">
                         <div class="float-right d-none d-md-block">
-                            <a href="/dashboard/apartaments/add" class="btn btn-primary"><i class="mdi mdi-hospital mr-2"></i> Добавить квартиру</a>
+                            <a href="/dashboard/district/add" class="btn btn-primary"><i class="mdi mdi-hospital mr-2"></i> Добавить район</a>
                         </div>
                     </div>
                 </div>
@@ -48,24 +47,18 @@
                                         <thead>
                                         <tr>
                                             <th scope="col">#</th>
-                                            <th scope="col">Заголовок</th>
-                                            <th scope="col">Тип</th>
-                                            <th scope="col">Класс</th>
                                             <th scope="col">Район</th>
-                                            <th scope="col">Адрес</th>
-                                            <th class="text-right" scope="col"></th>
+                                            <th scope="col"></th>
                                         </tr>
                                         </thead>
                                         <tbody>
-                                        <tr th:each="element : ${apartaments}">
-                                            <th scope="row" th:text="'K00' + ${element.getId()}"></th>
+                                        <tr th:each="element : ${districts}">
+                                            <th scope="row" th:text="${element.getId()}"></th>
                                             <td th:text="${element.getTitle()}"></td>
-                                            <td th:text="${element.getHousingType().getTitle()}"></td>
-                                            <td th:text="${element.getHousingClass().getTitle()}"></td>
-                                            <td th:text="${element.getDistrict().getTitle()}"></td>
-                                            <td th:text="${element.getAddress()}"></td>
                                             <td class="text-right">
-                                                <a th:href="'/dashboard/apartaments/' + ${element.getId()}" class="btn btn-success">Подробнее</a>
+                                                <form th:action="'/dashboard/district/' + ${element.getId()} + '/remove'" method="post">
+                                                    <button class="btn btn-danger" type="submit">Удалить</button>
+                                                </form>
                                             </td>
                                         </tr>
                                         </tbody>
@@ -80,10 +73,8 @@
     </div>
     <div th:insert="dashboard/footer-dashboard :: footer"></div>
 </div>
-
 <script src="/../assets/js/jquery/jquery.min.js"></script>
 <script src="/../assets/js/bootstrap/js/bootstrap.bundle.min.js"></script>
 <script src="/../assets/js/peity/jquery.peity.min.js"></script>
-
 </body>
 </html>

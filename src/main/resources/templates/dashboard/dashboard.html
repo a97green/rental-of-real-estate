@@ -5,7 +5,7 @@
     <title th:text="'Панель управления - ' + ${title}"></title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta content="Панель управления для сайта - квартиры посуточно в Красноярске" name="description" />
-    <meta content="Панель управления" name="Михаил Евгеньевич" />
+    <meta content="Михаил Евгеньевич" name="author" />
     <!-- App favicon -->
     <link href="/../assets/images/favicon.ico" rel="shortcut icon">
     <!-- Bootstrap Css -->
@@ -31,33 +31,12 @@
                             </ol>
                         </div>
                     </div>
-                    <div class="col-sm-6">
-                        <div class="float-right d-none d-md-block">
-                            <a href="/dashboard/type" class="btn btn-primary"><i class="mdi mdi-keyboard-backspace mr-2"></i> Вернуться к списку типов</a>
-                        </div>
-                    </div>
                 </div>
                 <div class="row">
-                    <div class="container" style="align-content: center">
-                        <div class="col">
-                            <div class="card">
-                                <div class="card-body">
-                                    <form action="/dashboard/type/add" method="post">
-                                        <div class="row">
-                                            <div class="col">
-                                                <div class="form-group row">
-                                                    <label class="col-sm-2 col-form-label">Тип жилья</label>
-                                                    <div class="col-sm-10">
-                                                        <input type="text" id="title" name="title" class="form-control" placeholder="Тип жилья" required>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="row">
-                                            <button type="submit" class="btn btn-success" th:text="${title}"></button>
-                                        </div>
-                                    </form>
-                                </div>
+                    <div class="col">
+                        <div class="card">
+                            <div class="card-body">
+
                             </div>
                         </div>
                     </div>

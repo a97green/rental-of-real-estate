@@ -1,109 +1,196 @@
-<!DOCTYPE HTML>
+<!doctype html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title th:text="${title}"></title>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
-    <link href="/css/btn-myst.css" rel="stylesheet" type="text/css"></head>
-<body>
-<div class="container">
-    <header class="d-flex justify-content-center py-3 border-bottom">
-        <ul class="nav nav-pills">
-            <li class="btn-lerg"><a href="/dashboard/apartaments" class="btn btn-success btn-mrgn" data-bs-toggle="button">Список квартир</a></li>
-            <li class="btn-lerg"><a href="/dashboard/apartaments/add" class="btn btn-success btn-mrgn active" data-bs-toggle="button">Добавить квартиру</a></li>
-            <li class="btn-lerg"><a href="/dashboard/district/add" class="btn btn-success btn-mrgn" data-bs-toggle="button">Районы</a></li>
-            <li class="btn-lerg"><a href="/dashboard/type/add" class="btn btn-success btn-mrgn" data-bs-toggle="button">Типы жилья</a></li>
-            <li class="btn-lerg"><a href="/dashboard/class/add" class="btn btn-success btn-mrgn" data-bs-toggle="button">Классы жилья</a></li>
-        </ul>
-    </header>
-</div>
-<div class="container mt-5 mb-5">
-    <h5 th:text="${title}"></h5>
-    <div class="alert alert-success mt-2">
-        <form th:id="formData" name="formData" action="/dashboard/apartaments/add" method="post">
-            <div class="input-group mb-3">
-                <span class="input-group-text" id="basic-addon1">Заголовок</span>
-                <input type="text" id="title" name="title" class="form-control" placeholder="Заголовок" aria-label="Заголовок" aria-describedby="basic-addon1">
-            </div>
-            <div class="input-group mb-3">
-                <span class="input-group-text" id="basic-addon2">Адрес</span>
-                <input type="text" id="address" name="address" class="form-control" placeholder="Адрес" aria-label="Адрес" aria-describedby="basic-addon2">
-            </div>
-            <div class="input-group mb-3">
-                <label class="input-group-text" for="inputGroupSelect01">Район</label>
-                <select th:id="district" name="district" class="form-select" id="inputGroupSelect01">
-                    <div th:each="element : ${districts}">
-                        <option th:value="${element.getId()}" th:text="${element.getTitle()}"></option>
+    <meta charset="utf-8" />
+    <title th:text="'Панель управления - ' + ${title}"></title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta content="Панель управления для сайта - квартиры посуточно в Красноярске" name="description" />
+    <meta content="Панель управления" name="Михаил Евгеньевич" />
+    <!-- App favicon -->
+    <link rel="shortcut icon" href="/../assets/images/favicon.ico">
+    <!-- Bootstrap Css -->
+    <link href="/../assets/css/bootstrap.min.css" id="bootstrap-style" rel="stylesheet" type="text/css" />
+    <!-- Icons Css -->
+    <link href="/../assets/css/icons.min.css" rel="stylesheet" type="text/css" />
+    <!-- App Css-->
+    <link href="/../assets/css/app.min.css" id="app-style" rel="stylesheet" type="text/css" />
+</head>
+
+<body data-topbar="dark" data-layout="horizontal">
+
+<div id="layout-wrapper">
+    <header th:insert="dashboard/header-dashboard :: header"></header>
+    <div class="main-content">
+        <div class="page-content">
+            <div class="container-fluid">
+                <div class="row align-items-center">
+                    <div class="col-sm-6">
+                        <div class="page-title-box">
+                            <h4 class="font-size-18" th:text="${title}"></h4>
+                            <ol class="breadcrumb mb-0">
+                                <li class="breadcrumb-item active" th:text="${descriptions}"></li>
+                            </ol>
+                        </div>
                     </div>
-                </select>
-            </div>
-            <div class="input-group mb-3">
-                <label class="input-group-text" for="inputGroupSelect02">Тип жилья</label>
-                <select th:id="housingType" name="housingType" class="form-select" id="inputGroupSelect02">
-                    <div th:each="element : ${housingTypes}">
-                        <option th:value="${element.getId()}" th:text="${element.getTitle()}"></option>
+                    <div class="col-sm-6">
+                        <div class="float-right d-none d-md-block">
+                            <a href="/dashboard/apartaments" class="btn btn-primary"><i class="mdi mdi-keyboard-backspace mr-2"></i> Вернуться к списку квартир</a>
+                        </div>
                     </div>
-                </select>
-            </div>
-            <div class="input-group mb-3">
-                <label class="input-group-text" for="inputGroupSelect03">Класс жилья</label>
-                <select th:id="housingClass" name="housingClass" class="form-select" id="inputGroupSelect03">
-                    <div th:each="element : ${housingClasses}">
-                        <option th:value="${element.getId()}" th:text="${element.getTitle()}"></option>
+                </div>
+                <div class="row">
+                    <div class="container" style="align-content: center">
+                        <div class="col">
+                            <div class="card">
+                                <div class="card-body">
+                                    <form action="/dashboard/apartaments/add" method="post">
+                                        <div class="row">
+                                            <div class="col">
+                                                <div class="form-group row">
+                                                    <label class="col-sm-2 col-form-label">Заголовок</label>
+                                                    <div class="col-sm-10">
+                                                        <input type="text" id="title" name="title" class="form-control" placeholder="Заголовок" required>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group row">
+                                                    <label class="col-sm-2 col-form-label">Адрес</label>
+                                                    <div class="col-sm-10">
+                                                        <input type="text" id="address" name="address" class="form-control" placeholder="Адрес" required>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group row">
+                                                    <label class="col-sm-2 col-form-label">Район</label>
+                                                    <div class="col-sm-10">
+                                                        <select name="district" class="form-control" required>
+                                                            <div th:each="element : ${districts}">
+                                                                <option th:value="${element.getId()}" th:text="${element.getTitle()}"></option>
+                                                            </div>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group row">
+                                                    <label class="col-sm-2 col-form-label">Тип жилья</label>
+                                                    <div class="col-sm-10">
+                                                        <select name="housingType" class="form-control" required>
+                                                            <div th:each="element : ${housingTypes}">
+                                                                <option th:value="${element.getId()}" th:text="${element.getTitle()}"></option>
+                                                            </div>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group row">
+                                                    <label class="col-sm-2 col-form-label">Класс жилья</label>
+                                                    <div class="col-sm-10">
+                                                        <select name="housingClass" class="form-control" required>
+                                                            <div th:each="element : ${housingClasses}">
+                                                                <option th:value="${element.getId()}" th:text="${element.getTitle()}"></option>
+                                                            </div>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group row">
+                                                    <label class="col-sm-2 col-form-label">Площадь</label>
+                                                    <div class="col-sm-10">
+                                                        <input type="number" name="totalArea" class="form-control" placeholder="Площадь" required>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group row">
+                                                    <label class="col-sm-2 col-form-label">Этаж</label>
+                                                    <div class="col-sm-10">
+                                                        <input type="number" name="floor" class="form-control" placeholder="Этаж" required>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group row">
+                                                    <label class="col-sm-2 col-form-label">Кол-во спальных мест</label>
+                                                    <div class="col-sm-10">
+                                                        <input type="number"  name="bedsNumber" class="form-control" placeholder="Кол-во спальных мест" required>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group row">
+                                                    <label class="col-sm-2 col-form-label">Стоимость</label>
+                                                    <div class="col-sm-10">
+                                                        <input type="number" name="price" class="form-control" placeholder="Стоимость" required>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group row">
+                                                    <label class="col-sm-2 col-form-label">Стоянка</label>
+                                                    <div class="col-sm-10">
+                                                        <select name="parking" class="form-control" required>
+                                                            <option th:value="Есть" th:text="Есть"></option>
+                                                            <option th:value="Нет" th:text="Нет"></option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group row">
+                                                    <label class="col-sm-2 col-form-label">Санузел</label>
+                                                    <div class="col-sm-10">
+                                                        <select name="bathroom" class="form-control" required>
+                                                            <option th:value="Совмещённый" th:text="Совмещённый"></option>
+                                                            <option th:value="Раздельный" th:text="Раздельный"></option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group row">
+                                                    <label  class="col-sm-2 col-form-label">Описание</label>
+                                                    <div class="col-sm-10">
+                                                        <textarea th:id="description" name="description" class="form-control" required></textarea>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group row">
+                                                    <label class="col-sm-2 col-form-label">Фотографии</label>
+                                                    <div class="col-sm-10">
+                                                        <input th:id="images" type="file" multiple required>
+                                                        <button th:id="btn-lock" type="button" class="btn btn-primary" disabled>Загрузить</button>
+                                                        <div th:id="load-ico" class="spinner-border text-primary" style="display: none"></div>
+                                                        <label th:id="lock-send" style="display: none" class="col-sm-2 col-form-label">Загружено</label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <button type="submit" th:id="btn-load" class="btn btn-success" th:text="${title}"></button>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                </select>
+                </div>
             </div>
-            <div class="input-group mb-3">
-                <span class="input-group-text" id="basic-addon3">Площадь</span>
-                <input type="number" th:id="totalArea" name="totalArea" class="form-control" placeholder="Площадь" aria-label="Площадь" aria-describedby="basic-addon3">
-            </div>
-            <div class="input-group mb-3">
-                <span class="input-group-text" id="basic-addon4">Этаж</span>
-                <input type="number" th:id="floor" name="floor" class="form-control" placeholder="Этаж" aria-label="Этаж" aria-describedby="basic-addon4">
-            </div>
-            <div class="input-group mb-3">
-                <span class="input-group-text" id="basic-addon5">Кол-во спальных мест</span>
-                <input type="number" th:id="bedsNumber" name="bedsNumber" class="form-control" placeholder="Кол-во спальных мест" aria-label="Кол-во спальных мест" aria-describedby="basic-addon5">
-            </div>
-            <div class="input-group mb-3">
-                <span class="input-group-text" id="basic-addon6">Стоимость</span>
-                <input type="number" th:id="price" name="price" class="form-control" placeholder="Стоимость" aria-label="Стоимость" aria-describedby="basic-addon6">
-            </div>
-            <div class="input-group mb-3">
-                <label class="input-group-text" for="inputGroupSelect04">Стоянка</label>
-                <select th:id="parking" name="parking" class="form-select" id="inputGroupSelect04">
-                    <option th:value="Есть" th:text="Есть"></option>
-                    <option th:value="Нет" th:text="Нет"></option>
-                </select>
-            </div>
-            <div class="input-group mb-3">
-                <label class="input-group-text" for="inputGroupSelect05">Парковка</label>
-                <select th:id="bathroom" name="bathroom" class="form-select" id="inputGroupSelect05">
-                    <option th:value="Совмещённый" th:text="Совмещённый"></option>
-                    <option th:value="Раздельный" th:text="Раздельный"></option>
-                </select>
-            </div>
-            <div class="input-group">
-                <span class="input-group-text">Описание</span>
-                <textarea th:id="description" name="description" class="form-control" aria-label="Описание"></textarea>
-            </div><br>
-            <div class="input-group mb-3">
-                <input type="file" th:id="image" name="image" class="form-control" multiple onchange="upload(this)" >
-            </div>
-            <button type="button" th:id="btn-submit" class="btn btn-success" th:text="${title}"></button>
-        </form>
+        </div>
     </div>
+    <div th:insert="dashboard/footer-dashboard :: footer"></div>
 </div>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-<script>
-    $(document).ready(
-        function () {
-            $('#btn-submit').click(istext());
-        }
-    )
+
+<script src="/../assets/js/jquery/jquery.min.js"></script>
+<script src="/../assets/js/bootstrap/js/bootstrap.bundle.min.js"></script>
+<script src="/../assets/js/peity/jquery.peity.min.js"></script>
+<script type="text/javascript">
     window.ondragover = function(e) {e.preventDefault()}
     window.ondrop = function(e) {e.preventDefault(); upload(e.dataTransfer.files[0]); }
-    function upload(element) {
+    $(document).ready(
+        function () {
+            $('#btn-lock').click(loadImage);
+            $('#images').change(unlock);
+        }
+    )
+    function loadImage() {
+        $("#btn-lock").hide();
+        $("#images").hide();
+        $("#load-ico").show();
+        upload();
+        setInterval(function () {
+            $("#load-ico").hide();
+            $("#lock-send").show();
+            $("#btn-load").removeAttr("disabled");
+        }, 5000);
+    }
+    function unlock() {
+        $("#btn-load").attr("disabled", "");
+        $('#btn-lock').removeAttr("disabled");
+    }
+    function upload() {
+        let  element = document.getElementById("images");
         let fileList = element.files;
         let file;
         for (let i = 0; i < fileList.length; i++) {
@@ -130,29 +217,17 @@
             xhr.setRequestHeader('Authorization', 'TOKEN QhNXGda8SZpFGoEMGJob');
             xhr.send(fd);
         }
+    }
 
-    }
-    function istext() {
-        let title = $('#title').val().length > 0;
-        let address = $('#address').val().length > 0;
-        let district = $('#district').val().length > 0;
-        let housingType = $('#housingType').val().length > 0;
-        let housingClass = $('#housingClass').val().length > 0;
-        let totalArea = $('#totalArea').val().length > 0;
-        let floor = $('#floor').val().length > 0;
-        let bedsNumber = $('#bedsNumber').val().length > 0;
-        let price = $('#price').val().length > 0;
-        let parking = $('#parking').val().length > 0;
-        let bathroom = $('#bathroom').val().length > 0;
-        let description = $('#description').val().length > 0;
-        let image = $('#image').val().length > 0;
-        if (title && address && district && housingType && housingClass && totalArea && floor && bedsNumber && price && parking && bathroom && description && image) {
-            document.formData.submit();
-        }
-        else {
-            alert("Необходимо заполнить все поля!");
-        }
-    }
 </script>
+
 </body>
 </html>
+
+
+
+
+
+
+
+>
