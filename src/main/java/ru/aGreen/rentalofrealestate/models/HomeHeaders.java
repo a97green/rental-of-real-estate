@@ -15,7 +15,6 @@ public class HomeHeaders {
     private String descriptions;
     private String portfolioSubtitle;
     private String portfolioDescriptions;
-    private String advantageDescriptions;
     private String address;
     private String email;
     private String phoneNumber;
@@ -66,14 +65,6 @@ public class HomeHeaders {
 
     public void setPortfolioDescriptions(String portfolioDescriptions) {
         this.portfolioDescriptions = portfolioDescriptions;
-    }
-
-    public String getAdvantageDescriptions() {
-        return advantageDescriptions;
-    }
-
-    public void setAdvantageDescriptions(String advantageDescriptions) {
-        this.advantageDescriptions = advantageDescriptions;
     }
 
     public String getAddress() {

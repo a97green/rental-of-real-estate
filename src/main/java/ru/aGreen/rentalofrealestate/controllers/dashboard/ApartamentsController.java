@@ -15,14 +15,14 @@ import java.util.List;
 import java.util.NoSuchElementException;
 
 @Controller
-public class DashboardApartamentsController {
+public class ApartamentsController {
     private final ApartamentsRepository apartamentsRepository;
     private final DistrictRepository districtRepository;
     private final HousingClassRepository housingClassRepository;
     private final HousingTypeRepository housingTypeRepository;
 
     @Autowired
-    public DashboardApartamentsController(ApartamentsRepository apartamentsRepository, DistrictRepository districtRepository, HousingClassRepository housingClassRepository, HousingTypeRepository housingTypeRepository) {
+    public ApartamentsController(ApartamentsRepository apartamentsRepository, DistrictRepository districtRepository, HousingClassRepository housingClassRepository, HousingTypeRepository housingTypeRepository) {
         this.apartamentsRepository = apartamentsRepository;
         this.districtRepository = districtRepository;
         this.housingClassRepository = housingClassRepository;

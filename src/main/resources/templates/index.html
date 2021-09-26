@@ -68,6 +68,7 @@ text-indent: 0;
             <ul class="nav navbar-nav navbar-right">
                 <li><a href="#portfolio" class="page-scroll">Снять квартиру</a></li>
                 <li><a href="#about" class="page-scroll">О Нас</a></li>
+                <li><a href="#team" class="page-scroll">Почему мы</a></li>
                 <li><a href="#contact" class="page-scroll">СВЯЗАТЬСЯ С НАМИ</a></li>
             </ul>
         </div>
@@ -102,18 +103,18 @@ text-indent: 0;
             <ul class="cat">
                 <li>
                     <ol class="type">
+                        <li><a href="#" class="active" data-filter="*">Все квартиры</a></li>
                         <li><a href="#" data-filter=".standard">Стандарт</a></li>
                         <li><a href="#" data-filter=".junior">Полулюкс</a></li>
                         <li><a href="#" data-filter=".luxury">Люкс</a></li>
-                        <li><a href="#" data-filter=".apartments">Апартаменты</a></li>
                     </ol>
                 </li>
             </ul>
             <div class="clearfix"></div>
         </div>
-        <div class="row text-center">
-            <a class="btn btn-success btn-sm" href="/apartments">Смотреть все квартиры</a>
-        </div>
+<!--        <div class="row text-center">-->
+<!--            <p><a href="/apartments">Смотреть все квартиры</a></p><br>-->
+<!--        </div>-->
         <div class="row">
             <div class="portfolio-items apartaments">
 
@@ -146,9 +147,8 @@ text-indent: 0;
             <div class="col-md-8 col-md-offset-2 section-title">
                 <h2>Наши основные преимущества</h2>
                 <hr>
-                <p th:text="${homeHeaders.getAdvantageDescriptions()}"></p>
             </div>
-            <div id="row">
+            <div id="row" class="align-content-center">
                 <div class="col-md-3 col-sm-6 team" th:each="element : ${advantages}">
                     <div class="thumbnail"> <img th:src="${element.getImage()}" alt="..." class="team-img">
                         <div class="caption">
@@ -183,48 +183,69 @@ text-indent: 0;
 
     function apartamentsLoad() {
         let apartaments = [[${apartaments}]];
+        let apart;
+        let photos;
+        let photo;
+        let type = "standard";
+        let countStandard = 0;
+        let countLuxury = 0;
+        let countJunior = 0;
+
         for (let i = 0; i < apartaments.length; i++) {
-            let apart = apartaments[i];
-            let photos = apart.photo.split(";")
-            let photo = photos[0].replaceAll("\"", "");
-            let type;
-            if (apart.housingClass.title === "Стандарт") {
-                type = "standard";
+            apart = apartaments[i];
+            photos = apart.photo.split(";");
+            photo = photos[0].replaceAll("\"", "");
+            switch (apart.housingClass.title) {
+                case "Люкс":
+                    if (countLuxury < 9) {
+                        type = "luxury";
+                        countLuxury++;
+                    } else { continue; }
+                    break;
+                case "Полулюкс":
+                    if (countJunior < 9) {
+                        type = "junior";
+                        countJunior++;
+                    } else { continue; }
+                    break;
+                case "Стандарт":
+                    if (countStandard < 9) {
+                        type = "standard";
+                        countStandard++;
+                    } else { continue; }
+                    break;
+                default :
+                    continue;
             }
-            else if (apart.housingClass.title === "Люкс") {
-                type = "luxury";
-            }
-            else if (apart.housingClass.title === "Полулюкс") {
-                type = "junior";
-            }
-            else if (apart.housingClass.title === "Апартаменты") {
-                type = "apartments";
-            }
-            $('.apartaments').append('' +
-                '<div class="col-sm-6 col-md-4 col-lg-4 ' + type +' fa-border">\n' +
-                '                    <div class="portfolio-item">\n' +
-                '                        <div class="hover-bg">\n' +
-                '                            <a href="/apartments/' + apart.id + '">\n' +
-                '                                <div class="hover-text">\n' +
-                '                                    <h4>Посмотреть</h4>\n' +
-                '                                </div>\n' +
-                '                                <img src="' + photo + '" class="img-responsive">\n' +
-                '                            </a>\n' +
-                '                        </div>\n' +
-                '                        <div class="modal-footer"> ' +
-                '                            <div class="row">' +
-                '                                <div class="col-sm-6"><b>' +
-                '                                   ' + apart.address +
-                '                                </b></div>\n' +
-                '                                <div class="col-sm-6">' +
-                '                                   <a href="/" class="btn btn-danger">Забронировать</a>\n' +
-                '                                </div>' +
-                '                            </div>' +
-                '                        </div>\n' +
-                '                    </div>\n' +
-                '               </div>');
+            appendApart(type, apart, photo);
         }
     }
+    function appendApart(type, apart, photo) {
+        $('.apartaments').append('' +
+            '<div class="col-sm-6 col-md-4 col-lg-4 ' + type +' fa-border">\n' +
+            '                    <div class="portfolio-item">\n' +
+            '                        <div class="hover-bg">\n' +
+            '                            <a href="/apartments/' + apart.id + '">\n' +
+            '                                <div class="hover-text">\n' +
+            '                                    <h4>Посмотреть</h4>\n' +
+            '                                </div>\n' +
+            '                                <img src="' + photo + '" class="img-responsive">\n' +
+            '                            </a>\n' +
+            '                        </div>\n' +
+            '                        <div class="modal-footer"> ' +
+            '                            <div class="row">' +
+            '                                <div class="col-sm-6"><b>' +
+            '                                   ' + apart.address +
+            '                                </b></div>\n' +
+            '                                <div class="col-sm-6">' +
+            '                                   <a href="/" class="btn btn-danger">Забронировать</a>\n' +
+            '                                </div>' +
+            '                            </div>' +
+            '                        </div>\n' +
+            '                    </div>\n' +
+            '               </div>');
+    }
+
 </script>
 </body>
 </html>

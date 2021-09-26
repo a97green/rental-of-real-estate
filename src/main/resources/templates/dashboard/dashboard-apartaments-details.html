@@ -51,12 +51,7 @@
                                                     <p class="card-title-desc">Здесь вы можете просмотреть все фотографии данной квартиры</p>
                                                     <div id="carouselExampleFade" class="carousel slide carousel-fade" data-ride="carousel">
                                                         <div class="carousel-inner">
-                                                            <div class="carousel-item active">
-                                                                <img class="d-block img-fluid" src="" alt="Second slide">
-                                                            </div>
-                                                            <div class="carousel-item" th:each="element : ${strings}">
-                                                                <img th:src="${element}" class="d-block img-fluid" alt="...">
-                                                            </div>
+
                                                         </div>
                                                         <a class="carousel-control-prev" href="#carouselExampleFade" role="button" data-slide="prev">
                                                             <span class="carousel-control-prev-icon" aria-hidden="true"></span>
@@ -213,6 +208,7 @@
 <script type="text/javascript" th:inline="javascript">
     $(document).ready(
         function () {
+            appendImages();
             $('#btn-edit').click(editApartaments);
             $('#btn-cancel').click(cancelApartaments);
         }
@@ -227,6 +223,17 @@
         $('#show-row').hide();
         $('#hide-row').show();
         $('.form-control').removeAttr("disabled");
+    }
+    function appendImages() {
+        let strings = [[${strings}]];
+        for (let i = 0; i < strings.length; i++) {
+            $('.carousel-inner').append('' +
+                '<div class="carousel-item" id="image' + i + '">\n' +
+                '   <img src="' + strings[i] + '" class="d-block img-fluid" alt="...">\n' +
+                '</div>'
+            );
+        }
+        $('#image0').attr("class", "carousel-item active");
     }
 </script>
 

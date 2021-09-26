@@ -6,6 +6,8 @@ import java.util.List;
 public class Images {
     private static List<String> strings = new ArrayList<>();
 
+    private static String image = "";
+
     public static List<String> getStrings() {
         return strings;
     }
@@ -29,5 +31,13 @@ public class Images {
             strings.add(urls[i].replace("\"", ""));
         }
         return strings;
+    }
+
+    public static String getImage() {
+        return image.replaceAll("\"", "");
+    }
+
+    public static void setImage(String image) {
+        Images.image = image;
     }
 }
