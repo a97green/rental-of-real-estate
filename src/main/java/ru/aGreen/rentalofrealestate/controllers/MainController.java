@@ -5,10 +5,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import ru.aGreen.rentalofrealestate.models.*;
-import ru.aGreen.rentalofrealestate.repositories.AboutCompanyReposiroty;
-import ru.aGreen.rentalofrealestate.repositories.AdvantageRepository;
-import ru.aGreen.rentalofrealestate.repositories.ApartamentsRepository;
-import ru.aGreen.rentalofrealestate.repositories.HomeHeadersRepository;
+import ru.aGreen.rentalofrealestate.repositories.*;
 
 @Controller
 public class MainController {
@@ -16,13 +13,15 @@ public class MainController {
     private final AboutCompanyReposiroty aboutCompanyReposiroty;
     private final ApartamentsRepository apartamentsRepository;
     private final AdvantageRepository advantageRepository;
+    private final AttractionsRepository attractionsRepository;
 
     @Autowired
-    public MainController(HomeHeadersRepository homeHeadersRepository, AboutCompanyReposiroty aboutCompanyReposiroty, ApartamentsRepository apartamentsRepository, AdvantageRepository advantageRepository) {
+    public MainController(HomeHeadersRepository homeHeadersRepository, AboutCompanyReposiroty aboutCompanyReposiroty, ApartamentsRepository apartamentsRepository, AdvantageRepository advantageRepository, AttractionsRepository attractionsRepository) {
         this.homeHeadersRepository = homeHeadersRepository;
         this.aboutCompanyReposiroty = aboutCompanyReposiroty;
         this.apartamentsRepository = apartamentsRepository;
         this.advantageRepository = advantageRepository;
+        this.attractionsRepository = attractionsRepository;
     }
 
     @GetMapping("/")
@@ -34,9 +33,11 @@ public class MainController {
         Iterable<AboutCompany> aboutCompany = aboutCompanyReposiroty.findAll();
         Iterable<Advantage> advantages = advantageRepository.findAll();
         Iterable<Apartaments> apartaments = apartamentsRepository.findAll();
+        Iterable<Attractions> attractions = attractionsRepository.findAll();
         model.addAttribute("aboutCompany", aboutCompany);
         model.addAttribute("advantages", advantages);
         model.addAttribute("apartaments", apartaments);
+        model.addAttribute("attractions", attractions);
         return "index";
     }
 

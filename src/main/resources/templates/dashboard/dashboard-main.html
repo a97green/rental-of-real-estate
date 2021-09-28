@@ -40,7 +40,7 @@
                                     <div class="row">
                                         <div class="col">
                                             <form th:action="'/dashboard/main/begining/' + ${homeHeaders.getId()} + '/save'" method="post">
-                                                <h4 class="card-title mb-4">Начало</h4>
+                                                <h4 class="card-title mb-4 text-center">Начало</h4>
                                                 <div class="form-group row">
                                                     <label class="col-sm-3 col-form-label">Название организации</label>
                                                     <div class="col-sm-9">
@@ -78,7 +78,7 @@
 
                                             <form th:action="'/dashboard/main/rent/' + ${homeHeaders.getId()} + '/save'" method="post">
                                                 <div class="border-top"><br></div>
-                                                <h4 class="card-title mb-4">Снять квартиру</h4>
+                                                <h4 class="card-title mb-4 text-center">Снять квартиру</h4>
                                                 <div class="form-group row">
                                                     <label class="col-sm-3 col-form-label">Подзаголовок</label>
                                                     <div class="col-sm-9">
@@ -110,7 +110,7 @@
 
                                             <div>
                                                 <div class="border-top"><br></div>
-                                                <h4 class="card-title mb-4">О компании</h4>
+                                                <h4 class="card-title mb-4 text-center">О компании</h4>
                                                 <table class="table table-hover table-centered table-nowrap mb-0">
                                                     <thead>
                                                     <tr>
@@ -124,7 +124,7 @@
                                                         <th scope="row" th:text="'#' + ${element.getId()}"></th>
                                                         <td th:text="${element.getTitle()}"></td>
                                                         <td class="text-right">
-                                                            <a th:href="'/dashboard/main/about/' + ${element.getId()}" class="btn btn-success">Редактировать</a>
+                                                            <a th:href="'/dashboard/main/about/' + ${element.getId()}" class="btn btn-success btn-sm">Редактировать</a>
                                                         </td>
                                                     </tr>
                                                     </tbody>
@@ -138,7 +138,7 @@
 
                                             <div>
                                                 <div class="border-top"><br></div>
-                                                <h4 class="card-title mb-4">Преимущества</h4>
+                                                <h4 class="card-title mb-4 text-center">Преимущества</h4>
                                                 <table class="table table-hover table-centered table-nowrap mb-0">
                                                     <thead>
                                                     <tr>
@@ -152,16 +152,44 @@
                                                         <th scope="row" th:text="'#' + ${element.getId()}"></th>
                                                         <td th:text="${element.getTitle()}"></td>
                                                         <td class="text-right">
-                                                            <a th:href="'/dashboard/main/advantage/' + ${element.getId()}" class="btn btn-success">Редактировать</a>
+                                                            <a th:href="'/dashboard/main/advantage/' + ${element.getId()}" class="btn btn-success btn-sm">Редактировать</a>
                                                         </td>
                                                     </tr>
                                                     </tbody>
                                                 </table>
                                             </div>
 
+                                            <div>
+                                                <div class="border-top"><br></div>
+                                                <h4 class="card-title mb-4 text-center">Достопримечательности</h4>
+                                                <table class="table table-hover table-centered table-nowrap mb-0">
+                                                    <thead>
+                                                    <tr>
+                                                        <th scope="col">#</th>
+                                                        <th scope="col">Заголовок</th>
+                                                        <th class="text-right" scope="col"></th>
+                                                    </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                    <tr th:each="element : ${attractions}" >
+                                                        <th scope="row" th:text="'#' + ${element.getId()}"></th>
+                                                        <td th:text="${element.getTitle()}"></td>
+                                                        <td class="text-right">
+                                                            <a th:href="'/dashboard/main/attractions/' + ${element.getId()}" class="btn btn-success btn-sm">Редактировать</a>
+                                                        </td>
+                                                    </tr>
+                                                    </tbody>
+                                                </table>
+                                            </div><br>
+                                            <div class="row align-items-center">
+                                                <div class="col-sm-6">
+                                                    <a href="/dashboard/main/attractions/add" class="btn btn-primary">Добавить блок</a>
+                                                </div>
+                                            </div><br>
+
                                             <form th:action="'/dashboard/main/contact/' + ${homeHeaders.getId()} + '/save'" method="post">
                                                 <div class="border-top"><br></div>
-                                                <h4 class="card-title mb-4">Контакты</h4>
+                                                <h4 class="card-title mb-4 text-center">Контакты</h4>
                                                 <div class="form-group row">
                                                     <label class="col-sm-3 col-form-label">Адрес</label>
                                                     <div class="col-sm-9">
@@ -171,13 +199,37 @@
                                                 <div class="form-group row">
                                                     <label class="col-sm-3 col-form-label">Email адрес</label>
                                                     <div class="col-sm-9">
-                                                        <input th:value="${homeHeaders.getEmail()}" type="text" class="form-control form-contact" name="email" disabled required>
+                                                        <input th:value="${homeHeaders.getEmail()}" type="email" class="form-control form-contact" name="email" disabled required>
                                                     </div>
                                                 </div>
                                                 <div class="form-group row">
                                                     <label class="col-sm-3 col-form-label">Котактный номер</label>
                                                     <div class="col-sm-9">
                                                         <input th:value="${homeHeaders.getPhoneNumber()}" type="text" class="form-control form-contact" name="phoneNumber" disabled required>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group row">
+                                                    <label class="col-sm-3 col-form-label">Ссылка на WhatsApp</label>
+                                                    <div class="col-sm-9">
+                                                        <input th:value="${homeHeaders.getWhasApp()}" type="text" class="form-control form-contact" name="whatsApp" disabled required>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group row">
+                                                    <label class="col-sm-3 col-form-label">Ссылка на Telegram</label>
+                                                    <div class="col-sm-9">
+                                                        <input th:value="${homeHeaders.getTelegram()}" type="text" class="form-control form-contact" name="telegram" disabled required>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group row">
+                                                    <label class="col-sm-3 col-form-label">Ссылка на Viber</label>
+                                                    <div class="col-sm-9">
+                                                        <input th:value="${homeHeaders.getViber()}" type="text" class="form-control form-contact" name="viber" disabled required>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group row">
+                                                    <label class="col-sm-3 col-form-label">Ссылка на Instagram</label>
+                                                    <div class="col-sm-9">
+                                                        <input th:value="${homeHeaders.getInstagram()}" type="text" class="form-control form-contact" name="instagram" disabled required>
                                                     </div>
                                                 </div>
                                                 <div id="hide-row-contact" class="row" style="display: none" >

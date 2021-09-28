@@ -18,6 +18,10 @@ public class HomeHeaders {
     private String address;
     private String email;
     private String phoneNumber;
+    private String whasApp;
+    private String telegram;
+    private String viber;
+    private String instagram;
 
     public Long getId() {
         return id;
@@ -89,5 +93,37 @@ public class HomeHeaders {
 
     public void setPhoneNumber(String phoneNumber) {
         this.phoneNumber = phoneNumber;
+    }
+
+    public String getWhasApp() {
+        return whasApp;
+    }
+
+    public void setWhasApp(String whasApp) {
+        this.whasApp = whasApp;
+    }
+
+    public String getTelegram() {
+        return telegram;
+    }
+
+    public void setTelegram(String telegram) {
+        this.telegram = telegram;
+    }
+
+    public String getViber() {
+        return viber;
+    }
+
+    public void setViber(String viber) {
+        this.viber = viber;
+    }
+
+    public String getInstagram() {
+        return instagram;
+    }
+
+    public void setInstagram(String instagram) {
+        this.instagram = instagram;
     }
 }

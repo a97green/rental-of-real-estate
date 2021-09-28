@@ -69,7 +69,8 @@ text-indent: 0;
                 <li><a href="#portfolio" class="page-scroll">Снять квартиру</a></li>
                 <li><a href="#about" class="page-scroll">О Нас</a></li>
                 <li><a href="#team" class="page-scroll">Почему мы</a></li>
-                <li><a href="#contact" class="page-scroll">СВЯЗАТЬСЯ С НАМИ</a></li>
+                <li><a href="#services" class="page-scroll">Достопримечательности</a></li>
+                <li><button type="button" class="btn btn-success" style="margin-top: 10px" data-toggle="modal" data-target=".bd-example-modal-sm">Заказать звонок</button></li>
             </ul>
         </div>
     </div>
@@ -112,9 +113,9 @@ text-indent: 0;
             </ul>
             <div class="clearfix"></div>
         </div>
-<!--        <div class="row text-center">-->
-<!--            <p><a href="/apartments">Смотреть все квартиры</a></p><br>-->
-<!--        </div>-->
+        <div class="row text-center">
+            <p><a href="/apartments">Смотреть все квартиры</a></p><br>
+        </div>
         <div class="row">
             <div class="portfolio-items apartaments">
 
@@ -162,15 +163,88 @@ text-indent: 0;
     </div>
 </div>
 
+<div id="services">
+    <div class="container">
+        <div class="col-md-10 col-md-offset-1 section-title text-center">
+            <h2>Достопримечательности</h2>
+            <hr>
+        </div>
+        <div class="row">
+            <div class="col-xs-12 col-sm-4 service" th:each="element : ${attractions}">
+                <img th:src="${element.getImage()}" class="img-responsive" alt="Project Title">
+                <h3 th:text="${element.getTitle()}"></h3>
+                <p th:text="${element.getDescriptions()}"></p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="contact">
+    <div class="container">
+        <div class="section-title text-center">
+            <h2>Если у Вас появились вопросы, звоните!</h2>
+            <hr>
+            <h2><a>8-888-888-8888</h2>
+        </div>
+    </div>
+</div>
+
+<div id="modalOne">
+    <div class="modal fade bd-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                    <h4 class="modal-title" id="myModalLabel">Перезвоните мне</h4>
+                </div>
+                <div class="modal-body">
+                    <p>Мы с удовольствием перезвоним вам прямо сейчас, просто скажите номер:</p>
+                    <form name="formTest" method="" action="">
+                        <div class="form-group">
+                            <label>Введите номер телефона</label>
+                            <input th:id="phone" type="text" placeholder="Ваш номер телефона" class="form-control" name="phone" required/>
+                        </div>
+                        <div class="form-group">
+                            <label>Введите имя</label>
+                            <input th:id="name" type="text" placeholder="Ваше имя" class="phone form-control" name="name" required/>
+                        </div>
+                        <button th:id="snCls" type="button" class="btn btn-secondary" data-dismiss="modal" style="display: none">Close</button>
+                        <button th:id="smTg" type="submit" class="btn btn-success">Отправить</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="modalTwo">
+    <button th:id="smInf" type="button" class="btn btn-primary" data-toggle="modal" data-target=".bd-example-modal-lg" style="display: none"></button>
+    <div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                    <h4 class="modal-title">Ваша заявка принята!</h4>
+                </div>
+                <div class="modal-body">
+                    <p>В течении 2-х минут с Вами свяжется наш администратор!</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
 <div th:insert="footer :: footer"></div>
 
 <script type="text/javascript" src="/js/jquery.1.11.1.js"></script>
 <script type="text/javascript" src="/js/bootstrap.js"></script>
-<script type="text/javascript" src="/js/SmoothScroll.js"></script>
 <script type="text/javascript" src="/js/nivo-lightbox.js"></script>
 <script type="text/javascript" src="/js/jquery.isotope.js"></script>
 <script type="text/javascript" src="/js/jqBootstrapValidation.js"></script>
-<script type="text/javascript" src="/js/contact_me.js"></script>
 <script type="text/javascript" src="/js/main.js"></script>
 <script type="text/javascript" src="/js/filter.js"></script>
 
@@ -178,6 +252,23 @@ text-indent: 0;
     $(document).ready(
         function () {
             apartamentsLoad();
+            $('form').submit(function (e) {
+                e.preventDefault()
+                let name = $('#name').val();
+                let phone = $('#phone').val();
+                let text = "ВНИМАНИЕ НОВАЯ ЗАЯВКА!%0A" +
+                    "👤 Клиент: " + name + "%0A" +
+                    "📞 Номер телефона: " + phone
+                $.ajax({
+                    type: "POST",
+                    url: "https://api.telegram.org/bot1950550417:AAGo4FVC1a-D2SBQXhJwz11dABiAKxeL8jY/sendMessage?chat_id=-547471302&text=" + text,
+                    success: function () {
+                    }
+                });
+                $('#snCls').click();
+                $('#smInf').click();
+                $('body').attr("style", "padding-right: 0px;");
+            });
         }
     )
 
@@ -186,7 +277,7 @@ text-indent: 0;
         let apart;
         let photos;
         let photo;
-        let type = "standard";
+        let type = "all";
         let countStandard = 0;
         let countLuxury = 0;
         let countJunior = 0;
@@ -197,25 +288,25 @@ text-indent: 0;
             photo = photos[0].replaceAll("\"", "");
             switch (apart.housingClass.title) {
                 case "Люкс":
-                    if (countLuxury < 9) {
+                    // if (countLuxury < 9) {
                         type = "luxury";
                         countLuxury++;
-                    } else { continue; }
+                    // } else { continue; }
                     break;
                 case "Полулюкс":
-                    if (countJunior < 9) {
+                    // if (countJunior < 9) {
                         type = "junior";
                         countJunior++;
-                    } else { continue; }
+                    // } else { continue; }
                     break;
                 case "Стандарт":
-                    if (countStandard < 9) {
+                    // if (countStandard < 9) {
                         type = "standard";
                         countStandard++;
-                    } else { continue; }
+                    // } else { continue; }
                     break;
-                default :
-                    continue;
+                // default :
+                //     continue;
             }
             appendApart(type, apart, photo);
         }
@@ -234,18 +325,18 @@ text-indent: 0;
             '                        </div>\n' +
             '                        <div class="modal-footer"> ' +
             '                            <div class="row">' +
-            '                                <div class="col-sm-6"><b>' +
-            '                                   ' + apart.address +
-            '                                </b></div>\n' +
             '                                <div class="col-sm-6">' +
-            '                                   <a href="/" class="btn btn-danger">Забронировать</a>\n' +
+            '                                   <i class="fa fa-location-arrow"> ' + apart.address + '</i><br>' +
+            '                                   <b style="color: #0b0d0e">от ' + apart.price + ' рублей/сутки</b>' +
+            '                                </div>\n' +
+            '                                <div class="col-sm-6">' +
+            '                                   <button type="button" class="btn btn-success" style="margin-top: 10px" data-toggle="modal" data-target=".bd-example-modal-sm">Забронировать</button>\n' +
             '                                </div>' +
             '                            </div>' +
             '                        </div>\n' +
             '                    </div>\n' +
             '               </div>');
     }
-
 </script>
 </body>
 </html>
