@@ -22,6 +22,7 @@ public class HomeHeaders {
     private String telegram;
     private String viber;
     private String instagram;
+    private String rules;
 
     public Long getId() {
         return id;
@@ -125,5 +126,13 @@ public class HomeHeaders {
 
     public void setInstagram(String instagram) {
         this.instagram = instagram;
+    }
+
+    public String getRules() {
+        return rules;
+    }
+
+    public void setRules(String rules) {
+        this.rules = rules;
     }
 }

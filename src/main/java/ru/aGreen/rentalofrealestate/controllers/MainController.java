@@ -7,6 +7,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import ru.aGreen.rentalofrealestate.models.*;
 import ru.aGreen.rentalofrealestate.repositories.*;
 
+import java.util.List;
+
 @Controller
 public class MainController {
     private final HomeHeadersRepository homeHeadersRepository;

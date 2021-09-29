@@ -5,12 +5,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title th:text="'Квартиры посуточно в Красноярске - ' + ${homeHeaders.getTitle()}"></title>
     <meta content="Квартиры посуточно в Красноярске" name="description" />
-    <meta content="Михаил Евгеньевич" name="author" />
+    <meta content="" name="author" />
 
     <link rel="shortcut icon" href="https://glyphicons.com/img/glyphicons/basic/2x/glyphicons-basic-21-home@2x.png" type="image/x-icon">
-    <link rel="apple-touch-icon" href="/img/apple-touch-icon.png">
-    <link rel="apple-touch-icon" sizes="72x72" href="/img/apple-touch-icon-72x72.png">
-    <link rel="apple-touch-icon" sizes="114x114" href="/img/apple-touch-icon-114x114.png">
+    <link rel="apple-touch-icon" href="https://glyphicons.com/img/glyphicons/basic/2x/glyphicons-basic-21-home@2x.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="https://glyphicons.com/img/glyphicons/basic/2x/glyphicons-basic-21-home@2x.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="https://glyphicons.com/img/glyphicons/basic/2x/glyphicons-basic-21-home@2x.png">
     <!-- Bootstrap -->
     <link rel="stylesheet" type="text/css"  href="/css/bootstrap.css">
     <link rel="stylesheet" type="text/css" href="/fonts/font-awesome/css/font-awesome.css">
@@ -55,6 +55,53 @@ box-shadow: inset 0px 0px 5px;
 text-indent: 0;
 }
 </style>
+
+    <style>
+        .carousel {
+            width: 600px;
+        }
+
+        /* Indicators list style */
+        .article-slide .carousel-indicators {
+            bottom: 0;
+            left: 0;
+            margin-left: 5px;
+            width: 100%;
+        }
+        /* Indicators list style */
+        .article-slide .carousel-indicators li {
+            border: medium none;
+            border-radius: 0;
+            float: left;
+            height: 54px;
+            margin-bottom: 5px;
+            margin-left: 0;
+            margin-right: 5px !important;
+            margin-top: 0;
+            width: 100px;
+        }
+        /* Indicators images style */
+        .article-slide .carousel-indicators img {
+            border: 2px solid #FFFFFF;
+            float: left;
+            height: 54px;
+            left: 0;
+            width: 100px;
+        }
+        /* Indicators active image style */
+        .article-slide .carousel-indicators .active img {
+            border: 2px solid #428BCA;
+            opacity: 0.7;
+        }
+    </style>
+
+    <style>
+        #myModal.modal-dialog {
+            width: 70%!important;
+            min-width: 620px;
+        }
+    </style>
+
 </head>
 
 <body id="page-top" data-spy="scroll" data-target=".navbar-fixed-top">
@@ -70,7 +117,8 @@ text-indent: 0;
                 <li><a href="#about" class="page-scroll">О Нас</a></li>
                 <li><a href="#team" class="page-scroll">Почему мы</a></li>
                 <li><a href="#services" class="page-scroll">Достопримечательности</a></li>
-                <li><button type="button" class="btn btn-success" style="margin-top: 10px" data-toggle="modal" data-target=".bd-example-modal-sm">Заказать звонок</button></li>
+                <li><a href="#contact" class="page-scroll">Связь с нами</a></li>
+                <li><button type="button" class="btn btn-success" style="margin-top: 10px;" data-toggle="modal" data-target=".bd-example-modal-sm">Заказать звонок</button></li>
             </ul>
         </div>
     </div>
@@ -105,16 +153,13 @@ text-indent: 0;
                 <li>
                     <ol class="type">
                         <li><a href="#" class="active" data-filter="*">Все квартиры</a></li>
-                        <li><a href="#" data-filter=".standard">Стандарт</a></li>
-                        <li><a href="#" data-filter=".junior">Полулюкс</a></li>
-                        <li><a href="#" data-filter=".luxury">Люкс</a></li>
+<!--                        <li><a href="#" data-filter=".standard">Стандарт</a></li>-->
+<!--                        <li><a href="#" data-filter=".junior">Полулюкс</a></li>-->
+<!--                        <li><a href="#" data-filter=".luxury">Люкс</a></li>-->
                     </ol>
                 </li>
             </ul>
             <div class="clearfix"></div>
-        </div>
-        <div class="row text-center">
-            <p><a href="/apartments">Смотреть все квартиры</a></p><br>
         </div>
         <div class="row">
             <div class="portfolio-items apartaments">
@@ -184,12 +229,59 @@ text-indent: 0;
         <div class="section-title text-center">
             <h2>Если у Вас появились вопросы, звоните!</h2>
             <hr>
-            <h2><a>8-888-888-8888</h2>
+            <h2><i class="fa fa-phone-square"> </i><a th:href="${homeHeaders.getWhasApp()}" th:text="' ' + ${homeHeaders.getPhoneNumber()}"></a></h2>
         </div>
     </div>
 </div>
 
-<div id="modalOne">
+<div id="modalDetails">
+    <div class="modal fade bd-example-modal-lg2" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel2" aria-hidden="true">
+        <div id="myModal" class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                    <h4 class="modal-title mTitlePut"></h4>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-lg-6" style="max-height: 450px; height: 450px">
+                            <div class="carousel slide article-slide" id="article-photo-carousel">
+                                <div class="carousel-inner cont-slider"></div>
+                                <ol class="carousel-indicators"></ol>
+                            </div>
+                        </div>
+                        <div class="col-lg-6">
+                            <table class="table table-striped">
+                                <thead>
+                                <tr>
+                                    <th></th>
+                                    <th></th>
+                                </tr>
+                                </thead>
+                                <tbody class="tBodyPut">
+
+                                </tbody>
+                            </table>
+                            <div class="text-right">
+                                <button type="button" class="btn btn-success" style="margin-top: 10px;" data-toggle="modal" data-target=".bd-example-modal-sm">Забронировать</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="container">
+                            <div class="descriptionPut"></div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="modalCall">
     <div class="modal fade bd-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
@@ -219,7 +311,7 @@ text-indent: 0;
     </div>
 </div>
 
-<div id="modalTwo">
+<div id="modalInfo">
     <button th:id="smInf" type="button" class="btn btn-primary" data-toggle="modal" data-target=".bd-example-modal-lg" style="display: none"></button>
     <div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-lg">
@@ -238,6 +330,25 @@ text-indent: 0;
     </div>
 </div>
 
+<div id="modalRules">
+    <div class="modal fade" id="myModalRules" tabindex="-1" role="dialog" aria-labelledby="myModalRulesLable" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                    <h4 class="modal-title" id="myModalRulesLable">Правила проживания</h4>
+                </div>
+                <div class="modal-body" th:text="${homeHeaders.getRules()}">
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" data-dismiss="modal">Понятно</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 <div th:insert="footer :: footer"></div>
 
 <script type="text/javascript" src="/js/jquery.1.11.1.js"></script>
@@ -261,7 +372,7 @@ text-indent: 0;
                     "📞 Номер телефона: " + phone
                 $.ajax({
                     type: "POST",
-                    url: "https://api.telegram.org/bot1950550417:AAGo4FVC1a-D2SBQXhJwz11dABiAKxeL8jY/sendMessage?chat_id=-547471302&text=" + text,
+                    url: "https://api.telegram.org/bot2037072837:AAExxZDtKuoKS-Ta-uuYtuHEwp1FhogPBBE/sendMessage?chat_id=-547471302&text=" + text,
                     success: function () {
                     }
                 });
@@ -269,9 +380,10 @@ text-indent: 0;
                 $('#smInf').click();
                 $('body').attr("style", "padding-right: 0px;");
             });
-        }
-    )
+            $('.apart').click(detailsApart);
 
+        }
+    );
     function apartamentsLoad() {
         let apartaments = [[${apartaments}]];
         let apart;
@@ -289,20 +401,29 @@ text-indent: 0;
             switch (apart.housingClass.title) {
                 case "Люкс":
                     // if (countLuxury < 9) {
-                        type = "luxury";
-                        countLuxury++;
+                    type = "luxury";
+                    if (countLuxury < 1) {
+                        $('.type').append('<li><a href="#" data-filter=".luxury">Люкс</a></li>\n');
+                    }
+                    countLuxury++;
                     // } else { continue; }
                     break;
                 case "Полулюкс":
                     // if (countJunior < 9) {
-                        type = "junior";
-                        countJunior++;
+                    type = "junior";
+                    if (countJunior < 1) {
+                        $('.type').append('<li><a href="#" data-filter=".junior">Полулюкс</a></li>\n');
+                    }
+                    countJunior++;
                     // } else { continue; }
                     break;
                 case "Стандарт":
                     // if (countStandard < 9) {
-                        type = "standard";
-                        countStandard++;
+                    type = "standard";
+                    if (countStandard < 1) {
+                        $('.type').append('<li><a href="#" data-filter=".standard">Стандарт</a></li>\n');
+                    }
+                    countStandard++;
                     // } else { continue; }
                     break;
                 // default :
@@ -316,7 +437,7 @@ text-indent: 0;
             '<div class="col-sm-6 col-md-4 col-lg-4 ' + type +' fa-border">\n' +
             '                    <div class="portfolio-item">\n' +
             '                        <div class="hover-bg">\n' +
-            '                            <a href="/apartments/' + apart.id + '">\n' +
+            '                            <a class="apart" id="' + apart.id + '" data-toggle="modal" data-target=".bd-example-modal-lg2">\n' +
             '                                <div class="hover-text">\n' +
             '                                    <h4>Посмотреть</h4>\n' +
             '                                </div>\n' +
@@ -330,12 +451,103 @@ text-indent: 0;
             '                                   <b style="color: #0b0d0e">от ' + apart.price + ' рублей/сутки</b>' +
             '                                </div>\n' +
             '                                <div class="col-sm-6">' +
-            '                                   <button type="button" class="btn btn-success" style="margin-top: 10px" data-toggle="modal" data-target=".bd-example-modal-sm">Забронировать</button>\n' +
+            '                                   <button type="button" class="btn btn-success" style="margin-top: 10px" data-toggle="modal" data-target=".bd-example-modal-sm">Забронировать</button>' +
+            // '                                   <button type="button" class="btn btn-success" style="margin-top: 10px;" data-toggle="modal" data-target=".bd-example-modal-sm">Заказать звонок</button>\n' +
             '                                </div>' +
             '                            </div>' +
             '                        </div>\n' +
             '                    </div>\n' +
             '               </div>');
+    }
+
+    function detailsApart() {
+        let id = $(this).attr('id');
+        let homeHeaders = [[${homeHeaders}]];
+        let apartments = [[${apartaments}]];
+        for (let i = 0; i < apartments.length; i++) {
+            let apart = apartments[i];
+            if (apart.id == id) {
+                let strings = apart.photo.split(";");
+                let urls = [];
+                for (let i = 0; i < strings.length - 1; i++) {
+                    urls[i] = strings[i].replaceAll("\"", "");
+                }
+                appendImages(urls);
+                appendTable(apart, homeHeaders);
+                break;
+            }
+        }
+    }
+    function appendTable(apart, homeHeaders) {
+        let description = $('.descriptionPut');
+        let mTitle = $('.mTitlePut');
+        let tBody = $('.tBodyPut');
+
+        description.empty();
+        mTitle.empty();
+        tBody.empty();
+        description.append('' +
+            '<h3>Описание</h3>\n' +
+            '<p>' + apart.description + '</p>')
+        mTitle.append(apart.title);
+        tBody.append('                                <tr>\n' +
+            '                                    <td class="text-left">Район</td>\n' +
+            '                                    <td class="text-right"><b>' + apart.district.title + '</b></td>\n' +
+            '                                </tr>\n' +
+            '                                <tr>\n' +
+            '                                    <td class="text-left">Тип жилья</td>\n' +
+            '                                    <td class="text-right"><b>' + apart.housingType.title + '</b></td>\n' +
+            '                                </tr>\n' +
+            '                                <tr>\n' +
+            '                                    <td class="text-left">Класс жилья</td>\n' +
+            '                                    <td class="text-right"><b>' + apart.housingClass.title + '</b></td>\n' +
+            '                                </tr>\n' +
+            '                                <tr>\n' +
+            '                                    <td class="text-left">Адрес</td>\n' +
+            '                                    <td class="text-right"><b>' + apart.address + '</b></td>\n' +
+            '                                </tr>\n' +
+            '                                <tr>\n' +
+            '                                    <td class="text-left">Общая площадь</td>\n' +
+            '                                    <td class="text-right"><b>' + apart.totalArea + ' кв. м.</b></td>\n' +
+            '                                </tr>\n' +
+            '                                <tr>\n' +
+            '                                    <td class="text-left">Этаж</td>\n' +
+            '                                    <td class="text-right"><b>' + apart.floor + '</b></td>\n' +
+            '                                </tr>\n' +
+            '                                <tr>\n' +
+            '                                    <td class="text-left">Кол-во спальный мест</td>\n' +
+            '                                    <td class="text-right"><b>' + apart.bedsNumber + '</b></td>\n' +
+            '                                </tr>\n' +
+            '                                <tr>\n' +
+            '                                    <td class="text-left">Стоянка</td>\n' +
+            '                                    <td class="text-right"><b>' + apart.parking + '</b></td>\n' +
+            '                                </tr>\n' +
+            '                                <tr>\n' +
+            '                                    <td class="text-left">Снузел</td>\n' +
+            '                                    <td class="text-right"><b>' + apart.bathroom + '</b></td>\n' +
+            '                                </tr>' +
+            '                                <tr>\n' +
+            '                                   <td class="text-left"><a href="' + homeHeaders.whasApp + '"><h4><i class="fa fa-phone-square"> </i>' + ' ' + homeHeaders.phoneNumber + '</h4></a></td>\n' +
+            '                                   <td class="text-right"><h4><b>' + apart.price + ' Р/сут.</b></h4></td>\n' +
+            '                                </tr>')
+    }
+    function appendImages(urls) {
+        let carouselinner = $('.carousel-inner');
+        let carouselindicators = $('.carousel-indicators');
+        carouselinner.empty();
+        carouselindicators.empty();
+        for (let i = 0; i < urls.length; i++) {
+            carouselinner.append('' +
+                '<div class="item" id="image' + i + '">\n' +
+                '   <img alt="" title="" src="' + urls[i] + '">\n' +
+                '</div>');
+            carouselindicators.append('' +
+                '<li id="indicators' + i + '" class="" data-slide-to="' + i + '" data-target="#article-photo-carousel">\n' +
+                '   <img alt="" src="' + urls[i] + '" width="450px">\n' +
+                '</li>');
+        }
+        $('#image0').attr("class", "item active");
+        $('#indicators0').attr("class", "active");
     }
 </script>
 </body>

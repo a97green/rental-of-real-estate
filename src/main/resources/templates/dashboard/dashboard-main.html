@@ -40,7 +40,7 @@
                                     <div class="row">
                                         <div class="col">
                                             <form th:action="'/dashboard/main/begining/' + ${homeHeaders.getId()} + '/save'" method="post">
-                                                <h4 class="card-title mb-4 text-center">Начало</h4>
+                                                <h4 class="card-title mb-4 text-center">Основное</h4>
                                                 <div class="form-group row">
                                                     <label class="col-sm-3 col-form-label">Название организации</label>
                                                     <div class="col-sm-9">
@@ -57,6 +57,12 @@
                                                     <label class="col-sm-3 col-form-label">Описание</label>
                                                     <div class="col-sm-9">
                                                         <input th:value="${homeHeaders.getDescriptions()}" type="text" class="form-control form-beginning" name="descriptions" disabled required>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group row">
+                                                    <label  class="col-sm-3 col-form-label">Правила проживания</label>
+                                                    <div class="col-sm-9">
+                                                        <textarea th:text="${homeHeaders.getRules()}" name="rules" class="form-control form-beginning" disabled required></textarea>
                                                     </div>
                                                 </div>
                                                 <div id="hide-row-beginning" class="row" style="display: none" >

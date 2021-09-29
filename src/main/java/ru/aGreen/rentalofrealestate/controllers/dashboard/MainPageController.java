@@ -46,11 +46,12 @@ public class MainPageController {
 
 
     @PostMapping("/dashboard/main/begining/{id}/save")
-    public String beginingSave(@PathVariable(value = "id") Long id, @RequestParam String title, @RequestParam String subtitle, @RequestParam String descriptions, Model model) {
+    public String beginingSave(@PathVariable(value = "id") Long id, @RequestParam String title, @RequestParam String subtitle, @RequestParam String descriptions, @RequestParam String rules, Model model) {
         HomeHeaders homeHeaders = homeHeadersRepository.findById(id).orElseThrow(() -> new NoSuchElementException(""));
         homeHeaders.setTitle(title);
         homeHeaders.setSubtitle(subtitle);
         homeHeaders.setDescriptions(descriptions);
+        homeHeaders.setRules(rules);
         homeHeadersRepository.save(homeHeaders);
         return "redirect:/dashboard/main";
     }
