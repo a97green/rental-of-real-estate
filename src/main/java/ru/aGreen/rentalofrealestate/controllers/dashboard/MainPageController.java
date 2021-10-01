@@ -45,7 +45,7 @@ public class MainPageController {
     }
 
 
-    @PostMapping("/dashboard/main/begining/{id}/save")
+    @PostMapping("/dashboard/begining/{id}/save")
     public String beginingSave(@PathVariable(value = "id") Long id, @RequestParam String title, @RequestParam String subtitle, @RequestParam String descriptions, @RequestParam String rules, Model model) {
         HomeHeaders homeHeaders = homeHeadersRepository.findById(id).orElseThrow(() -> new NoSuchElementException(""));
         homeHeaders.setTitle(title);
@@ -57,7 +57,7 @@ public class MainPageController {
     }
 
 
-    @PostMapping("/dashboard/main/rent/{id}/save")
+    @PostMapping("/dashboard/rent/{id}/save")
     public String rentSave(@PathVariable(value = "id") Long id, @RequestParam String portfolioSubtitle, @RequestParam String portfolioDescriptions, Model model) {
         HomeHeaders homeHeaders = homeHeadersRepository.findById(id).orElseThrow(() -> new NoSuchElementException(""));
         homeHeaders.setPortfolioSubtitle(portfolioSubtitle);
@@ -67,13 +67,13 @@ public class MainPageController {
     }
 
 
-    @GetMapping("/dashboard/main/about/add")
+    @GetMapping("/dashboard/about/add")
     public String getAboutAdd(Model model) {
         model.addAttribute("title", "Добавить блок");
         model.addAttribute("descriptions", "На данной странице вы можете добавить блок с заголовком, описанием и изображением");
         return "/dashboard/dashboard-about-add";
     }
-    @PostMapping("/dashboard/main/about/add")
+    @PostMapping("/dashboard/about/add")
     public String setAboutAdd(@RequestParam String title, @RequestParam String description, Model model) {
         AboutCompany aboutCompany = new AboutCompany();
         aboutCompany.setTitle(title);
@@ -83,7 +83,7 @@ public class MainPageController {
         Images.setImage("");
         return "redirect:/dashboard/main";
     }
-    @GetMapping("/dashboard/main/about/{id}")
+    @GetMapping("/dashboard/about/{id}")
     public String about(@PathVariable(value = "id") Long id, Model model) {
         AboutCompany aboutCompany = aboutCompanyReposiroty.findById(id).orElseThrow(() -> new NoSuchElementException(""));
         model.addAttribute("aboutCompany", aboutCompany);
@@ -91,7 +91,7 @@ public class MainPageController {
         model.addAttribute("descriptions", "На данной странице вы можете изменить заголовок преимущества и изображение над ним");
         return "/dashboard/dashboard-about";
     }
-    @PostMapping("/dashboard/main/about/{id}/save")
+    @PostMapping("/dashboard/about/{id}/save")
     public String aboutSave(@PathVariable(value = "id") Long id, @RequestParam String title, @RequestParam String descriptions, Model model) {
         AboutCompany aboutCompany = aboutCompanyReposiroty.findById(id).orElseThrow(() -> new NoSuchElementException(""));
         aboutCompany.setTitle(title);
@@ -103,13 +103,13 @@ public class MainPageController {
         Images.setImage("");
         return "redirect:/dashboard/main";
     }
-    @PostMapping("/dashboard/main/about/{id}/remove")
+    @PostMapping("/dashboard/about/{id}/remove")
     public String aboutRemove(@PathVariable(value = "id") Long id, Model model) {
         AboutCompany aboutCompany = aboutCompanyReposiroty.findById(id).orElseThrow(() -> new NoSuchElementException(""));
         aboutCompanyReposiroty.delete(aboutCompany);
         return "redirect:/dashboard/main";
     }
-    @PostMapping("/dashboard/main/about/load")
+    @PostMapping("/dashboard/about/load")
     public String aboutLoad(@RequestBody String url, Model model) {
         System.out.println(url);
         Images.setImage(url);
@@ -117,7 +117,7 @@ public class MainPageController {
     }
 
 
-    @GetMapping("/dashboard/main/advantage/{id}")
+    @GetMapping("/dashboard/advantage/{id}")
     public String advantage(@PathVariable(value = "id") Long id, Model model) {
         Advantage advantage = advantageRepository.findById(id).orElseThrow(() -> new NoSuchElementException(""));
         model.addAttribute("advantage", advantage);
@@ -125,7 +125,7 @@ public class MainPageController {
         model.addAttribute("descriptions", "На данной странице вы можете изменить заголовок преимущества и изображение над ним");
         return "/dashboard/dashboard-advantage";
     }
-    @PostMapping("/dashboard/main/advantage/{id}/save")
+    @PostMapping("/dashboard/advantage/{id}/save")
     public String advantageSave(@PathVariable(value = "id") Long id, @RequestParam String title, Model model) {
         Advantage advantage = advantageRepository.findById(id).orElseThrow(() -> new NoSuchElementException(""));
         advantage.setTitle(title);
@@ -136,13 +136,13 @@ public class MainPageController {
         Images.setImage("");
         return "redirect:/dashboard/main";
     }
-    @PostMapping("/dashboard/main/advantage/{id}/remove")
+    @PostMapping("/dashboard/advantage/{id}/remove")
     public String districtRemove(@PathVariable(value = "id") Long id, Model model) {
         Advantage advantage = advantageRepository.findById(id).orElseThrow(() -> new NoSuchElementException(""));
         advantageRepository.delete(advantage);
         return "redirect:/dashboard/main";
     }
-    @PostMapping("/dashboard/main/advantage/load")
+    @PostMapping("/dashboard/advantage/load")
     public String apartamentsLoad(@RequestBody String url, Model model) {
         System.out.println(url);
         Images.setImage(url);
@@ -150,13 +150,13 @@ public class MainPageController {
     }
 
 
-    @GetMapping("/dashboard/main/attractions/add")
+    @GetMapping("/dashboard/attractions/add")
     public String getAttractionsAdd(Model model) {
         model.addAttribute("title", "Добавить блок");
         model.addAttribute("descriptions", "На данной странице вы можете добавить блок с заголовком, описанием и изображением");
         return "/dashboard/dashboard-attractions-add";
     }
-    @PostMapping("/dashboard/main/attractions/add")
+    @PostMapping("/dashboard/attractions/add")
     public String setAttractionsAdd(@RequestParam String title, @RequestParam String description, Model model) {
         Attractions attractions = new Attractions();
         attractions.setTitle(title);
@@ -166,7 +166,7 @@ public class MainPageController {
         Images.setImage("");
         return "redirect:/dashboard/main";
     }
-    @GetMapping("/dashboard/main/attractions/{id}")
+    @GetMapping("/dashboard/attractions/{id}")
     public String attractions(@PathVariable(value = "id") Long id, Model model) {
         Attractions attractions = attractionsRepository.findById(id).orElseThrow(() -> new NoSuchElementException(""));
         model.addAttribute("attractions", attractions);
@@ -174,7 +174,7 @@ public class MainPageController {
         model.addAttribute("descriptions", "На данной странице вы можете изменить заголовок, описание достопримечательности и изображение над ним");
         return "/dashboard/dashboard-attractions";
     }
-    @PostMapping("/dashboard/main/attractions/{id}/save")
+    @PostMapping("/dashboard/attractions/{id}/save")
     public String attractionssSave(@PathVariable(value = "id") Long id, @RequestParam String title, @RequestParam String descriptions, Model model) {
         Attractions attractions = attractionsRepository.findById(id).orElseThrow(() -> new NoSuchElementException(""));
         attractions.setTitle(title);
@@ -186,13 +186,13 @@ public class MainPageController {
         Images.setImage("");
         return "redirect:/dashboard/main";
     }
-    @PostMapping("/dashboard/main/attractions/{id}/remove")
+    @PostMapping("/dashboard/attractions/{id}/remove")
     public String attractionsRemove(@PathVariable(value = "id") Long id, Model model) {
         Attractions attractions = attractionsRepository.findById(id).orElseThrow(() -> new NoSuchElementException(""));
         attractionsRepository.delete(attractions);
         return "redirect:/dashboard/main";
     }
-    @PostMapping("/dashboard/main/attractions/load")
+    @PostMapping("/dashboard/attractions/load")
     public String attractionsLoad(@RequestBody String url, Model model) {
         System.out.println(url);
         Images.setImage(url);
@@ -200,7 +200,7 @@ public class MainPageController {
     }
 
 
-    @PostMapping("/dashboard/main/contact/{id}/save")
+    @PostMapping("/dashboard/contact/{id}/save")
     public String contactSave(@PathVariable(value = "id") Long id, @RequestParam String address, @RequestParam String email, @RequestParam String phoneNumber, @RequestParam String whatsApp, @RequestParam String telegram, @RequestParam String viber, @RequestParam String instagram, Model model) {
         HomeHeaders homeHeaders = homeHeadersRepository.findById(id).orElseThrow(() -> new NoSuchElementException(""));
         homeHeaders.setAddress(address);

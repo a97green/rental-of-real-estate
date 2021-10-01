@@ -39,7 +39,7 @@
                                 <div class="card-body">
                                     <div class="row">
                                         <div class="col">
-                                            <form th:action="'/dashboard/main/begining/' + ${homeHeaders.getId()} + '/save'" method="post">
+                                            <form th:action="'/dashboard/begining/' + ${homeHeaders.getId()} + '/save'" method="post">
                                                 <h4 class="card-title mb-4 text-center">Основное</h4>
                                                 <div class="form-group row">
                                                     <label class="col-sm-3 col-form-label">Название организации</label>
@@ -82,7 +82,7 @@
                                                 </div>
                                             </div><br>
 
-                                            <form th:action="'/dashboard/main/rent/' + ${homeHeaders.getId()} + '/save'" method="post">
+                                            <form th:action="'/dashboard/rent/' + ${homeHeaders.getId()} + '/save'" method="post">
                                                 <div class="border-top"><br></div>
                                                 <h4 class="card-title mb-4 text-center">Снять квартиру</h4>
                                                 <div class="form-group row">
@@ -130,7 +130,7 @@
                                                         <th scope="row" th:text="'#' + ${element.getId()}"></th>
                                                         <td th:text="${element.getTitle()}"></td>
                                                         <td class="text-right">
-                                                            <a th:href="'/dashboard/main/about/' + ${element.getId()}" class="btn btn-success btn-sm">Редактировать</a>
+                                                            <a th:href="'/dashboard/about/' + ${element.getId()}" class="btn btn-success btn-sm">Редактировать</a>
                                                         </td>
                                                     </tr>
                                                     </tbody>
@@ -138,7 +138,7 @@
                                             </div><br>
                                             <div class="row align-items-center">
                                                 <div class="col-sm-6">
-                                                    <a href="/dashboard/main/about/add" class="btn btn-primary">Добавить блок</a>
+                                                    <a href="/dashboard/about/add" class="btn btn-primary">Добавить блок</a>
                                                 </div>
                                             </div><br>
 
@@ -158,7 +158,7 @@
                                                         <th scope="row" th:text="'#' + ${element.getId()}"></th>
                                                         <td th:text="${element.getTitle()}"></td>
                                                         <td class="text-right">
-                                                            <a th:href="'/dashboard/main/advantage/' + ${element.getId()}" class="btn btn-success btn-sm">Редактировать</a>
+                                                            <a th:href="'/dashboard/advantage/' + ${element.getId()}" class="btn btn-success btn-sm">Редактировать</a>
                                                         </td>
                                                     </tr>
                                                     </tbody>
@@ -181,7 +181,7 @@
                                                         <th scope="row" th:text="'#' + ${element.getId()}"></th>
                                                         <td th:text="${element.getTitle()}"></td>
                                                         <td class="text-right">
-                                                            <a th:href="'/dashboard/main/attractions/' + ${element.getId()}" class="btn btn-success btn-sm">Редактировать</a>
+                                                            <a th:href="'/dashboard/attractions/' + ${element.getId()}" class="btn btn-success btn-sm">Редактировать</a>
                                                         </td>
                                                     </tr>
                                                     </tbody>
@@ -189,11 +189,11 @@
                                             </div><br>
                                             <div class="row align-items-center">
                                                 <div class="col-sm-6">
-                                                    <a href="/dashboard/main/attractions/add" class="btn btn-primary">Добавить блок</a>
+                                                    <a href="/dashboard/attractions/add" class="btn btn-primary">Добавить блок</a>
                                                 </div>
                                             </div><br>
 
-                                            <form th:action="'/dashboard/main/contact/' + ${homeHeaders.getId()} + '/save'" method="post">
+                                            <form th:action="'/dashboard/contact/' + ${homeHeaders.getId()} + '/save'" method="post">
                                                 <div class="border-top"><br></div>
                                                 <h4 class="card-title mb-4 text-center">Контакты</h4>
                                                 <div class="form-group row">
