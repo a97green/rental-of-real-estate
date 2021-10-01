@@ -1,11 +1,9 @@
 <!doctype html>
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:th="http://www.thymeleaf.org"
-      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3"
-      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+      xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="utf-8" />
-    <title th:text="'Панель управления - ' + ${title}"></title>
+    <title ></title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta content="Панель управления для сайта - квартиры посуточно в Красноярске" name="description" />
     <meta content="Панель управления" name="Михаил Евгеньевич" />
@@ -29,9 +27,9 @@
                 <div class="row align-items-center">
                     <div class="col-sm-6">
                         <div class="page-title-box">
-                            <h4 class="font-size-18" th:text="'О компании - ' + ${title}"></h4>
+                            <h4 class="font-size-18" ></h4>
                             <ol class="breadcrumb mb-0">
-                                <li class="breadcrumb-item active" th:text="${descriptions}"></li>
+                                <li class="breadcrumb-item active" ></li>
                             </ol>
                         </div>
                     </div>
@@ -46,7 +44,7 @@
                         <div class="col">
                             <div class="card">
                                 <div class="card-body">
-                                    <form action="/dashboard/main/about/add" method="post">
+                                    <form action="/dashboard/about/add" method="post">
                                         <div class="row">
                                             <div class="col">
                                                 <div class="form-group row">
@@ -73,7 +71,7 @@
                                             </div>
                                         </div>
                                         <div class="row">
-                                            <button type="submit" th:id="btn-load" class="btn btn-success" th:text="${title}"></button>
+                                            <button type="submit" th:id="btn-load" class="btn btn-success" >1</button>
                                         </div>
                                     </form>
                                 </div>
