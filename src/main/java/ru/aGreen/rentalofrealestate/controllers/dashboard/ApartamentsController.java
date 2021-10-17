@@ -35,8 +35,9 @@ public class ApartamentsController {
         model.addAttribute("title", "Список квартир");
         model.addAttribute("descriptions", "Это список всех добавленых квартир");
         model.addAttribute("apartaments", apartaments);
-        return "dashboard/dashboard-apartaments";
+        return "dashboard/apartaments";
     }
+
     @GetMapping("/dashboard/apartaments/{id}")
     public String apartamentsDetails(@PathVariable(value = "id") Long id, Model model) {
         Apartaments apartaments = apartamentsRepository.findById(id).orElseThrow(() -> new NoSuchElementException(""));
@@ -51,8 +52,9 @@ public class ApartamentsController {
         model.addAttribute("housingClasses", housingClasses);
         model.addAttribute("housingTypes", housingTypes);
         model.addAttribute("strings", strings);
-        return "dashboard/dashboard-apartaments-details";
+        return "dashboard/apartamentsDetails";
     }
+
     @PostMapping("/dashboard/apartaments/{id}/save")
     public String apartamentsSave(@PathVariable(value = "id") Long id, @RequestParam String title, @RequestParam String address, @RequestParam String description, @RequestParam Long district, @RequestParam Long housingType, @RequestParam Long housingClass, @RequestParam String bathroom, @RequestParam int floor, @RequestParam int bedsNumber, @RequestParam double totalArea, @RequestParam double price, @RequestParam String parking, Model model) {
         District district1 = districtRepository.findById(district).orElseThrow(() -> new NoSuchElementException(""));
@@ -72,8 +74,9 @@ public class ApartamentsController {
         apartaments.setPrice(price);
         apartaments.setParking(parking);
         apartamentsRepository.save(apartaments);
-        return "redirect:/dashboard/apartaments/{id}";
+        return "redirect:/dashboard/apartaments";
     }
+
     @PostMapping("/dashboard/apartaments/{id}/remove")
     public String apartamentsRemove(@PathVariable(value = "id") Long id, Model model) {
         Apartaments apartaments = apartamentsRepository.findById(id).orElseThrow(() -> new NoSuchElementException(""));
@@ -91,8 +94,9 @@ public class ApartamentsController {
         model.addAttribute("districts", districts);
         model.addAttribute("housingClasses", housingClasses);
         model.addAttribute("housingTypes", housingTypes);
-        return "dashboard/dashboard-apartaments-add";
+        return "dashboard/apartamentsAdd";
     }
+
     @PostMapping("/dashboard/apartaments/add")
     public String setApartamentsAdd(@RequestParam String title, @RequestParam String address, @RequestParam String description, @RequestParam Long district, @RequestParam Long housingType, @RequestParam Long housingClass, @RequestParam String bathroom, @RequestParam int floor, @RequestParam int bedsNumber, @RequestParam double totalArea, @RequestParam double price, @RequestParam String parking, Model model) {
         District district1 = districtRepository.findById(district).orElseThrow(() -> new NoSuchElementException(""));
@@ -102,13 +106,14 @@ public class ApartamentsController {
         Apartaments apartaments = new Apartaments(title, price, totalArea, floor, bedsNumber, parking, description, address, bathroom, photo, district1, housingType1, housingClass1);
         apartamentsRepository.save(apartaments);
         Images.setStrings(new ArrayList<>());
-        return "redirect:/dashboard/apartaments/add";
+        return "redirect:/dashboard/apartaments";
     }
+
     @PostMapping("/dashboard/apartaments/load")
     public String apartamentsLoad(@RequestBody String url, Model model) {
         System.out.println(url);
         Images.getStrings().add(url);
         model.addAttribute("success", "Готово");
-        return "redirect:/dashboard/apartaments/add";
+        return "redirect:/dashboard/apartaments";
     }
 }

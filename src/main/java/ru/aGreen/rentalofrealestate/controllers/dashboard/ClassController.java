@@ -31,7 +31,7 @@ public class ClassController {
         model.addAttribute("title", "Список классов жилья");
         model.addAttribute("descriptions", "Это список всех добавленых классов жилья");
         model.addAttribute("housingClasses", housingClasses);
-        return "dashboard/dashboard-class";
+        return "dashboard/classes";
     }
 
     @GetMapping("/dashboard/classes/add")
@@ -42,8 +42,9 @@ public class ClassController {
         model.addAttribute("descriptions", "На данной странице вы можете добавить новый класс жилья");
         model.addAttribute("housingClasses", housingClasses);
         model.addAttribute("apartaments", apartaments);
-        return "dashboard/dashboard-class-add";
+        return "dashboard/classAdd";
     }
+
     @PostMapping("/dashboard/classes/add")
     public String setHousingClassAdd(@RequestParam String title, Model model) {
         if (!title.equals("")) {
@@ -52,6 +53,7 @@ public class ClassController {
         }
         return "redirect:/dashboard/classes";
     }
+
     @PostMapping("/dashboard/classes/{id}/remove")
     public String housingClassRemove(@PathVariable(value = "id") Long id, Model model) {
         ru.aGreen.rentalofrealestate.models.HousingClass housingClass = housingClassRepository.findById(id).orElseThrow(() -> new NoSuchElementException(""));

@@ -1,74 +1,77 @@
-
-
 <!doctype html>
 <html xmlns:th="http://www.thymeleaf.org">
 
 <head>
-    <meta charset="utf-8" />
+    <meta charset="utf-8"/>
     <title>Панель управления - Авторизация</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta content="Панель управления, для ведения отчётностей" name="description" />
-    <meta content="aGreen" name="author" />
+    <meta content="Панель управления, для ведения отчётностей" name="description"/>
+    <meta content="aGreen" name="author"/>
     <!-- App favicon -->
     <link rel="shortcut icon" href="assets/images/favicon.ico">
 
     <!-- Bootstrap Css -->
-    <link href="assets/css/bootstrap.min.css" id="bootstrap-style" rel="stylesheet" type="text/css" />
+    <link href="assets/css/bootstrap.min.css" id="bootstrap-style" rel="stylesheet" type="text/css"/>
     <!-- Icons Css -->
-    <link href="assets/css/icons.min.css" rel="stylesheet" type="text/css" />
+    <link href="assets/css/icons.min.css" rel="stylesheet" type="text/css"/>
     <!-- App Css-->
-    <link href="assets/css/app.min.css" id="app-style" rel="stylesheet" type="text/css" />
+    <link href="assets/css/app.min.css" id="app-style" rel="stylesheet" type="text/css"/>
 </head>
 <body>
-    <div class="account-pages my-5 pt-5">
-        <div class="container">
-            <div class="row justify-content-center">
-                <div class="col-md-8 col-lg-6 col-xl-5">
-                    <div class="card overflow-hidden">
-                        <div class="bg-primary">
-                            <div class="text-primary text-center p-4">
-                                <h5 class="text-white font-size-20">Авторизация</h5>
-                                <p class="text-white-50">Добро пожаловать в Панель управления!</p>
-                                <a href="/" class="logo logo-admin">
-                                    <img src="assets/images/logo-sm.png" height="24" alt="logo">
-                                </a>
-                            </div>
+<div class="account-pages my-5 pt-5">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-8 col-lg-6 col-xl-5">
+                <div class="card overflow-hidden">
+                    <div class="bg-primary">
+                        <div class="text-primary text-center p-4">
+                            <h5 class="text-white font-size-20">Авторизация</h5>
+                            <p class="text-white-50">Добро пожаловать в Панель управления!</p>
+                            <a href="/" class="logo logo-admin">
+                                <img src="assets/images/logo-sm.png" height="24" alt="logo">
+                            </a>
                         </div>
-                        <div class="card-body p-4">
-                            <div class="p-3">
-                                <form class="form-horizontal mt-4" th:action="@{/login}" method="post">
-                                    <div class="pt-3 text-center">
-                                        <img src="assets/images/users/user-4.jpg" class="rounded-circle img-thumbnail avatar-lg" alt="thumbnail">
-                                        <h6 class="font-size-16 mt-3"></h6><br>
+                    </div>
+                    <div class="card-body p-4">
+                        <div class="p-3">
+                            <form class="form-horizontal mt-4" th:action="@{/login}" method="post">
+                                <div class="pt-3 text-center">
+                                    <img src="assets/images/users/user-4.jpg"
+                                         class="rounded-circle img-thumbnail avatar-lg" alt="thumbnail">
+                                    <h6 class="font-size-16 mt-3"></h6><br>
+                                </div>
+                                <div class="form-group row">
+                                    <label class="col-sm-3 col-form-label">Логин</label>
+                                    <div class="col-sm-9">
+                                        <input type="text" class="form-control" name="username"
+                                               placeholder="Введите логин">
                                     </div>
-                                        <div class="form-group row">
-                                            <label class="col-sm-3 col-form-label">Логин</label>
-                                            <div class="col-sm-9">
-                                                <input type="text" class="form-control" name="username" placeholder="Введите логин">
-                                            </div>
-                                        </div>
-                                        <div class="form-group row">
-                                            <label class="col-sm-3 col-form-label">Пароль</label>
-                                            <div class="col-sm-9">
-                                                <input type="password" class="form-control" name="password" placeholder="Введите пароль">
-                                            </div>
-                                        </div>
-                                        <div class="form-group row">
-                                            <div class="col-12 text-right">
-                                                <button class="btn btn-primary w-md waves-effect waves-light" type="submit">Войти</button>
-                                            </div>
-                                        </div>
-                                </form>
-                            </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label class="col-sm-3 col-form-label">Пароль</label>
+                                    <div class="col-sm-9">
+                                        <input type="password" class="form-control" name="password"
+                                               placeholder="Введите пароль">
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <div class="col-12 text-right">
+                                        <button class="btn btn-primary w-md waves-effect waves-light" type="submit">
+                                            Войти
+                                        </button>
+                                    </div>
+                                </div>
+                            </form>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-    <!-- JAVASCRIPT -->
-    <script src="assets/js/jquery/jquery.min.js"></script>
-    <script src="assets/js/bootstrap/js/bootstrap.bundle.min.js"></script>
-    <script src="assets/js/peity/jquery.peity.min.js"></script>
+</div>
+<!-- JAVASCRIPT -->
+<script src="assets/js/jquery/jquery.min.js"></script>
+<script src="assets/js/bootstrap/js/bootstrap.bundle.min.js"></script>
+<script src="assets/js/peity/jquery.peity.min.js"></script>
 </body>
 </html>

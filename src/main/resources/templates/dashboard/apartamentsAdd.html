@@ -1,25 +1,25 @@
 <!doctype html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="utf-8" />
+    <meta charset="utf-8"/>
     <title th:text="'Панель управления - ' + ${title}"></title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta content="Панель управления для сайта - квартиры посуточно в Красноярске" name="description" />
-    <meta content="Панель управления" name="Михаил Евгеньевич" />
+    <meta content="Панель управления для сайта - квартиры посуточно в Красноярске" name="description"/>
+    <meta content="Панель управления" name="Михаил Евгеньевич"/>
     <!-- App favicon -->
     <link rel="shortcut icon" href="/../assets/images/favicon.ico">
     <!-- Bootstrap Css -->
-    <link href="/../assets/css/bootstrap.min.css" id="bootstrap-style" rel="stylesheet" type="text/css" />
+    <link href="/../assets/css/bootstrap.min.css" id="bootstrap-style" rel="stylesheet" type="text/css"/>
     <!-- Icons Css -->
-    <link href="/../assets/css/icons.min.css" rel="stylesheet" type="text/css" />
+    <link href="/../assets/css/icons.min.css" rel="stylesheet" type="text/css"/>
     <!-- App Css-->
-    <link href="/../assets/css/app.min.css" id="app-style" rel="stylesheet" type="text/css" />
+    <link href="/../assets/css/app.min.css" id="app-style" rel="stylesheet" type="text/css"/>
 </head>
 
 <body data-topbar="dark" data-layout="horizontal">
 
 <div id="layout-wrapper">
-    <header th:insert="dashboard/header-dashboard :: header"></header>
+    <header th:insert="dashboard/header :: header"></header>
     <div class="main-content">
         <div class="page-content">
             <div class="container-fluid">
@@ -34,7 +34,8 @@
                     </div>
                     <div class="col-sm-6">
                         <div class="float-right d-none d-md-block">
-                            <a href="/dashboard/apartaments" class="btn btn-primary"><i class="mdi mdi-keyboard-backspace mr-2"></i> Вернуться к списку квартир</a>
+                            <a href="/dashboard/apartaments" class="btn btn-primary"><i
+                                    class="mdi mdi-keyboard-backspace mr-2"></i> Вернуться к списку квартир</a>
                         </div>
                     </div>
                 </div>
@@ -49,13 +50,15 @@
                                                 <div class="form-group row">
                                                     <label class="col-sm-2 col-form-label">Заголовок</label>
                                                     <div class="col-sm-10">
-                                                        <input type="text" id="title" name="title" class="form-control" placeholder="Заголовок" required>
+                                                        <input type="text" id="title" name="title" class="form-control"
+                                                               placeholder="Заголовок" required>
                                                     </div>
                                                 </div>
                                                 <div class="form-group row">
                                                     <label class="col-sm-2 col-form-label">Адрес</label>
                                                     <div class="col-sm-10">
-                                                        <input type="text" id="address" name="address" class="form-control" placeholder="Адрес" required>
+                                                        <input type="text" id="address" name="address"
+                                                               class="form-control" placeholder="Адрес" required>
                                                     </div>
                                                 </div>
                                                 <div class="form-group row">
@@ -63,7 +66,8 @@
                                                     <div class="col-sm-10">
                                                         <select name="district" class="form-control" required>
                                                             <div th:each="element : ${districts}">
-                                                                <option th:value="${element.getId()}" th:text="${element.getTitle()}"></option>
+                                                                <option th:value="${element.getId()}"
+                                                                        th:text="${element.getTitle()}"></option>
                                                             </div>
                                                         </select>
                                                     </div>
@@ -73,7 +77,8 @@
                                                     <div class="col-sm-10">
                                                         <select name="housingType" class="form-control" required>
                                                             <div th:each="element : ${housingTypes}">
-                                                                <option th:value="${element.getId()}" th:text="${element.getTitle()}"></option>
+                                                                <option th:value="${element.getId()}"
+                                                                        th:text="${element.getTitle()}"></option>
                                                             </div>
                                                         </select>
                                                     </div>
@@ -83,7 +88,8 @@
                                                     <div class="col-sm-10">
                                                         <select name="housingClass" class="form-control" required>
                                                             <div th:each="element : ${housingClasses}">
-                                                                <option th:value="${element.getId()}" th:text="${element.getTitle()}"></option>
+                                                                <option th:value="${element.getId()}"
+                                                                        th:text="${element.getTitle()}"></option>
                                                             </div>
                                                         </select>
                                                     </div>
@@ -91,25 +97,29 @@
                                                 <div class="form-group row">
                                                     <label class="col-sm-2 col-form-label">Площадь</label>
                                                     <div class="col-sm-10">
-                                                        <input type="number" name="totalArea" class="form-control" placeholder="Площадь" required>
+                                                        <input type="number" name="totalArea" class="form-control"
+                                                               placeholder="Площадь" required>
                                                     </div>
                                                 </div>
                                                 <div class="form-group row">
                                                     <label class="col-sm-2 col-form-label">Этаж</label>
                                                     <div class="col-sm-10">
-                                                        <input type="number" name="floor" class="form-control" placeholder="Этаж" required>
+                                                        <input type="number" name="floor" class="form-control"
+                                                               placeholder="Этаж" required>
                                                     </div>
                                                 </div>
                                                 <div class="form-group row">
                                                     <label class="col-sm-2 col-form-label">Кол-во спальных мест</label>
                                                     <div class="col-sm-10">
-                                                        <input type="number"  name="bedsNumber" class="form-control" placeholder="Кол-во спальных мест" required>
+                                                        <input type="number" name="bedsNumber" class="form-control"
+                                                               placeholder="Кол-во спальных мест" required>
                                                     </div>
                                                 </div>
                                                 <div class="form-group row">
                                                     <label class="col-sm-2 col-form-label">Стоимость</label>
                                                     <div class="col-sm-10">
-                                                        <input type="number" name="price" class="form-control" placeholder="Стоимость" required>
+                                                        <input type="number" name="price" class="form-control"
+                                                               placeholder="Стоимость" required>
                                                     </div>
                                                 </div>
                                                 <div class="form-group row">
@@ -125,30 +135,37 @@
                                                     <label class="col-sm-2 col-form-label">Санузел</label>
                                                     <div class="col-sm-10">
                                                         <select name="bathroom" class="form-control" required>
-                                                            <option th:value="Совмещённый" th:text="Совмещённый"></option>
+                                                            <option th:value="Совмещённый"
+                                                                    th:text="Совмещённый"></option>
                                                             <option th:value="Раздельный" th:text="Раздельный"></option>
                                                         </select>
                                                     </div>
                                                 </div>
                                                 <div class="form-group row">
-                                                    <label  class="col-sm-2 col-form-label">Описание</label>
+                                                    <label class="col-sm-2 col-form-label">Описание</label>
                                                     <div class="col-sm-10">
-                                                        <textarea th:id="description" name="description" class="form-control" required></textarea>
+                                                        <textarea th:id="description" name="description"
+                                                                  class="form-control" required></textarea>
                                                     </div>
                                                 </div>
                                                 <div class="form-group row">
                                                     <label class="col-sm-2 col-form-label">Фотографии</label>
                                                     <div class="col-sm-10">
                                                         <input th:id="images" type="file" multiple required>
-                                                        <button th:id="btn-lock" type="button" class="btn btn-primary" disabled>Загрузить</button>
-                                                        <div th:id="load-ico" class="spinner-border text-primary" style="display: none"></div>
-                                                        <label th:id="lock-send" style="display: none" class="col-sm-2 col-form-label">Загружено</label>
+                                                        <button th:id="btn-lock" type="button" class="btn btn-primary"
+                                                                disabled>Загрузить
+                                                        </button>
+                                                        <div th:id="load-ico" class="spinner-border text-primary"
+                                                             style="display: none"></div>
+                                                        <label th:id="lock-send" style="display: none"
+                                                               class="col-sm-2 col-form-label">Загружено</label>
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
                                         <div class="row">
-                                            <button type="submit" th:id="btn-load" class="btn btn-success" th:text="${title}"></button>
+                                            <button type="submit" th:id="btn-load" class="btn btn-success"
+                                                    th:text="${title}"></button>
                                         </div>
                                     </form>
                                 </div>
@@ -159,21 +176,27 @@
             </div>
         </div>
     </div>
-    <div th:insert="dashboard/footer-dashboard :: footer"></div>
+    <div th:insert="dashboard/footer :: footer"></div>
 </div>
 
 <script src="/../assets/js/jquery/jquery.min.js"></script>
 <script src="/../assets/js/bootstrap/js/bootstrap.bundle.min.js"></script>
 <script src="/../assets/js/peity/jquery.peity.min.js"></script>
 <script type="text/javascript">
-    window.ondragover = function(e) {e.preventDefault()}
-    window.ondrop = function(e) {e.preventDefault(); upload(e.dataTransfer.files[0]); }
+    window.ondragover = function (e) {
+        e.preventDefault()
+    }
+    window.ondrop = function (e) {
+        e.preventDefault();
+        upload(e.dataTransfer.files[0]);
+    }
     $(document).ready(
         function () {
             $('#btn-lock').click(loadImage);
             $('#images').change(unlock);
         }
     )
+
     function loadImage() {
         $("#btn-lock").hide();
         $("#images").hide();
@@ -185,12 +208,14 @@
             $("#btn-load").removeAttr("disabled");
         }, 5000);
     }
+
     function unlock() {
         $("#btn-load").attr("disabled", "");
         $('#btn-lock').removeAttr("disabled");
     }
+
     function upload() {
-        let  element = document.getElementById("images");
+        let element = document.getElementById("images");
         let fileList = element.files;
         let file;
         for (let i = 0; i < fileList.length; i++) {
@@ -223,11 +248,6 @@
 
 </body>
 </html>
-
-
-
-
-
 
 
 >

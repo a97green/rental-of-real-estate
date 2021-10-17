@@ -4,18 +4,21 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title th:text="'Квартиры посуточно в Красноярске - ' + ${homeHeaders.getTitle()}"></title>
-    <meta content="Квартиры посуточно в Красноярске" name="description" />
-    <meta content="" name="author" />
+    <meta content="Квартиры посуточно в Красноярске" name="description"/>
+    <meta content="" name="author"/>
 
-    <link rel="shortcut icon" href="https://glyphicons.com/img/glyphicons/basic/2x/glyphicons-basic-21-home@2x.png" type="image/x-icon">
+    <link rel="shortcut icon" href="https://glyphicons.com/img/glyphicons/basic/2x/glyphicons-basic-21-home@2x.png"
+          type="image/x-icon">
     <link rel="apple-touch-icon" href="https://glyphicons.com/img/glyphicons/basic/2x/glyphicons-basic-21-home@2x.png">
-    <link rel="apple-touch-icon" sizes="72x72" href="https://glyphicons.com/img/glyphicons/basic/2x/glyphicons-basic-21-home@2x.png">
-    <link rel="apple-touch-icon" sizes="114x114" href="https://glyphicons.com/img/glyphicons/basic/2x/glyphicons-basic-21-home@2x.png">
+    <link rel="apple-touch-icon" sizes="72x72"
+          href="https://glyphicons.com/img/glyphicons/basic/2x/glyphicons-basic-21-home@2x.png">
+    <link rel="apple-touch-icon" sizes="114x114"
+          href="https://glyphicons.com/img/glyphicons/basic/2x/glyphicons-basic-21-home@2x.png">
     <!-- Bootstrap -->
-    <link rel="stylesheet" type="text/css"  href="/css/bootstrap.css">
+    <link rel="stylesheet" type="text/css" href="/css/bootstrap.css">
     <link rel="stylesheet" type="text/css" href="/fonts/font-awesome/css/font-awesome.css">
     <!-- Stylesheet -->
-    <link rel="stylesheet" type="text/css"  href="/css/style.css">
+    <link rel="stylesheet" type="text/css" href="/css/style.css">
     <link rel="stylesheet" type="text/css" href="/css/nivo-lightbox/nivo-lightbox.css">
     <link rel="stylesheet" type="text/css" href="/css/nivo-lightbox/default.css">
     <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700,900" rel="stylesheet">
@@ -26,35 +29,31 @@
     <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
     <style type="text/css">
-.badgebox
-{
-opacity: 0;
-}
+        .badgebox {
+            opacity: 0;
+        }
 
-.badgebox + .badge
-{
-/* Move the check mark away when unchecked */
-text-indent: -999999px;
-/* Makes the badge's width stay the same checked and unchecked */
-width: 27px;
-}
+        .badgebox + .badge {
+            /* Move the check mark away when unchecked */
+            text-indent: -999999px;
+            /* Makes the badge's width stay the same checked and unchecked */
+            width: 27px;
+        }
 
-.badgebox:focus + .badge
-{
-/* Set something to make the badge looks focused */
-/* This really depends on the application, in my case it was: */
+        .badgebox:focus + .badge {
+            /* Set something to make the badge looks focused */
+            /* This really depends on the application, in my case it was: */
 
-/* Adding a light border */
-box-shadow: inset 0px 0px 5px;
-/* Taking the difference out of the padding */
-}
+            /* Adding a light border */
+            box-shadow: inset 0px 0px 5px;
+            /* Taking the difference out of the padding */
+        }
 
-.badgebox:checked + .badge
-{
-/* Move the check mark back when checked */
-text-indent: 0;
-}
-</style>
+        .badgebox:checked + .badge {
+            /* Move the check mark back when checked */
+            text-indent: 0;
+        }
+    </style>
 
     <style>
         .carousel {
@@ -68,6 +67,7 @@ text-indent: 0;
             margin-left: 5px;
             width: 100%;
         }
+
         /* Indicators list style */
         .article-slide .carousel-indicators li {
             border: medium none;
@@ -80,6 +80,7 @@ text-indent: 0;
             margin-top: 0;
             width: 100px;
         }
+
         /* Indicators images style */
         .article-slide .carousel-indicators img {
             border: 2px solid #FFFFFF;
@@ -88,6 +89,7 @@ text-indent: 0;
             left: 0;
             width: 100px;
         }
+
         /* Indicators active image style */
         .article-slide .carousel-indicators .active img {
             border: 2px solid #428BCA;
@@ -97,7 +99,7 @@ text-indent: 0;
 
     <style>
         #myModal.modal-dialog {
-            width: 70%!important;
+            width: 70% !important;
             min-width: 620px;
         }
     </style>
@@ -108,7 +110,9 @@ text-indent: 0;
 <nav id="menu" class="navbar navbar-default navbar-fixed-top">
     <div class="container">
         <div class="navbar-header">
-            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1"> <span class="sr-only">Toggle navigation</span> <span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span> </button>
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
+                    data-target="#bs-example-navbar-collapse-1"><span class="sr-only">Toggle navigation</span> <span
+                    class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span></button>
             <a class="navbar-brand page-scroll" href="#page-top" th:text="${homeHeaders.getTitle()}"></a>
         </div>
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
@@ -118,7 +122,11 @@ text-indent: 0;
                 <li><a href="#team" class="page-scroll">Почему мы</a></li>
                 <li><a href="#services" class="page-scroll">Достопримечательности</a></li>
                 <li><a href="#contact" class="page-scroll">Связь с нами</a></li>
-                <li><button type="button" class="btn btn-success" style="margin-top: 10px;" data-toggle="modal" data-target=".bd-example-modal-sm">Заказать звонок</button></li>
+                <li>
+                    <button type="button" class="btn btn-success" style="margin-top: 10px;" data-toggle="modal"
+                            data-target=".bd-example-modal-sm">Заказать звонок
+                    </button>
+                </li>
             </ul>
         </div>
     </div>
@@ -130,7 +138,8 @@ text-indent: 0;
             <div class="container">
                 <div class="row">
                     <div class="intro-text">
-                        <h1><strong th:text="${homeHeaders.getTitle()}"></strong> <span th:text="' - ' + ${homeHeaders.getSubtitle()}" ></span></h1>
+                        <h1><strong th:text="${homeHeaders.getTitle()}"></strong> <span
+                                th:text="' - ' + ${homeHeaders.getSubtitle()}"></span></h1>
                         <p th:text="${homeHeaders.getDescriptions()}"></p>
                         <a href="#portfolio" class="btn btn-custom btn-lg page-scroll">Снять квартиру</a>
                     </div>
@@ -153,9 +162,9 @@ text-indent: 0;
                 <li>
                     <ol class="type">
                         <li><a href="#" class="active" data-filter="*">Все квартиры</a></li>
-<!--                        <li><a href="#" data-filter=".standard">Стандарт</a></li>-->
-<!--                        <li><a href="#" data-filter=".junior">Полулюкс</a></li>-->
-<!--                        <li><a href="#" data-filter=".luxury">Люкс</a></li>-->
+                        <!--                        <li><a href="#" data-filter=".standard">Стандарт</a></li>-->
+                        <!--                        <li><a href="#" data-filter=".junior">Полулюкс</a></li>-->
+                        <!--                        <li><a href="#" data-filter=".luxury">Люкс</a></li>-->
                     </ol>
                 </li>
             </ul>
@@ -176,7 +185,8 @@ text-indent: 0;
             <hr>
         </div>
         <div class="row" style="margin-bottom: 20px" th:each="element : ${aboutCompany}">
-            <div class="col-xs-12 col-md-6 text-center"> <img th:src="${element.getImage()}" class="img-responsive" alt=""></div>
+            <div class="col-xs-12 col-md-6 text-center"><img th:src="${element.getImage()}" class="img-responsive"
+                                                             alt=""></div>
             <div class="col-xs-12 col-md-6">
                 <div class="about-text">
                     <h3 th:text="${element.getTitle()}"></h3>
@@ -196,7 +206,7 @@ text-indent: 0;
             </div>
             <div id="row" class="align-content-center">
                 <div class="col-md-3 col-sm-6 team" th:each="element : ${advantages}">
-                    <div class="thumbnail"> <img th:src="${element.getImage()}" alt="..." class="team-img">
+                    <div class="thumbnail"><img th:src="${element.getImage()}" alt="..." class="team-img">
                         <div class="caption">
                             <h3 th:text="${element.getTitle()}"></h3>
                             <p></p>
@@ -229,13 +239,15 @@ text-indent: 0;
         <div class="section-title text-center">
             <h2>Если у Вас появились вопросы, звоните!</h2>
             <hr>
-            <h2><i class="fa fa-phone-square"> </i><a th:href="${homeHeaders.getWhasApp()}" th:text="' ' + ${homeHeaders.getPhoneNumber()}"></a></h2>
+            <h2><i class="fa fa-phone-square"> </i><a th:href="${homeHeaders.getWhasApp()}"
+                                                      th:text="' ' + ${homeHeaders.getPhoneNumber()}"></a></h2>
         </div>
     </div>
 </div>
 
 <div id="modalDetails">
-    <div class="modal fade bd-example-modal-lg2" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel2" aria-hidden="true">
+    <div class="modal fade bd-example-modal-lg2" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel2"
+         aria-hidden="true">
         <div id="myModal" class="modal-dialog modal-lg">
             <div class="modal-content">
                 <div class="modal-header">
@@ -265,7 +277,9 @@ text-indent: 0;
                                 </tbody>
                             </table>
                             <div class="text-right">
-                                <button type="button" class="btn btn-success" style="margin-top: 10px;" data-toggle="modal" data-target=".bd-example-modal-sm">Забронировать</button>
+                                <button type="button" class="btn btn-success" style="margin-top: 10px;"
+                                        data-toggle="modal" data-target=".bd-example-modal-sm">Забронировать
+                                </button>
                             </div>
                         </div>
                     </div>
@@ -282,7 +296,8 @@ text-indent: 0;
 </div>
 
 <div id="modalCall">
-    <div class="modal fade bd-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+    <div class="modal fade bd-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel"
+         aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
@@ -296,13 +311,17 @@ text-indent: 0;
                     <form name="formTest" method="" action="">
                         <div class="form-group">
                             <label>Введите номер телефона</label>
-                            <input th:id="phone" type="text" placeholder="Ваш номер телефона" class="form-control" name="phone" required/>
+                            <input th:id="phone" type="text" placeholder="Ваш номер телефона" class="form-control"
+                                   name="phone" required/>
                         </div>
                         <div class="form-group">
                             <label>Введите имя</label>
-                            <input th:id="name" type="text" placeholder="Ваше имя" class="phone form-control" name="name" required/>
+                            <input th:id="name" type="text" placeholder="Ваше имя" class="phone form-control"
+                                   name="name" required/>
                         </div>
-                        <button th:id="snCls" type="button" class="btn btn-secondary" data-dismiss="modal" style="display: none">Close</button>
+                        <button th:id="snCls" type="button" class="btn btn-secondary" data-dismiss="modal"
+                                style="display: none">Close
+                        </button>
                         <button th:id="smTg" type="submit" class="btn btn-success">Отправить</button>
                     </form>
                 </div>
@@ -312,8 +331,10 @@ text-indent: 0;
 </div>
 
 <div id="modalInfo">
-    <button th:id="smInf" type="button" class="btn btn-primary" data-toggle="modal" data-target=".bd-example-modal-lg" style="display: none"></button>
-    <div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+    <button th:id="smInf" type="button" class="btn btn-primary" data-toggle="modal" data-target=".bd-example-modal-lg"
+            style="display: none"></button>
+    <div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel"
+         aria-hidden="true">
         <div class="modal-dialog modal-lg">
             <div class="modal-content">
                 <div class="modal-header">
@@ -331,7 +352,8 @@ text-indent: 0;
 </div>
 
 <div id="modalRules">
-    <div class="modal fade" id="myModalRules" tabindex="-1" role="dialog" aria-labelledby="myModalRulesLable" aria-hidden="true">
+    <div class="modal fade" id="myModalRules" tabindex="-1" role="dialog" aria-labelledby="myModalRulesLable"
+         aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
@@ -384,6 +406,7 @@ text-indent: 0;
 
         }
     );
+
     function apartamentsLoad() {
         let apartaments = [[${apartaments}]];
         let apart;
@@ -432,9 +455,10 @@ text-indent: 0;
             appendApart(type, apart, photo);
         }
     }
+
     function appendApart(type, apart, photo) {
         $('.apartaments').append('' +
-            '<div class="col-sm-6 col-md-4 col-lg-4 ' + type +' fa-border">\n' +
+            '<div class="col-sm-6 col-md-4 col-lg-4 ' + type + ' fa-border">\n' +
             '                    <div class="portfolio-item">\n' +
             '                        <div class="hover-bg">\n' +
             '                            <a class="apart" id="' + apart.id + '" data-toggle="modal" data-target=".bd-example-modal-lg2">\n' +
@@ -478,6 +502,7 @@ text-indent: 0;
             }
         }
     }
+
     function appendTable(apart, homeHeaders) {
         let description = $('.descriptionPut');
         let mTitle = $('.mTitlePut');
@@ -531,6 +556,7 @@ text-indent: 0;
             '                                   <td class="text-right"><h4><b>' + apart.price + ' Р/сут.</b></h4></td>\n' +
             '                                </tr>')
     }
+
     function appendImages(urls) {
         let carouselinner = $('.carousel-inner');
         let carouselindicators = $('.carousel-indicators');

@@ -31,7 +31,7 @@ public class TypeController {
         model.addAttribute("title", "Список типов жилья");
         model.addAttribute("descriptions", "Это список всех добавленых типов жилья");
         model.addAttribute("housingTypes", housingTypes);
-        return "dashboard/dashboard-type";
+        return "dashboard/types";
     }
 
     @GetMapping("/dashboard/type/add")
@@ -42,8 +42,9 @@ public class TypeController {
         model.addAttribute("descriptions", "На данной странице вы можете добавить новый тип жилья");
         model.addAttribute("housingTypes", housingTypes);
         model.addAttribute("apartaments", apartaments);
-        return "dashboard/dashboard-type-add";
+        return "dashboard/typeAdd";
     }
+
     @PostMapping("/dashboard/type/add")
     public String setHousingTypeAdd(@RequestParam String title, Model model) {
         if (!title.equals("")) {
@@ -52,6 +53,7 @@ public class TypeController {
         }
         return "redirect:/dashboard/type";
     }
+
     @PostMapping("/dashboard/type/{id}/remove")
     public String housingTypeRemove(@PathVariable(value = "id") Long id, Model model) {
         HousingType housingType = housingTypeRepository.findById(id).orElseThrow(() -> new NoSuchElementException(""));

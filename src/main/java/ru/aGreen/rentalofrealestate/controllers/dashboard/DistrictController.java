@@ -27,12 +27,11 @@ public class DistrictController {
 
     @GetMapping("/dashboard/district")
     public String district(Model model) {
-        Iterable<Apartaments> apartaments = apartamentsRepository.findAll();
         Iterable<District> districts = districtRepository.findAll();
         model.addAttribute("title", "Список районов");
         model.addAttribute("descriptions", "Это список всех добавленых районов");
         model.addAttribute("districts", districts);
-        return "dashboard/dashboard-district";
+        return "dashboard/district";
     }
 
     @GetMapping("/dashboard/district/add")
@@ -43,8 +42,9 @@ public class DistrictController {
         model.addAttribute("descriptions", "На данной странице вы можете добавить новый район");
         model.addAttribute("districts", districts);
         model.addAttribute("apartaments", apartaments);
-        return "dashboard/dashboard-district-add";
+        return "dashboard/districtAdd";
     }
+
     @PostMapping("/dashboard/district/add")
     public String setDistrictAdd(@RequestParam String title, Model model) {
         if (!title.equals("")) {
@@ -53,6 +53,7 @@ public class DistrictController {
         }
         return "redirect:/dashboard/district";
     }
+
     @PostMapping("/dashboard/district/{id}/remove")
     public String districtRemove(@PathVariable(value = "id") Long id, Model model) {
         District district = districtRepository.findById(id).orElseThrow(() -> new NoSuchElementException(""));

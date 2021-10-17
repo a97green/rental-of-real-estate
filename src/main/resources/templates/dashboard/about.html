@@ -1,32 +1,33 @@
 <!doctype html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="utf-8" />
-    <title th:text="'Панель управления - ' + ${title}"></title>
+    <meta charset="utf-8"/>
+    <title></title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta content="Панель управления для сайта - квартиры посуточно в Красноярске" name="description" />
-    <meta content="Панель управления" name="Михаил Евгеньевич" />
+    <meta content="Панель управления для сайта - квартиры посуточно в Красноярске" name="description"/>
+    <meta content="Панель управления" name="Михаил Евгеньевич"/>
     <!-- App favicon -->
     <link rel="shortcut icon" href="/../assets/images/favicon.ico">
     <!-- Bootstrap Css -->
-    <link href="/../assets/css/bootstrap.min.css" id="bootstrap-style" rel="stylesheet" type="text/css" />
+    <link href="/../assets/css/bootstrap.min.css" id="bootstrap-style" rel="stylesheet" type="text/css"/>
     <!-- Icons Css -->
-    <link href="/../assets/css/icons.min.css" rel="stylesheet" type="text/css" />
+    <link href="/../assets/css/icons.min.css" rel="stylesheet" type="text/css"/>
     <!-- App Css-->
-    <link href="/../assets/css/app.min.css" id="app-style" rel="stylesheet" type="text/css" />
+    <link href="/../assets/css/app.min.css" id="app-style" rel="stylesheet" type="text/css"/>
 </head>
 
 <body data-topbar="dark" data-layout="horizontal">
 
 <div id="layout-wrapper">
-    <header th:insert="dashboard/header-dashboard :: header"></header>
+    <header th:insert="dashboard/header :: header"></header>
     <div class="main-content">
         <div class="page-content">
             <div class="container-fluid">
                 <div class="row align-items-center">
                     <div class="col-sm-6">
                         <div class="page-title-box">
-                            <h4 class="font-size-18" th:text="'Достопримечательности - ' + ${title}"></h4>
+                            <h4 class="font-size-18" th:text="'О компании - ' + ${title}"></h4>
                             <ol class="breadcrumb mb-0">
                                 <li class="breadcrumb-item active" th:text="${descriptions}"></li>
                             </ol>
@@ -34,7 +35,8 @@
                     </div>
                     <div class="col-sm-6">
                         <div class="float-right d-none d-md-block">
-                            <a href="/dashboard/main" class="btn btn-primary"><i class="mdi mdi-keyboard-backspace mr-2"></i> Вернуться назад</a>
+                            <a href="/dashboard" class="btn btn-primary"><i class="mdi mdi-keyboard-backspace mr-2"></i>
+                                Вернуться назад</a>
                         </div>
                     </div>
                 </div>
@@ -43,34 +45,41 @@
                         <div class="col">
                             <div class="card">
                                 <div class="card-body">
-                                    <form action="/dashboard/main/attractions/add" method="post">
+                                    <form action="/dashboard/about/add" method="post">
                                         <div class="row">
                                             <div class="col">
                                                 <div class="form-group row">
                                                     <label class="col-sm-2 col-form-label">Заголовок</label>
                                                     <div class="col-sm-10">
-                                                        <input type="text" id="title" name="title" class="form-control" placeholder="Заголовок" required>
+                                                        <input type="text" id="title" name="title" class="form-control"
+                                                               placeholder="Заголовок" required>
                                                     </div>
                                                 </div>
                                                 <div class="form-group row">
-                                                    <label  class="col-sm-2 col-form-label">Описание</label>
+                                                    <label class="col-sm-2 col-form-label">Описание</label>
                                                     <div class="col-sm-10">
-                                                        <textarea th:id="description" name="description" class="form-control" required></textarea>
+                                                        <textarea th:id="description" name="description"
+                                                                  class="form-control" required></textarea>
                                                     </div>
                                                 </div>
                                                 <div class="form-group row">
                                                     <label class="col-sm-2 col-form-label">Фотографии</label>
                                                     <div class="col-sm-10">
                                                         <input th:id="images" type="file" required>
-                                                        <button th:id="btn-lock" type="button" class="btn btn-primary" disabled>Загрузить</button>
-                                                        <div th:id="load-ico" class="spinner-border text-primary" style="display: none"></div>
-                                                        <label th:id="lock-send" style="display: none" class="col-sm-2 col-form-label">Загружено</label>
+                                                        <button th:id="btn-lock" type="button" class="btn btn-primary"
+                                                                disabled>Загрузить
+                                                        </button>
+                                                        <div th:id="load-ico" class="spinner-border text-primary"
+                                                             style="display: none"></div>
+                                                        <label th:id="lock-send" style="display: none"
+                                                               class="col-sm-2 col-form-label">Загружено</label>
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
                                         <div class="row">
-                                            <button type="submit" th:id="btn-load" class="btn btn-success" th:text="${title}"></button>
+                                            <button type="submit" th:id="btn-load" class="btn btn-success">Добавить
+                                            </button>
                                         </div>
                                     </form>
                                 </div>
@@ -81,21 +90,27 @@
             </div>
         </div>
     </div>
-    <div th:insert="dashboard/footer-dashboard :: footer"></div>
+    <div th:insert="dashboard/footer :: footer"></div>
 </div>
 
 <script src="/../assets/js/jquery/jquery.min.js"></script>
 <script src="/../assets/js/bootstrap/js/bootstrap.bundle.min.js"></script>
 <script src="/../assets/js/peity/jquery.peity.min.js"></script>
 <script type="text/javascript">
-    window.ondragover = function(e) {e.preventDefault()}
-    window.ondrop = function(e) {e.preventDefault(); upload(e.dataTransfer.files[0]); }
+    window.ondragover = function (e) {
+        e.preventDefault()
+    }
+    window.ondrop = function (e) {
+        e.preventDefault();
+        upload(e.dataTransfer.files[0]);
+    }
     $(document).ready(
         function () {
             $('#btn-lock').click(loadImage);
             $('#images').change(unlock);
         }
     )
+
     function loadImage() {
         $("#btn-lock").hide();
         $("#images").hide();
@@ -107,12 +122,14 @@
             $("#btn-load").removeAttr("disabled");
         }, 5000);
     }
+
     function unlock() {
         $("#btn-load").attr("disabled", "");
         $('#btn-lock').removeAttr("disabled");
     }
+
     function upload() {
-        let  element = document.getElementById("images");
+        let element = document.getElementById("images");
         let fileList = element.files;
         let file;
         for (let i = 0; i < fileList.length; i++) {
@@ -129,7 +146,7 @@
                     type: "POST",
                     contentType: 'application/json; charset=utf-8',
                     dataType: 'json',
-                    url: "/dashboard/main/attractions/load",
+                    url: "/dashboard/about/load",
                     data: JSON.stringify(url),
                     success: function () {
                         alert("save");
@@ -144,11 +161,6 @@
 
 </body>
 </html>
-
-
-
-
-
 
 
 >
