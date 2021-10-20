@@ -20,6 +20,9 @@
     <!-- Custom Css -->
     <link href="/css/style.min.css" rel="stylesheet" type="text/css"/>
 
+    <script src="js/jquery.min.js"></script>
+
+
 </head>
 
 <body data-bs-spy="scroll" data-bs-target="#navbar-navlist" data-bs-offset="20">
@@ -62,20 +65,24 @@
                     <a class="nav-link" href="#blog">Отзывы</a>
                 </li><!--end nav item-->
                 <li>
-                    <a class="nav-link" href="#contact" data-toggle="modal" data-target=".bd-example-modal-sm">Заказать звонок</a>
+                    <a class="nav-link" href="#contact" data-toggle="modal" data-target=".bd-example-modal-sm">Заказать
+                        звонок</a>
                 </li>
             </ul>
         </div>
     </div>
 </nav>
 
-<section class="bg-home d-table w-100" data-jarallax='{"speed": 0.5}' style="background-image:url('https://mykaleidoscope.ru/uploads/posts/2020-02/1582548147_3-p-stilnie-sovremennie-intereri-8.jpg')" id="home">
+<section class="bg-home d-table w-100" data-jarallax='{"speed": 0.5}'
+         style="background-image:url('https://mykaleidoscope.ru/uploads/posts/2020-02/1582548147_3-p-stilnie-sovremennie-intereri-8.jpg')"
+         id="home">
     <div class="bg-overlay"></div>
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-lg-10 text-center">
                 <div class="title-heading mt-5 pt-4">
-                    <h1 class="heading text-white mb-3" th:text="'«' + ${homeHeaders.getTitle()} + '» – это недорого!'"></h1>
+                    <h1 class="heading text-white mb-3"
+                        th:text="'«' + ${homeHeaders.getTitle()} + '» – это недорого!'"></h1>
                     <p class="para-desc mx-auto text-white-50" th:text="${homeHeaders.getDescriptions()}"></p>
                     <div class="mt-4 pt-2">
                         <a href="#apartments" class="btn btn-primary rounded-pill mb-2 me-2">Смотреть квартиры</a>
@@ -93,20 +100,29 @@
         <div class="row justify-content-center">
             <div class="col-12 text-center">
                 <div class="section-title">
-                    <h4 class="title text-uppercase fw-normal mb-4">Снять <span class="text-primary fw-bold">квартиру</span>
+                    <h4 class="title text-uppercase fw-normal mb-4">Снять <span
+                            class="text-primary fw-bold">квартиру</span>
                     </h4>
                     <p class="text-muted mx-auto para-desc mb-0" th:text="${homeHeaders.getDescriptions()}"></p>
                 </div>
             </div>
         </div>
 
-        <div class="row">
-            <div class="col-lg-3 col-md-6 col-12 mt-4 pt-2" th:each="element : ${apartaments}">
+        <div class="row justify-content-center">
+            <div class="col-lg-4 col-md-6 col-12 mt-4 pt-2" th:each="element : ${apartaments}">
                 <div class="team-content position-relative text-center bg-light rounded">
-                    <img src="https://mykaleidoscope.ru/uploads/posts/2020-02/1582548147_3-p-stilnie-sovremennie-intereri-8.jpg" class="img-fluid rounded-top" alt="">
+                    <img src="https://mykaleidoscope.ru/uploads/posts/2020-02/1582548147_3-p-stilnie-sovremennie-intereri-8.jpg"
+                         class="img-fluid rounded-top" alt="">
                     <div class="detail pt-3 pb-3 p-1">
-                        <h4 class="mb-0"><a href="javascript:void(0)" class="name text-dark" th:text="${element.getTitle()}"></a></h4>
+                        <h4 class="mb-0"><a href="javascript:void(0)" class="name text-dark"
+                                            th:text="${element.getTitle()}"></a></h4>
                         <small class="posting text-muted" th:text="${element.getAddress()}"></small>
+                        <h5 class="mb-0">от <a href="javascript:void(0)" class="name text-dark"
+                                               th:text="${element.getPrice()}"></a> рублей/сутки</h5><br>
+                        <button type="button" class="btn btn-primary" data-bs-toggle="modal"
+                                data-bs-target="#modalCallback">Забронировать
+                        </button>
+
                     </div>
                 </div>
             </div>
@@ -114,14 +130,17 @@
     </div>
 </section>
 
-<section class="section" style="background: url('https://mykaleidoscope.ru/uploads/posts/2020-02/1582548147_3-p-stilnie-sovremennie-intereri-8.jpg') center center">
+<section class="section"
+         style="background: url('https://www.vbu.fi/files/2019-06/shutterstock-291867131.jpg') center center">
     <div class="bg-overlay"></div>
     <div class="container">
         <div class="row">
             <div class="col-12 text-center">
                 <div class="section-title">
                     <h4 class="title text-uppercase text-white mb-4"> Позвоните нам</h4>
-                    <p class="text-white-50 mx-auto para-desc mb-0">Уточнить интересующую вас информацию вы можете позвонив по номеру *****. Или закажите обратный звонок и мы сразу перезвоним вам!</p>
+                    <p class="text-white-50 mx-auto para-desc mb-0">Уточнить интересующую вас информацию вы можете
+                        позвонив по номеру <b th:text="${homeHeaders.getPhoneNumber()}"></b> или закажите обратный
+                        звонок и мы сразу перезвоним вам!</p>
                 </div>
             </div>
         </div>
@@ -158,7 +177,8 @@
                             <div class="card-header p-0" role="tab" id="History">
                                 <h6 class="card-title position-relative mb-0">
                                     <a class="text-dark d-block" role="button" data-bs-toggle="collapse"
-                                       href="#companyhistory" aria-expanded="true" aria-controls="companyhistory" th:text="${aboutCompany.get(0).getTitle()}"></a>
+                                       href="#companyhistory" aria-expanded="true" aria-controls="companyhistory"
+                                       th:text="${aboutCompany.get(0).getTitle()}"></a>
                                 </h6>
                             </div>
                             <div id="companyhistory" class="collapse show" role="tabpanel" aria-labelledby="History"
@@ -171,7 +191,8 @@
                             <div class="card-header p-0" role="tab" id="GoalandVision">
                                 <h6 class="card-title position-relative mb-0">
                                     <a class="collapsed text-dark d-block" role="button" data-bs-toggle="collapse"
-                                       href="#Goal" aria-expanded="false" aria-controls="Goal" th:text="${aboutCompany.get(1).getTitle()}"></a>
+                                       href="#Goal" aria-expanded="false" aria-controls="Goal"
+                                       th:text="${aboutCompany.get(1).getTitle()}"></a>
                                 </h6>
                             </div>
                             <div id="Goal" class="collapse" role="tabpanel" aria-labelledby="GoalandVision"
@@ -184,7 +205,8 @@
                             <div class="card-header p-0" role="tab" id="Profitability">
                                 <h6 class="card-title position-relative mb-0">
                                     <a class="collapsed text-dark d-block" role="button" data-bs-toggle="collapse"
-                                       href="#Profit" aria-expanded="false" aria-controls="Profit" th:text="${aboutCompany.get(2).getTitle()}"></a>
+                                       href="#Profit" aria-expanded="false" aria-controls="Profit"
+                                       th:text="${aboutCompany.get(2).getTitle()}"></a>
                                 </h6>
                             </div>
                             <div id="Profit" class="collapse" role="tabpanel" aria-labelledby="Profitability"
@@ -279,13 +301,13 @@
             <div class="col-12 text-center">
                 <div class="section-title">
                     <h4 class="title text-uppercase fw-normal mb-4"> <span
-                            class="text-primary fw-bold">Достопримечательности</span></h4>
+                            class="text-primary fw-bold">Достоприме<wbr>чательности</span></h4>
                     <p class="text-muted mx-auto para-desc mb-0"></p>
                 </div>
             </div>
         </div>
 
-        <div class="row">
+        <div class="row justify-content-center">
             <div class="col-lg-4 col-md-6 mt-4 pt-2" th:each="element : ${attractions}">
                 <div class="blog-post bg-white rounded">
                     <img th:src="${element.getImage()}" class="img-fluid rounded-top" alt="">
@@ -301,48 +323,58 @@
     </div>
 </section>
 
-<section class="cta-image" id="blog">
+<section class="cta-image bg-light" id="blog">
     <div class="container-fluid">
+        <div class="row justify-content-center">
+            <div class="col-12 text-center">
+                <div class="section-title">
+                    <h4 class="title text-uppercase fw-normal mb-4">Отзывы <span class="text-primary fw-bold">наших клиентов</span>
+                    </h4>
+                </div>
+            </div>
+        </div>
         <div class="row position-relative">
             <div class="col-lg-7 order-lg-1 order-2">
                 <div class="cta-image-img-box">
                     <div class="row">
                         <div class="col-lg-12">
                             <div class="text-center testi-twitter">
-                                <i class="mdi mdi-twitter mdi-48px text-primary"></i>
+                                <i class="mdi mdi-instagram mdi-48px text-primary"></i>
                             </div>
                             <div class="tiny-single-item">
                                 <div class="tiny-slide">
                                     <div class="testimonial text-center">
                                         <div class="content-review">
-                                            <p class="review fst-italic text-muted mt-3">" It has roots in a piece of
-                                                classical Latin literature from 45 BC, making sure there isn't years
-                                                old. Richard McClintock, a Latin professor atliterature from 45 BC,
-                                                making sure there isn't years old Hampden-Sydney College in Virginia
-                                                "</p>
-                                            <h5 class="name mb-1 mt-3 text-dark">@bert_official</h5>
+                                            <p class="review fst-italic text-muted mt-3">Жили в двух квартирах, чисто,
+                                                уютною Вид из кна просто космос, слева горы, справа Енисей</p>
+                                            <h5 class="name mb-1 mt-3 text-dark">Максим</h5>
                                         </div>
                                     </div><!--end content-->
                                 </div>
                                 <div class="tiny-slide">
                                     <div class="testimonial text-center">
                                         <div class="content-review">
-                                            <p class="review fst-italic text-muted mt-3">" Literature from 45 BC, making
-                                                sure there isn't years old in a piece of classical Latin literature from
-                                                45 BC, making sure there isn't years old. Richard McClintock, a Latin
-                                                professor at Hampden-Sydney College in Virginia "</p>
-                                            <h5 class="name mb-1 mt-3 text-dark">@mark_wood</h5>
+                                            <p class="review fst-italic text-muted mt-3">Чистая, уютная)))</p>
+                                            <h5 class="name mb-1 mt-3 text-dark">Elena</h5>
                                         </div>
                                     </div><!--end content-->
                                 </div>
                                 <div class="tiny-slide">
                                     <div class="testimonial text-center">
                                         <div class="content-review">
-                                            <p class="review fst-italic text-muted mt-3">" Classical Latin literature
-                                                from 45 BC, making literature from 45 BC, making sure there isn't years
-                                                old sure there isn't years old. Richard McClintock, a Latin professor at
-                                                Hampden-Sydney College in Virginia "</p>
-                                            <h5 class="name mb-1 mt-3 text-dark">@kevin_peterson</h5>
+                                            <p class="review fst-italic text-muted mt-3">Замечательная квартир рядом с
+                                                набережной снимал 2 дня, всё понравилось, на кухне всё имеется для
+                                                приготовления в общем уютненькая атмосферная квартирка)</p>
+                                            <h5 class="name mb-1 mt-3 text-dark">artem_42</h5>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="tiny-slide">
+                                    <div class="testimonial text-center">
+                                        <div class="content-review">
+                                            <p class="review fst-italic text-muted mt-3">Добрый вечер) уже 2 раза
+                                                снимали эту кватиру, всё чисто, уютно)) всем советую))</p>
+                                            <h5 class="name mb-1 mt-3 text-dark">aleksa_five</h5>
                                         </div>
                                     </div>
                                 </div>
@@ -353,47 +385,51 @@
             </div>
 
             <div class="col-lg-5 offset-lg-7 order-lg-2 order-1 padding-less img" data-jarallax='{"speed": 0.5}'
-                 style="background-image:url('https://mykaleidoscope.ru/uploads/posts/2020-02/1582548147_3-p-stilnie-sovremennie-intereri-8.jpg')"></div>
+                 style="background-image:url('https://wrc-info.ru/uploads/posts/2019-11/1573888090_otzyivyi-rabotnikov-teletrade1.jpg')"></div>
         </div>
     </div>
 </section>
 
-<section class="section bg-light" id="contact" >
+<section class="section" id="contact">
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-12 text-center">
                 <div class="section-title">
                     <h4 class="title text-uppercase fw-normal mb-4">Закажите <span
                             class="text-primary fw-bold">обратный звонок !</span></h4>
-                    <p class="text-muted mx-auto para-desc mb-0">Мы с удовольствием перезвоним вам прямо сейчас, просто скажите номер:</p>
+                    <p class="text-muted mx-auto para-desc mb-0">Мы с удовольствием перезвоним вам прямо сейчас, просто
+                        скажите номер:</p>
                 </div>
             </div>
         </div>
 
         <div class="row justify-content-center mt-4 pt-2">
             <div class="col-lg-8">
-                <form method="post" name="myForm" onsubmit="return validateForm()">
+                <form name="formTest" method="" action="">
                     <p id="error-msg" class="mb-0"></p>
                     <div id="simple-msg"></div>
                     <div class="row">
                         <div class="col-md-6">
                             <div class="mb-3">
                                 <label class="form-label">Ваше имя <span class="text-danger">*</span></label>
-                                <input name="name" id="name" type="text" class="form-control" placeholder="Имя :" required>
+                                <input name="name" id="name" type="text" class="nameCall form-control"
+                                       placeholder="Имя :"
+                                       required>
                             </div>
                         </div>
 
                         <div class="col-md-6">
                             <div class="mb-3">
                                 <label class="form-label">Ваш номер телефона <span class="text-danger">*</span></label>
-                                <input name="phone" id="phone" type="text" class="form-control" placeholder="Номер телефон :" required>
+                                <input name="phone" id="phone" type="text" class="phoneCall form-control"
+                                       placeholder="Номер телефон :" required>
                             </div>
-                        </div><!--end col-->
+                        </div>
                     </div>
 
                     <div class="col-12">
                         <div class="">
-                            <button type="submit" id="submit" name="send" class="btn rounded-pill w-100 btn-primary">
+                            <button type="submit" class="btn rounded-pill w-100 btn-primary">
                                 Позвоните мне
                             </button>
                         </div>
@@ -404,70 +440,152 @@
     </div>
 </section>
 
-<footer class="footer py-5 bg-dark">
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-4 col-md-12">
-                <a class="footer-logo" href="#" th:text="${homeHeaders.getTitle()}"></a>
-                <p class="text-foot mt-3" th:text="${homeHeaders.getPortfolioSubtitle()}"></p>
-                <ul class="list-unstyled social-icon social mb-0">
-                    <li class="list-inline-item"><a th:href="${homeHeaders.getTelegram()}"><i class="mdi mdi-telegram" title="Мы в Telegram"></i></a></li>
-                    <li class="list-inline-item"><a th:href="${homeHeaders.getWhasApp()}"><i class="mdi mdi-whatsapp" title="Мы в WhatsApp"></i></a></li>
-                    <li class="list-inline-item"><a th:href="${homeHeaders.getViber()}"><i class="mdi mdi-phone" title="Мы в Viber"></i></a></li>
-                    <li class="list-inline-item"><a th:href="${homeHeaders.getInstagram()}"><i class="mdi mdi-instagram" title="Мы в Instagram"></i></a></li>
-                </ul>
+<section class="footer">
+    <footer class="footer py-5 bg-dark">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-4 col-md-12">
+                    <a class="footer-logo" href="#" th:text="${homeHeaders.getTitle()}"></a>
+                    <p class="text-foot mt-3" th:text="${homeHeaders.getPortfolioSubtitle()}"></p>
+                    <ul class="list-unstyled social-icon social mb-0">
+                        <li class="list-inline-item"><a th:href="${homeHeaders.getTelegram()}"><i
+                                class="mdi mdi-telegram"
+                                title="Мы в Telegram"></i></a>
+                        </li>
+                        <li class="list-inline-item"><a th:href="${homeHeaders.getWhasApp()}"><i
+                                class="mdi mdi-whatsapp"
+                                title="Мы в WhatsApp"></i></a>
+                        </li>
+                        <li class="list-inline-item"><a th:href="${homeHeaders.getViber()}"><i class="mdi mdi-phone"
+                                                                                               title="Мы в Viber"></i></a>
+                        </li>
+                        <li class="list-inline-item"><a th:href="${homeHeaders.getInstagram()}"><i
+                                class="mdi mdi-instagram"
+                                title="Мы в Instagram"></i></a>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="col-lg-2 col-md-4 mt-4 pt-2 mt-lg-0 pt-lg-0"></div>
+
+                <div class="col-lg-3 col-md-4 mt-4 pt-2 mt-lg-0 pt-lg-0"></div>
+
+                <div class="col-lg-3 col-md-4 mt-4 pt-2 mt-lg-0 pt-lg-0">
+                    <h4 class="text-light text-uppercase footer-head">Наши контакты</h4>
+                    <ul class="list-unstyled contact-foot text-foot footer-list mt-4 mb-0">
+                        <li class="mt-2"><a href="" class="video-play-icon text-foot"><i
+                                class="mdi mdi-map-marker me-2"></i> <i th:text="${homeHeaders.getAddress()}"></i></a>
+                        </li>
+                        <li class="mt-2"><a href="" class="text-foot"><i class="mdi mdi-email me-2"></i> <i
+                                th:text="${homeHeaders.getEmail()}"></i></a></li>
+                        <li class="mt-2"><a href="" class="text-foot"><i class="mdi mdi-phone me-2"></i> <i
+                                th:text="${homeHeaders.getPhoneNumber()}"></i></a></li>
+                    </ul>
+                </div>
             </div>
+        </div>
 
-            <div class="col-lg-2 col-md-4 mt-4 pt-2 mt-lg-0 pt-lg-0"></div>
+        <a href="#" class="back-to-top" id="back-to-top" title="Back to home">
+            <i class="mdi mdi-chevron-up"> </i>
+        </a>
+    </footer>
+    <footer class="footer bg-dark footer-bar py-4">
+        <div class="container text-foot text-center">
+            <p class="mb-0">©
+                <script>document.write(new Date().getFullYear())</script>
+                <a href="" target="_blank" class="text-reset"></a>
+            </p>
+        </div>
+    </footer>
+</section>
 
-            <div class="col-lg-3 col-md-4 mt-4 pt-2 mt-lg-0 pt-lg-0"></div>
+<section class="modals">
+    <div class="modal fade" id="watchvideomodal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-lg">
+            <div class="modal-content video-modal rounded overflow-hidden">
+                <!-- <video class="w-100" controls autoplay muted loop>
+                    <source src="https://www.w3schools.com/html/mov_bbb.mp4" type="video/mp4"> -->
+                <!--Browser does not support <video> tag -->
+                <!-- </video> -->
+                <!--If you want to use your own video please set your files path-->
 
-            <div class="col-lg-3 col-md-4 mt-4 pt-2 mt-lg-0 pt-lg-0">
-                <h4 class="text-light text-uppercase footer-head">Наши контакты</h4>
-                <ul class="list-unstyled contact-foot text-foot footer-list mt-4 mb-0">
-                    <li class="mt-2"><a href="" class="video-play-icon text-foot"><i class="mdi mdi-map-marker me-2"></i> <i th:text="${homeHeaders.getAddress()}"></i></a></li>
-                    <li class="mt-2"><a href="" class="text-foot"><i class="mdi mdi-email me-2" ></i> <i th:text="${homeHeaders.getEmail()}"></i></a></li>
-                    <li class="mt-2"><a href="" class="text-foot"><i class="mdi mdi-phone me-2"></i> <i th:text="${homeHeaders.getPhoneNumber()}"></i></a></li>
-                </ul>
+
+                <!-- <div class="ratio ratio-16x9">
+                    <iframe src="https://www.youtube.com/embed/jNTZpfXYJa4?rel=0" title="YouTube video" allowfullscreen></iframe>
+                </div> -->
+                <!--If you want to use the youtube link please try the above code-->
+
+                <div class="ratio ratio-16x9">
+                    <iframe src="http://player.vimeo.com/video/99025203" title="Vimeo video" allowfullscreen></iframe>
+                </div>
             </div>
         </div>
     </div>
 
-    <a href="#" class="back-to-top" id="back-to-top" title="Back to home">
-        <i class="mdi mdi-chevron-up"> </i>
-    </a>
-</footer>
-<footer class="footer bg-dark footer-bar py-4">
-    <div class="container text-foot text-center">
-        <p class="mb-0">©
-            <script>document.write(new Date().getFullYear())</script>
-            <a href="" target="_blank" class="text-reset"></a>
-        </p>
-    </div>
-</footer>
-
-<div class="modal fade" id="watchvideomodal" tabindex="-1" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered modal-lg">
-        <div class="modal-content video-modal rounded overflow-hidden">
-            <!-- <video class="w-100" controls autoplay muted loop>
-                <source src="https://www.w3schools.com/html/mov_bbb.mp4" type="video/mp4"> -->
-            <!--Browser does not support <video> tag -->
-            <!-- </video> -->
-            <!--If you want to use your own video please set your files path-->
-
-
-            <!-- <div class="ratio ratio-16x9">
-                <iframe src="https://www.youtube.com/embed/jNTZpfXYJa4?rel=0" title="YouTube video" allowfullscreen></iframe>
-            </div> -->
-            <!--If you want to use the youtube link please try the above code-->
-
-            <div class="ratio ratio-16x9">
-                <iframe src="http://player.vimeo.com/video/99025203" title="Vimeo video" allowfullscreen></iframe>
+    <div class="modalCallback">
+        <div class="modal fade" id="modalCallback" data-bs-backdrop="static" tabindex="-1"
+             aria-labelledby="modalCallbackLabel" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="modalCallbackLabel">Бронирование квартиры</h5>
+                        <button type="button" class="btn-close closeModalCallback" data-bs-dismiss="modal"
+                                aria-label="Close"></button>
+                    </div>
+                    <form name="formTest" method="" action="">
+                        <div class="modal-body">
+                            <div class="row">
+                                <p class="text-center">Чтобы забронировать квартиру, введите ваше Имя и номер
+                                    телефона</p>
+                                <div class="form-group row">
+                                    <label class="col-sm-4 col-form-label">Введите имя</label>
+                                    <div class="col-sm-8">
+                                        <input type="text" placeholder="Ваше имя" class="phoneCall form-control"
+                                               name="name" required/>
+                                    </div>
+                                </div>
+                                <div class="form-group row mt-2">
+                                    <label class="col-sm-4 col-form-label">Введите номер</label>
+                                    <div class="col-sm-8">
+                                        <input type="text" placeholder="Ваш номер телефона"
+                                               class="nameCall form-control" name="phone" required/>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <div class="row">
+                                <button id="smTg" type="submit" class="btn btn-primary">Забронировать</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
             </div>
         </div>
     </div>
-</div>
 
+    <div class="modalInformation">
+        <button id="smInf" type="button" class="btn btn-primary" data-bs-toggle="modal"
+                data-bs-target="#modalInformation" style="display: none"></button>
+        <div class="modal fade" id="modalInformation" data-bs-backdrop="static" tabindex="-1"
+             aria-labelledby="modalInformation" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Ваша заявка принята!</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <p class="text-center">В течении 2-х минут мы с Вами свяжемся!</p>
+                    </div>
+                    <div class="modal-footer text-center">
+                        <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Ок</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
 <!-- javascript -->
 <script src="/js/bootstrap.bundle.min.js"></script>
 <!-- SLIDER -->
@@ -478,6 +596,32 @@
 <script src="/js/parallax.js"></script>
 <!-- Main Js -->
 <script src="/js/app.js"></script>
+<!-- Send telegram -->
+<script type="text/javascript" th:inline="javascript">
+    $(document).ready(
+        function () {
+            $('form').submit(function (e) {
+                e.preventDefault()
+                let name = $('.nameCall').val();
+                let phone = $('.phoneCall').val();
+                let text = "ВНИМАНИЕ НОВАЯ ЗАЯВКА!\n" +
+                    "👤 Клиент: " + name + "\n" +
+                    "📞 Номер телефона: " + phone;
+
+                $.ajax({
+                    type: "POST",
+                    url: "https://api.telegram.org/bot2037072837:AAExxZDtKuoKS-Ta-uuYtuHEwp1FhogPBBE/sendMessage?chat_id=-1001333963171&text=" + text,
+                    success: function () {
+                    }
+                });
+                $('#smInf').click();
+                $('.closeModalCallback').click();
+                document.getElementById("name").value = "";
+                document.getElementById("phone").value = "";
+            });
+        }
+    );
+</script>
 
 </body>
 
