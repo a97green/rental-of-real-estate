@@ -1,0 +1,33 @@
+//
+// testi.scss
+//
+.testi-review {
+    .name {
+        font-size: 14px;
+        letter-spacing: 0.8px;
+    }
+    .testimonial {
+        cursor: -webkit-grab;
+        .content-review {
+            .review {
+                font-size: 18px;
+                color: $gray-500;
+            }
+        }
+    } 
+}
+
+.tns-nav {
+    text-align: center;
+    button {
+        width: 5px;
+        height: 8px;
+        border-radius: 30px;
+        background: transparent;
+        border: 2px solid $primary;
+        margin: 2px;
+        &.tns-nav-active {
+            background: $primary !important;
+        }
+    }
+}

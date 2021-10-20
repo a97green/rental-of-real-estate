@@ -1,0 +1,484 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="utf-8"/>
+    <title th:text="'Квартиры посуточно в Красноярске - ' + ${homeHeaders.getTitle()}"></title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content=""/>
+    <meta name="keywords" content="bootstrap 4, premium, marketing, multipurpose"/>
+    <meta content="Themesdesign" name="author"/>
+    <!-- favicon -->
+    <link rel="shortcut icon" href="/images/favicon.ico">
+    <!-- Bootstrap -->
+    <link href="/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
+    <!-- Icon -->
+    <link href="/css/materialdesignicons.min.css" rel="stylesheet" type="text/css"/>
+    <link href="/css/pe-icon-7-stroke.css" rel="stylesheet" type="text/css"/>
+    <!-- SLICK SLIDER -->
+    <link rel="stylesheet" href="/css/tiny-slider.css"/>
+    <!-- Custom Css -->
+    <link href="/css/style.min.css" rel="stylesheet" type="text/css"/>
+
+</head>
+
+<body data-bs-spy="scroll" data-bs-target="#navbar-navlist" data-bs-offset="20">
+<!-- Loader Start -->
+<div id="preloader">
+    <div id="status">
+        <div class="spinner">
+            <div class="bounce1"></div>
+            <div class="bounce2"></div>
+            <div class="bounce3"></div>
+        </div>
+    </div>
+</div>
+<!-- Loader End -->
+
+<!-- Navbar Start -->
+<nav id="navbar" class="navbar navbar-expand-lg fixed-top navbar-custom navbar-light sticky">
+    <div class="container">
+        <a class="navbar-brand" href="#" th:text="${homeHeaders.getTitle()}"></a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse"
+                aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="mdi mdi-menu"></span>
+        </button><!--end button-->
+
+        <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul id="navbar-navlist" class="navbar-nav ms-auto">
+                <li class="nav-item">
+                    <a class="nav-link active" href="#home">Начало</a>
+                </li><!--end nav item-->
+                <li class="nav-item">
+                    <a class="nav-link" href="#apartments">Квартиры</a>
+                </li><!--end nav item-->
+                <li class="nav-item">
+                    <a class="nav-link" href="#about">О Нас</a>
+                </li><!--end nav item-->
+                <li class="nav-item">
+                    <a class="nav-link" href="#testimonial">Достопримечательности</a>
+                </li><!--end nav item-->
+                <li class="nav-item">
+                    <a class="nav-link" href="#blog">Отзывы</a>
+                </li><!--end nav item-->
+                <li>
+                    <a class="nav-link" href="#contact" data-toggle="modal" data-target=".bd-example-modal-sm">Заказать звонок</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<section class="bg-home d-table w-100" data-jarallax='{"speed": 0.5}' style="background-image:url('https://mykaleidoscope.ru/uploads/posts/2020-02/1582548147_3-p-stilnie-sovremennie-intereri-8.jpg')" id="home">
+    <div class="bg-overlay"></div>
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-lg-10 text-center">
+                <div class="title-heading mt-5 pt-4">
+                    <h1 class="heading text-white mb-3" th:text="'«' + ${homeHeaders.getTitle()} + '» – это недорого!'"></h1>
+                    <p class="para-desc mx-auto text-white-50" th:text="${homeHeaders.getDescriptions()}"></p>
+                    <div class="mt-4 pt-2">
+                        <a href="#apartments" class="btn btn-primary rounded-pill mb-2 me-2">Смотреть квартиры</a>
+                        <a href="#about" class="btn btn-outline-custom rounded-pill mb-2">О компании <i
+                                class="mdi mdi-arrow-right ms-2ṣ"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="section" id="apartments">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-12 text-center">
+                <div class="section-title">
+                    <h4 class="title text-uppercase fw-normal mb-4">Снять <span class="text-primary fw-bold">квартиру</span>
+                    </h4>
+                    <p class="text-muted mx-auto para-desc mb-0" th:text="${homeHeaders.getDescriptions()}"></p>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-lg-3 col-md-6 col-12 mt-4 pt-2" th:each="element : ${apartaments}">
+                <div class="team-content position-relative text-center bg-light rounded">
+                    <img src="https://mykaleidoscope.ru/uploads/posts/2020-02/1582548147_3-p-stilnie-sovremennie-intereri-8.jpg" class="img-fluid rounded-top" alt="">
+                    <div class="detail pt-3 pb-3 p-1">
+                        <h4 class="mb-0"><a href="javascript:void(0)" class="name text-dark" th:text="${element.getTitle()}"></a></h4>
+                        <small class="posting text-muted" th:text="${element.getAddress()}"></small>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="section" style="background: url('https://mykaleidoscope.ru/uploads/posts/2020-02/1582548147_3-p-stilnie-sovremennie-intereri-8.jpg') center center">
+    <div class="bg-overlay"></div>
+    <div class="container">
+        <div class="row">
+            <div class="col-12 text-center">
+                <div class="section-title">
+                    <h4 class="title text-uppercase text-white mb-4"> Позвоните нам</h4>
+                    <p class="text-white-50 mx-auto para-desc mb-0">Уточнить интересующую вас информацию вы можете позвонив по номеру *****. Или закажите обратный звонок и мы сразу перезвоним вам!</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="row justify-content-center">
+            <div class="col-md-8 text-center">
+                <a href="#contact" class="btn btn-primary rounded-pill">Заказать звонок</a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="section bg-light" id="about">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-12 text-center">
+                <div class="section-title">
+                    <h4 class="title text-uppercase fw-normal mb-4">О нашей<span
+                            class="text-primary fw-bold"> Компании</span></h4>
+                </div>
+            </div>
+        </div>
+        <div class="row align-items-center">
+            <div class="col-lg-6 col-md-7">
+                <div class="about-img">
+                    <img src="/images/about01.png" class="img-fluid" alt="">
+                </div>
+            </div>
+
+            <div class="col-lg-6 col-md-5 mt-4 mt-sm-0 pt-2 pt-sm-0">
+                <div class="faqs mt-4 pt-2">
+                    <div class="accordion" id="accordionExample2" role="tablist" aria-multiselectable="true">
+                        <div class="card border-0 rounded-0">
+                            <div class="card-header p-0" role="tab" id="History">
+                                <h6 class="card-title position-relative mb-0">
+                                    <a class="text-dark d-block" role="button" data-bs-toggle="collapse"
+                                       href="#companyhistory" aria-expanded="true" aria-controls="companyhistory" th:text="${aboutCompany.get(0).getTitle()}"></a>
+                                </h6>
+                            </div>
+                            <div id="companyhistory" class="collapse show" role="tabpanel" aria-labelledby="History"
+                                 data-bs-parent="#accordionExample2">
+                                <p class="mb-2 mt-3 m-2" th:text="${aboutCompany.get(0).getDescriptions()}"></p>
+                            </div>
+                        </div>
+
+                        <div class="card border-0 rounded-0 my-3">
+                            <div class="card-header p-0" role="tab" id="GoalandVision">
+                                <h6 class="card-title position-relative mb-0">
+                                    <a class="collapsed text-dark d-block" role="button" data-bs-toggle="collapse"
+                                       href="#Goal" aria-expanded="false" aria-controls="Goal" th:text="${aboutCompany.get(1).getTitle()}"></a>
+                                </h6>
+                            </div>
+                            <div id="Goal" class="collapse" role="tabpanel" aria-labelledby="GoalandVision"
+                                 data-bs-parent="#accordionExample2">
+                                <p class="mb-2 mt-3 m-2" th:text="${aboutCompany.get(1).getDescriptions()}"></p>
+                            </div>
+                        </div>
+
+                        <div class="card border-0 rounded-0">
+                            <div class="card-header p-0" role="tab" id="Profitability">
+                                <h6 class="card-title position-relative mb-0">
+                                    <a class="collapsed text-dark d-block" role="button" data-bs-toggle="collapse"
+                                       href="#Profit" aria-expanded="false" aria-controls="Profit" th:text="${aboutCompany.get(2).getTitle()}"></a>
+                                </h6>
+                            </div>
+                            <div id="Profit" class="collapse" role="tabpanel" aria-labelledby="Profitability"
+                                 data-bs-parent="#accordionExample2">
+                                <p class="mb-0 mt-3 m-2" th:text="${aboutCompany.get(2).getDescriptions()}"></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="section" id="services">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-12 text-center">
+                <div class="section-title">
+                    <h4 class="title text-uppercase fw-normal mb-4">Наши <span
+                            class="text-primary fw-bold">Преимущества</span></h4>
+                </div>
+            </div>
+        </div>
+
+        <div class="row services align-items-center">
+            <div class="col-lg-4 col-md-6">
+                <div class="core-service">
+                    <div class="service-content mt-4 p-2 text-center">
+                        <div class="icon position-relative d-inline-block text-center mb-4">
+                            <img src="/images/icons/clock.png" class="img-fluid mx-auto d-block" alt="">
+                        </div>
+                        <div class="content">
+                            <h4 class="title mb-2">Powerful Performance</h4>
+                            <p class="text-muted mb-0">Nisi aenean vulputate eleifend tellus vitae eleifend enim a
+                                Aliquam aenean elementum semper.</p>
+                        </div>
+                    </div>
+
+                    <div class="service-content mt-4 p-2 text-center">
+                        <div class="icon position-relative d-inline-block text-center mb-4">
+                            <img src="/images/icons/responsive-design-symbol.png"
+                                 class="img-fluid mx-auto d-block" alt="">
+                        </div>
+                        <div class="content">
+                            <h4 class="title mb-2">Responsive Layout</h4>
+                            <p class="text-muted mb-0">Aenean tellus metus bibendum sed posuere ac pede amet augue
+                                turpis Pellentesque posuere.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-4 core-service-img">
+                <div class="ms-lg-2 me-lg-2">
+                    <img src="/images/feature01.png" class="img-fluid mx-auto" alt="">
+                </div>
+            </div>
+
+            <div class="col-lg-4 col-md-6">
+                <div class="core-service">
+                    <div class="service-content mt-4 p-2 text-center">
+                        <div class="icon position-relative d-inline-block text-center mb-4">
+                            <img src="/images/icons/like.png" class="img-fluid mx-auto d-block" alt="">
+                        </div>
+                        <div class="content">
+                            <h4 class="title mb-2">Work With Love</h4>
+                            <p class="text-muted mb-0">Pellentesque habitant morbi tristique senectus et turpis egestas
+                                dui magna posuere eget justo.</p>
+                        </div>
+                    </div>
+
+                    <div class="service-content mt-4 p-2 text-center">
+                        <div class="icon position-relative d-inline-block text-center mb-4">
+                            <img src="/images/icons/brainstorm.png" class="img-fluid mx-auto d-block" alt="">
+                        </div>
+                        <div class="content">
+                            <h4 class="title mb-2">Creative Design</h4>
+                            <p class="text-muted mb-0">Maecenas ullamcorper dui et placerat feugiat eros pede felis nunc
+                                loremlorem Sed fermentum.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="section bg-light" id="testimonial">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-12 text-center">
+                <div class="section-title">
+                    <h4 class="title text-uppercase fw-normal mb-4"> <span
+                            class="text-primary fw-bold">Достопримечательности</span></h4>
+                    <p class="text-muted mx-auto para-desc mb-0"></p>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-lg-4 col-md-6 mt-4 pt-2" th:each="element : ${attractions}">
+                <div class="blog-post bg-white rounded">
+                    <img th:src="${element.getImage()}" class="img-fluid rounded-top" alt="">
+                    <div class="blog-content p-3">
+                        <h5><a href="" class="blog-title text-dark" th:text="${element.getTitle()}"></a></h5>
+                        <p class="text-muted" th:text="${element.getDescriptions()}"></p>
+                        <div class="tag text-muted">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="cta-image" id="blog">
+    <div class="container-fluid">
+        <div class="row position-relative">
+            <div class="col-lg-7 order-lg-1 order-2">
+                <div class="cta-image-img-box">
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <div class="text-center testi-twitter">
+                                <i class="mdi mdi-twitter mdi-48px text-primary"></i>
+                            </div>
+                            <div class="tiny-single-item">
+                                <div class="tiny-slide">
+                                    <div class="testimonial text-center">
+                                        <div class="content-review">
+                                            <p class="review fst-italic text-muted mt-3">" It has roots in a piece of
+                                                classical Latin literature from 45 BC, making sure there isn't years
+                                                old. Richard McClintock, a Latin professor atliterature from 45 BC,
+                                                making sure there isn't years old Hampden-Sydney College in Virginia
+                                                "</p>
+                                            <h5 class="name mb-1 mt-3 text-dark">@bert_official</h5>
+                                        </div>
+                                    </div><!--end content-->
+                                </div>
+                                <div class="tiny-slide">
+                                    <div class="testimonial text-center">
+                                        <div class="content-review">
+                                            <p class="review fst-italic text-muted mt-3">" Literature from 45 BC, making
+                                                sure there isn't years old in a piece of classical Latin literature from
+                                                45 BC, making sure there isn't years old. Richard McClintock, a Latin
+                                                professor at Hampden-Sydney College in Virginia "</p>
+                                            <h5 class="name mb-1 mt-3 text-dark">@mark_wood</h5>
+                                        </div>
+                                    </div><!--end content-->
+                                </div>
+                                <div class="tiny-slide">
+                                    <div class="testimonial text-center">
+                                        <div class="content-review">
+                                            <p class="review fst-italic text-muted mt-3">" Classical Latin literature
+                                                from 45 BC, making literature from 45 BC, making sure there isn't years
+                                                old sure there isn't years old. Richard McClintock, a Latin professor at
+                                                Hampden-Sydney College in Virginia "</p>
+                                            <h5 class="name mb-1 mt-3 text-dark">@kevin_peterson</h5>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-5 offset-lg-7 order-lg-2 order-1 padding-less img" data-jarallax='{"speed": 0.5}'
+                 style="background-image:url('https://mykaleidoscope.ru/uploads/posts/2020-02/1582548147_3-p-stilnie-sovremennie-intereri-8.jpg')"></div>
+        </div>
+    </div>
+</section>
+
+<section class="section bg-light" id="contact" >
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-12 text-center">
+                <div class="section-title">
+                    <h4 class="title text-uppercase fw-normal mb-4">Закажите <span
+                            class="text-primary fw-bold">обратный звонок !</span></h4>
+                    <p class="text-muted mx-auto para-desc mb-0">Мы с удовольствием перезвоним вам прямо сейчас, просто скажите номер:</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="row justify-content-center mt-4 pt-2">
+            <div class="col-lg-8">
+                <form method="post" name="myForm" onsubmit="return validateForm()">
+                    <p id="error-msg" class="mb-0"></p>
+                    <div id="simple-msg"></div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="mb-3">
+                                <label class="form-label">Ваше имя <span class="text-danger">*</span></label>
+                                <input name="name" id="name" type="text" class="form-control" placeholder="Имя :" required>
+                            </div>
+                        </div>
+
+                        <div class="col-md-6">
+                            <div class="mb-3">
+                                <label class="form-label">Ваш номер телефона <span class="text-danger">*</span></label>
+                                <input name="phone" id="phone" type="text" class="form-control" placeholder="Номер телефон :" required>
+                            </div>
+                        </div><!--end col-->
+                    </div>
+
+                    <div class="col-12">
+                        <div class="">
+                            <button type="submit" id="submit" name="send" class="btn rounded-pill w-100 btn-primary">
+                                Позвоните мне
+                            </button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>
+
+<footer class="footer py-5 bg-dark">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-4 col-md-12">
+                <a class="footer-logo" href="#" th:text="${homeHeaders.getTitle()}"></a>
+                <p class="text-foot mt-3" th:text="${homeHeaders.getPortfolioSubtitle()}"></p>
+                <ul class="list-unstyled social-icon social mb-0">
+                    <li class="list-inline-item"><a th:href="${homeHeaders.getTelegram()}"><i class="mdi mdi-telegram" title="Мы в Telegram"></i></a></li>
+                    <li class="list-inline-item"><a th:href="${homeHeaders.getWhasApp()}"><i class="mdi mdi-whatsapp" title="Мы в WhatsApp"></i></a></li>
+                    <li class="list-inline-item"><a th:href="${homeHeaders.getViber()}"><i class="mdi mdi-phone" title="Мы в Viber"></i></a></li>
+                    <li class="list-inline-item"><a th:href="${homeHeaders.getInstagram()}"><i class="mdi mdi-instagram" title="Мы в Instagram"></i></a></li>
+                </ul>
+            </div>
+
+            <div class="col-lg-2 col-md-4 mt-4 pt-2 mt-lg-0 pt-lg-0"></div>
+
+            <div class="col-lg-3 col-md-4 mt-4 pt-2 mt-lg-0 pt-lg-0"></div>
+
+            <div class="col-lg-3 col-md-4 mt-4 pt-2 mt-lg-0 pt-lg-0">
+                <h4 class="text-light text-uppercase footer-head">Наши контакты</h4>
+                <ul class="list-unstyled contact-foot text-foot footer-list mt-4 mb-0">
+                    <li class="mt-2"><a href="" class="video-play-icon text-foot"><i class="mdi mdi-map-marker me-2"></i> <i th:text="${homeHeaders.getAddress()}"></i></a></li>
+                    <li class="mt-2"><a href="" class="text-foot"><i class="mdi mdi-email me-2" ></i> <i th:text="${homeHeaders.getEmail()}"></i></a></li>
+                    <li class="mt-2"><a href="" class="text-foot"><i class="mdi mdi-phone me-2"></i> <i th:text="${homeHeaders.getPhoneNumber()}"></i></a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <a href="#" class="back-to-top" id="back-to-top" title="Back to home">
+        <i class="mdi mdi-chevron-up"> </i>
+    </a>
+</footer>
+<footer class="footer bg-dark footer-bar py-4">
+    <div class="container text-foot text-center">
+        <p class="mb-0">©
+            <script>document.write(new Date().getFullYear())</script>
+            <a href="" target="_blank" class="text-reset"></a>
+        </p>
+    </div>
+</footer>
+
+<div class="modal fade" id="watchvideomodal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg">
+        <div class="modal-content video-modal rounded overflow-hidden">
+            <!-- <video class="w-100" controls autoplay muted loop>
+                <source src="https://www.w3schools.com/html/mov_bbb.mp4" type="video/mp4"> -->
+            <!--Browser does not support <video> tag -->
+            <!-- </video> -->
+            <!--If you want to use your own video please set your files path-->
+
+
+            <!-- <div class="ratio ratio-16x9">
+                <iframe src="https://www.youtube.com/embed/jNTZpfXYJa4?rel=0" title="YouTube video" allowfullscreen></iframe>
+            </div> -->
+            <!--If you want to use the youtube link please try the above code-->
+
+            <div class="ratio ratio-16x9">
+                <iframe src="http://player.vimeo.com/video/99025203" title="Vimeo video" allowfullscreen></iframe>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- javascript -->
+<script src="/js/bootstrap.bundle.min.js"></script>
+<!-- SLIDER -->
+<script src="/js/tiny-slider.js "></script>
+<!-- Contact -->
+<script src="/js/contact.js"></script>
+<!-- Parallax -->
+<script src="/js/parallax.js"></script>
+<!-- Main Js -->
+<script src="/js/app.js"></script>
+
+</body>
+
+</html>

@@ -32,7 +32,7 @@ public class MainController {
         for (HomeHeaders headers : homeHeaders) {
             model.addAttribute("homeHeaders", headers);
         }
-        Iterable<AboutCompany> aboutCompany = aboutCompanyReposiroty.findAll();
+        List<AboutCompany> aboutCompany = aboutCompanyReposiroty.findAll();
         Iterable<Advantage> advantages = advantageRepository.findAll();
         Iterable<Apartaments> apartaments = apartamentsRepository.findAll();
         Iterable<Attractions> attractions = attractionsRepository.findAll();
@@ -40,7 +40,7 @@ public class MainController {
         model.addAttribute("advantages", advantages);
         model.addAttribute("apartaments", apartaments);
         model.addAttribute("attractions", attractions);
-        return "index";
+        return "index-parallax";
     }
 
     @GetMapping("/error")

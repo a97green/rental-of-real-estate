@@ -1,0 +1,50 @@
+//
+// services.scss
+//
+.services {
+    .core-service {
+        .service-content {
+            .content {
+                .title {
+                    font-size: 18px;
+                }
+            }
+        }
+        .icon {
+            img {
+                height: 32px;
+            }
+            &:before {
+                content: "";
+                position: absolute;
+                bottom: -15px;
+                right: -15px;
+                width: 60px;
+                height: 60px;
+                border-radius: 35% 65% 80% 20% / 78% 71% 29% 22%;
+                background-color: $primary;
+                opacity: 0.2;
+                z-index: -1;
+                transition: all 0.5s ease;
+            }
+            i {
+                font-size: 22px;
+                width: 70px;
+                height: 70px;
+                line-height: 70px;
+                background-color: $primary;
+                color: $white;
+                text-align: center;
+                border-radius: 50%;
+            }
+        }
+    }
+}
+
+@media (max-width: 768px) {
+    .services {                   
+        .core-service-img {
+            display: none;                
+        }
+    }
+}

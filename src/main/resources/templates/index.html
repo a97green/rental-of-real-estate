@@ -2,9 +2,10 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title th:text="'Квартиры посуточно в Красноярске - ' + ${homeHeaders.getTitle()}"></title>
-    <meta content="Квартиры посуточно в Красноярске" name="description"/>
+    <meta content="Квартиры посуточно в Красноярске. Снять квартиру посуточно, не дорого, всегда чистые квартиры, правый берег. Лучшие цены. Положительные отзывы."
+          name="description"/>
     <meta content="" name="author"/>
 
     <link rel="shortcut icon" href="https://glyphicons.com/img/glyphicons/basic/2x/glyphicons-basic-21-home@2x.png"
@@ -15,12 +16,12 @@
     <link rel="apple-touch-icon" sizes="114x114"
           href="https://glyphicons.com/img/glyphicons/basic/2x/glyphicons-basic-21-home@2x.png">
     <!-- Bootstrap -->
-    <link rel="stylesheet" type="text/css" href="/css/bootstrap.css">
-    <link rel="stylesheet" type="text/css" href="/fonts/font-awesome/css/font-awesome.css">
+    <link rel="stylesheet" type="text/css" href="/1/css/bootstrap.css">
+    <link rel="stylesheet" type="text/css" href="/1/fonts/font-awesome/css/font-awesome.css">
     <!-- Stylesheet -->
-    <link rel="stylesheet" type="text/css" href="/css/style.css">
-    <link rel="stylesheet" type="text/css" href="/css/nivo-lightbox/nivo-lightbox.css">
-    <link rel="stylesheet" type="text/css" href="/css/nivo-lightbox/default.css">
+    <link rel="stylesheet" type="text/css" href="/1/css/style.css">
+    <link rel="stylesheet" type="text/css" href="/1/css/nivo-lightbox/nivo-lightbox.css">
+    <link rel="stylesheet" type="text/css" href="/1/css/nivo-lightbox/default.css">
     <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700,900" rel="stylesheet">
     <!--Анимации-->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
@@ -111,17 +112,20 @@
     <div class="container">
         <div class="navbar-header">
             <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
-                    data-target="#bs-example-navbar-collapse-1"><span class="sr-only">Toggle navigation</span> <span
-                    class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span></button>
+                    data-target="#bs-example-navbar-collapse-1">
+                <span class="sr-only"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
             <a class="navbar-brand page-scroll" href="#page-top" th:text="${homeHeaders.getTitle()}"></a>
         </div>
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav navbar-right">
                 <li><a href="#portfolio" class="page-scroll">Снять квартиру</a></li>
                 <li><a href="#about" class="page-scroll">О Нас</a></li>
-                <li><a href="#team" class="page-scroll">Почему мы</a></li>
                 <li><a href="#services" class="page-scroll">Достопримечательности</a></li>
-                <li><a href="#contact" class="page-scroll">Связь с нами</a></li>
+                <li><a href="#contact" class="page-scroll">Контакты</a></li>
                 <li>
                     <button type="button" class="btn btn-success" style="margin-top: 10px;" data-toggle="modal"
                             data-target=".bd-example-modal-sm">Заказать звонок
@@ -162,9 +166,6 @@
                 <li>
                     <ol class="type">
                         <li><a href="#" class="active" data-filter="*">Все квартиры</a></li>
-                        <!--                        <li><a href="#" data-filter=".standard">Стандарт</a></li>-->
-                        <!--                        <li><a href="#" data-filter=".junior">Полулюкс</a></li>-->
-                        <!--                        <li><a href="#" data-filter=".luxury">Люкс</a></li>-->
                     </ol>
                 </li>
             </ul>
@@ -248,7 +249,7 @@
 <div id="modalDetails">
     <div class="modal fade bd-example-modal-lg2" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel2"
          aria-hidden="true">
-        <div id="myModal" class="modal-dialog modal-lg">
+        <div id="myModal" class="modal-dialog modal-sm">
             <div class="modal-content">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -257,15 +258,18 @@
                     <h4 class="modal-title mTitlePut"></h4>
                 </div>
                 <div class="modal-body">
-                    <div class="row">
-                        <div class="col-lg-6" style="max-height: 450px; height: 450px">
+                    <div class="container-sm" style="margin: 25px">
+                        <div class="row container-sm">
+                            <div class="col">
                             <div class="carousel slide article-slide" id="article-photo-carousel">
                                 <div class="carousel-inner cont-slider"></div>
                                 <ol class="carousel-indicators"></ol>
                             </div>
+                            </div>
                         </div>
-                        <div class="col-lg-6">
-                            <table class="table table-striped">
+                        <div class="row container-sm">
+                            <div class="col">
+                            <table class="table">
                                 <thead>
                                 <tr>
                                     <th></th>
@@ -273,7 +277,6 @@
                                 </tr>
                                 </thead>
                                 <tbody class="tBodyPut">
-
                                 </tbody>
                             </table>
                             <div class="text-right">
@@ -281,14 +284,14 @@
                                         data-toggle="modal" data-target=".bd-example-modal-sm">Забронировать
                                 </button>
                             </div>
+                            </div>
                         </div>
-                    </div>
-                    <div class="row">
-                        <div class="container">
+                        <div class="row container-sm">
+                            <div class="col">
                             <div class="descriptionPut"></div>
+                            </div>
                         </div>
                     </div>
-
                 </div>
             </div>
         </div>
@@ -371,15 +374,46 @@
         </div>
     </div>
 </div>
-<div th:insert="footer :: footer"></div>
 
-<script type="text/javascript" src="/js/jquery.1.11.1.js"></script>
-<script type="text/javascript" src="/js/bootstrap.js"></script>
-<script type="text/javascript" src="/js/nivo-lightbox.js"></script>
-<script type="text/javascript" src="/js/jquery.isotope.js"></script>
-<script type="text/javascript" src="/js/jqBootstrapValidation.js"></script>
-<script type="text/javascript" src="/js/main.js"></script>
-<script type="text/javascript" src="/js/filter.js"></script>
+
+<div id="footer">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-4 text-center">
+                <b>Мы находимся по адресу</b>
+                <a><h5 th:text="${homeHeaders.getAddress()}"></h5></a>
+            </div>
+            <div class="col-sm-4 text-center">
+                <a th:href="${homeHeaders.getInstagram()}" target="_blank"><h5>Отзывы</h5></a>
+                <!--                            <a href="" data-toggle="modal" data-target="#myModalRules"><h5>Правила проживания</h5></a>-->
+            </div>
+            <div class="col-sm-4 text-center">
+                <b>E-mail адрес</b>
+                <a><h5 th:text="${homeHeaders.getEmail()}"></h5></a>
+            </div>
+        </div>
+        <div class="row container text-center">
+            <div class="social">
+                <ul>
+                    <li><a th:href="${homeHeaders.getWhasApp()}" target="_blank"><i class="fa fa-whatsapp"></i></a></li>
+                    <li><a th:href="${homeHeaders.getTelegram()}" target="_blank"><i class="fa fa-paper-plane"></i></a>
+                    </li>
+                    <li><a th:href="${homeHeaders.getViber()}" target="_blank"><i class="fa fa-phone-square"></i></a>
+                    </li>
+                    <li><a th:href="${homeHeaders.getInstagram()}" target="_blank"><i class="fa fa-instagram"></i></a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+<script type="text/javascript" src="/1/js/jquery.1.11.1.js"></script>
+<script type="text/javascript" src="/1/js/bootstrap.js"></script>
+<script type="text/javascript" src="/1/js/nivo-lightbox.js"></script>
+<script type="text/javascript" src="/1/js/jquery.isotope.js"></script>
+<script type="text/javascript" src="/1/js/jqBootstrapValidation.js"></script>
+<script type="text/javascript" src="/1/js/main.js"></script>
+
 
 <script type="text/javascript" th:inline="javascript">
     $(document).ready(
@@ -391,7 +425,8 @@
                 let phone = $('#phone').val();
                 let text = "ВНИМАНИЕ НОВАЯ ЗАЯВКА!%0A" +
                     "👤 Клиент: " + name + "%0A" +
-                    "📞 Номер телефона: " + phone
+                    "📞 Номер телефона: " + phone;
+
                 $.ajax({
                     type: "POST",
                     url: "https://api.telegram.org/bot2037072837:AAExxZDtKuoKS-Ta-uuYtuHEwp1FhogPBBE/sendMessage?chat_id=-547471302&text=" + text,
@@ -401,6 +436,8 @@
                 $('#snCls').click();
                 $('#smInf').click();
                 $('body').attr("style", "padding-right: 0px;");
+                document.getElementById("name").value = "";
+                document.getElementById("phone").value = "";
             });
             $('.apart').click(detailsApart);
 

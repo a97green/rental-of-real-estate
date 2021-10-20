@@ -1,6 +1,8 @@
 package ru.aGreen.rentalofrealestate.models;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.LinkedList;
 import java.util.List;
 
 public class Images {
@@ -21,15 +23,17 @@ public class Images {
         for (String s : Images.getStrings()) {
             urls.append(s).append(";");
         }
+
         return urls.toString();
     }
 
     public static List<String> disband(String url) {
         String[] urls = url.split(";");
         List<String> strings = new ArrayList<>();
-        for (int i = 0; i < urls.length; i++) {
-            strings.add(urls[i].replace("\"", ""));
+        for (String s : urls) {
+            strings.add(s.replace("\"", ""));
         }
+        Collections.reverse(strings);
         return strings;
     }
 

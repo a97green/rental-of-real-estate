@@ -1,0 +1,29 @@
+//
+// blog.scss
+//
+.blog-post {
+    transition: all 0.5s cubic-bezier(0.68, -0.55, 0.27, 1.55) 0s;
+    .blog-content {
+        h4 {
+            line-height: 24px;
+        }
+        .blog-title {
+            transition: all 0.5s ease;
+            &:hover {
+                color: $primary !important;
+            }
+        }
+        .tag {
+            a {
+                transition: all 0.5s ease;
+                &:hover {
+                    color: $primary !important;
+                }
+            }
+        }
+    }
+    &:hover {
+        margin-top: -5px;
+        box-shadow: $shadow;
+    }
+}

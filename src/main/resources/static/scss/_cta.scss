@@ -1,0 +1,79 @@
+//
+// cta.scss
+//
+.bg-cta {
+    padding: 150px 0;
+    .play-btn {
+        height: 80px;
+        width: 80px;
+        font-size: 30px;
+        line-height: 78px;
+        border-radius: 50%;
+        display: inline-block;
+        -webkit-text-stroke: 2px $primary;
+        -webkit-text-fill-color: transparent;  
+        border: 2px solid $white;
+        margin-top: 30px;
+        &:hover {
+            -webkit-text-stroke: 0px $primary;
+            -webkit-text-fill-color: $primary;
+        }
+    }
+}
+
+.cta-image{
+    .container-fluid{
+        max-width: 100%;
+        .padding-less.img {
+            background: scroll center no-repeat;
+            background-size: cover;
+            position: absolute;
+            height: 100%;
+        }
+    }    
+    .cta-image-img-box{
+        padding: 12% 10%;
+    }       
+    .cta-image-head {
+        font-size: 22px;    
+        letter-spacing: 0.8px;
+    }
+}
+//download cta
+.download-cta {
+    li {
+        a {
+            img {
+                height: 58px;
+            }
+        }
+    }
+}
+//home button
+.watch-video a {
+    font-size: 14px;
+    letter-spacing: 1px;
+    .play-icon-circle {
+        height: 50px;
+        width: 50px;
+        background-color: $primary;
+        line-height: 50px;
+        &.play-iconbar {
+            font-size: 17px;
+        }
+        &.play {
+            top: 77%;
+        }
+    }
+}
+@media (max-width: 768px){
+    .cta-image {
+        .padding-less {
+            position: relative !important;
+            height: 300px !important;
+        }
+        .cta-image-content {
+            text-align: left !important;
+        }
+    }
+}

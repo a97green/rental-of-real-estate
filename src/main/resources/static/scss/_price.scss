@@ -1,0 +1,40 @@
+//
+// price.scss
+//
+.pricing-table {
+    transition: all 0.5s cubic-bezier(0.68, -0.55, 0.27, 1.55) 0s;
+    .pricing-plan {
+        font-size: 18px;
+    }
+    .price-value {
+        .price-lable {
+            display: inline-block;
+            width: 110px;
+            height: 110px;
+            line-height: 0px;
+            color: $body-color;
+            h4 {
+                font-size: 30px;
+            }
+        }
+    }
+    .pricing-features {
+        ul {
+            li {
+                position: relative;
+                padding: 10px 0;
+                font-size: 14px;
+                border-bottom: 1px dashed $gray-300;
+                &:first-child {
+                    border-top: 1px dashed $gray-300;
+                }
+                &:nth-child(2n+1) {
+                    background-color: $gray-100;
+                }
+            }
+        }
+    }
+    &:hover {
+        margin-top: -5px;
+    }
+}

@@ -11,6 +11,7 @@ import ru.aGreen.rentalofrealestate.repositories.HousingClassRepository;
 import ru.aGreen.rentalofrealestate.repositories.HousingTypeRepository;
 
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.NoSuchElementException;
 
@@ -61,6 +62,7 @@ public class ApartamentsController {
         HousingType housingType1 = housingTypeRepository.findById(housingType).orElseThrow(() -> new NoSuchElementException(""));
         HousingClass housingClass1 = housingClassRepository.findById(housingClass).orElseThrow(() -> new NoSuchElementException(""));
         Apartaments apartaments = apartamentsRepository.findById(id).orElseThrow(() -> new NoSuchElementException(""));
+        String photo = Images.generate();
         apartaments.setTitle(title);
         apartaments.setAddress(address);
         apartaments.setDescription(description);
@@ -73,7 +75,9 @@ public class ApartamentsController {
         apartaments.setTotalArea(totalArea);
         apartaments.setPrice(price);
         apartaments.setParking(parking);
+        apartaments.setPhoto(photo);
         apartamentsRepository.save(apartaments);
+        Images.setStrings(new ArrayList<>());
         return "redirect:/dashboard/apartaments";
     }
 

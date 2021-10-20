@@ -1,0 +1,38 @@
+//
+// footer.scss
+//
+.footer {
+    position: relative;
+    .footer-logo {
+        color: $white !important;
+        text-transform: uppercase;
+        font-weight: 500;
+        letter-spacing: 1.5px;
+        font-size: 20px;
+    }
+    .footer-head {
+        font-size: 16px; 
+        letter-spacing: 1px;         
+        font-weight: 500;
+    }
+    .text-foot {
+        color: $gray-500;
+    }
+    .footer-list {
+        li {
+            a{
+                &:hover {
+                    color: $primary;
+                }
+            }         
+        }
+        &.contact-foot {
+            i {
+                font-size: 16px;
+            }
+        }
+    } 
+    &.footer-bar {
+        border-top: 1px solid $gray-700;
+    }
+}
