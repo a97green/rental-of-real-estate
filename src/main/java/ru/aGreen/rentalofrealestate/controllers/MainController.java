@@ -33,7 +33,7 @@ public class MainController {
             model.addAttribute("homeHeaders", headers);
         }
         List<AboutCompany> aboutCompany = aboutCompanyReposiroty.findAll();
-        Iterable<Advantage> advantages = advantageRepository.findAll();
+        List<Advantage> advantages = advantageRepository.findAll();
         Iterable<Apartaments> apartaments = apartamentsRepository.findAll();
         Iterable<Attractions> attractions = attractionsRepository.findAll();
         model.addAttribute("aboutCompany", aboutCompany);

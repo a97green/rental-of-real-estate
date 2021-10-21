@@ -30,14 +30,11 @@ public class AdvantageController {
     }
 
     @PostMapping("/dashboard/advantage/save/{id}")
-    public String saveAdvantage(@PathVariable(value = "id") Long id, @RequestParam String title, Model model) {
+    public String saveAdvantage(@PathVariable(value = "id") Long id, @RequestParam String title, @RequestParam String description, Model model) {
         Advantage advantage = advantageRepository.findById(id).orElseThrow(() -> new NoSuchElementException(""));
         advantage.setTitle(title);
-        if (!Images.getImage().equals("")) {
-            advantage.setImage(Images.getImage());
-        }
+        advantage.setDescription(description);
         advantageRepository.save(advantage);
-        Images.setImage("");
         return "redirect:/dashboard";
     }
 
@@ -45,13 +42,6 @@ public class AdvantageController {
     public String removeAdvantage(@PathVariable(value = "id") Long id, Model model) {
         Advantage advantage = advantageRepository.findById(id).orElseThrow(() -> new NoSuchElementException(""));
         advantageRepository.delete(advantage);
-        return "redirect:/dashboard";
-    }
-
-    @PostMapping("/dashboard/advantage/load")
-    public String apartamentsLoad(@RequestBody String url, Model model) {
-        System.out.println(url);
-        Images.setImage(url);
         return "redirect:/dashboard";
     }
 }

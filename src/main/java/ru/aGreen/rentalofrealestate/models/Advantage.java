@@ -11,7 +11,7 @@ public class Advantage {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String title;
-    private String image;
+    private String description;
 
     public Long getId() {
         return id;
@@ -29,11 +29,11 @@ public class Advantage {
         this.title = title;
     }
 
-    public String getImage() {
-        return image;
+    public String getDescription() {
+        return description;
     }
 
-    public void setImage(String image) {
-        this.image = image;
+    public void setDescription(String description) {
+        this.description = description;
     }
 }

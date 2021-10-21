@@ -42,20 +42,11 @@ public class DashboardController {
     }
 
     @PostMapping("/dashboard/begining/save/{id}")
-    public String beginingSave(@PathVariable(value = "id") Long id, @RequestParam String title, @RequestParam String subtitle, @RequestParam String descriptions, @RequestParam String rules, Model model) {
+    public String beginingSave(@PathVariable(value = "id") Long id, @RequestParam String title, @RequestParam String subtitle, @RequestParam String descriptions, @RequestParam String portfolioDescriptions, Model model) {
         HomeHeaders homeHeaders = homeHeadersRepository.findById(id).orElseThrow(() -> new NoSuchElementException(""));
         homeHeaders.setTitle(title);
         homeHeaders.setSubtitle(subtitle);
         homeHeaders.setDescriptions(descriptions);
-        homeHeaders.setRules(rules);
-        homeHeadersRepository.save(homeHeaders);
-        return "redirect:/dashboard";
-    }
-
-    @PostMapping("/dashboard/rent/save/{id}")
-    public String rentSave(@PathVariable(value = "id") Long id, @RequestParam String portfolioSubtitle, @RequestParam String portfolioDescriptions, Model model) {
-        HomeHeaders homeHeaders = homeHeadersRepository.findById(id).orElseThrow(() -> new NoSuchElementException(""));
-        homeHeaders.setPortfolioSubtitle(portfolioSubtitle);
         homeHeaders.setPortfolioDescriptions(portfolioDescriptions);
         homeHeadersRepository.save(homeHeaders);
         return "redirect:/dashboard";
@@ -72,6 +63,34 @@ public class DashboardController {
         homeHeaders.setViber(viber);
         homeHeaders.setInstagram(instagram);
         homeHeadersRepository.save(homeHeaders);
+        return "redirect:/dashboard";
+    }
+
+    @PostMapping("/dashboard/load")
+    public String aboutLoad(@RequestBody String url, Model model) {
+        HomeHeaders homeHeaders = homeHeadersRepository.findById(1L).orElseThrow(() -> new NoSuchElementException(""));
+
+        System.out.println(url);
+
+        Images.setImage(url);
+        if (!Images.getImage().equals("")) {
+            homeHeaders.setImage(Images.getImage());
+        }
+        homeHeadersRepository.save(homeHeaders);
+        Images.setImage("");
+        return "redirect:/dashboard";
+    }
+
+    @PostMapping("/dashboard/load2")
+    public String aboutLoad2(@RequestBody String url, Model model) {
+        HomeHeaders homeHeaders = homeHeadersRepository.findById(1L).orElseThrow(() -> new NoSuchElementException(""));
+        System.out.println(url);
+        Images.setImage(url);
+        if (!Images.getImage().equals("")) {
+            homeHeaders.setImager(Images.getImage());
+        }
+        homeHeadersRepository.save(homeHeaders);
+        Images.setImage("");
         return "redirect:/dashboard";
     }
 

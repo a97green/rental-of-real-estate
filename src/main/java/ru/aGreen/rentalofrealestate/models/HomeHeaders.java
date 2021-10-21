@@ -23,6 +23,8 @@ public class HomeHeaders {
     private String viber;
     private String instagram;
     private String rules;
+    private String image;
+    private String imager;
 
     public Long getId() {
         return id;
@@ -134,5 +136,21 @@ public class HomeHeaders {
 
     public void setRules(String rules) {
         this.rules = rules;
+    }
+
+    public String getImage() {
+        return image;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
+    }
+
+    public String getImager() {
+        return imager;
+    }
+
+    public void setImager(String imager) {
+        this.imager = imager;
     }
 }

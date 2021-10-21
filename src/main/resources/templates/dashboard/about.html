@@ -62,23 +62,10 @@
                                                                   class="form-control" required></textarea>
                                                     </div>
                                                 </div>
-                                                <div class="form-group row">
-                                                    <label class="col-sm-2 col-form-label">Фотографии</label>
-                                                    <div class="col-sm-10">
-                                                        <input th:id="images" type="file" required>
-                                                        <button th:id="btn-lock" type="button" class="btn btn-primary"
-                                                                disabled>Загрузить
-                                                        </button>
-                                                        <div th:id="load-ico" class="spinner-border text-primary"
-                                                             style="display: none"></div>
-                                                        <label th:id="lock-send" style="display: none"
-                                                               class="col-sm-2 col-form-label">Загружено</label>
-                                                    </div>
-                                                </div>
                                             </div>
                                         </div>
                                         <div class="row">
-                                            <button type="submit" th:id="btn-load" class="btn btn-success">Добавить
+                                            <button type="submit" class="btn btn-success">Добавить
                                             </button>
                                         </div>
                                     </form>
@@ -96,68 +83,6 @@
 <script src="/../assets/js/jquery/jquery.min.js"></script>
 <script src="/../assets/js/bootstrap/js/bootstrap.bundle.min.js"></script>
 <script src="/../assets/js/peity/jquery.peity.min.js"></script>
-<script type="text/javascript">
-    window.ondragover = function (e) {
-        e.preventDefault()
-    }
-    window.ondrop = function (e) {
-        e.preventDefault();
-        upload(e.dataTransfer.files[0]);
-    }
-    $(document).ready(
-        function () {
-            $('#btn-lock').click(loadImage);
-            $('#images').change(unlock);
-        }
-    )
-
-    function loadImage() {
-        $("#btn-lock").hide();
-        $("#images").hide();
-        $("#load-ico").show();
-        upload();
-        setInterval(function () {
-            $("#load-ico").hide();
-            $("#lock-send").show();
-            $("#btn-load").removeAttr("disabled");
-        }, 5000);
-    }
-
-    function unlock() {
-        $("#btn-load").attr("disabled", "");
-        $('#btn-lock').removeAttr("disabled");
-    }
-
-    function upload() {
-        let element = document.getElementById("images");
-        let fileList = element.files;
-        let file;
-        for (let i = 0; i < fileList.length; i++) {
-            file = fileList.item(i);
-            if (!file || !file.type.match(/image.*/)) return;
-            document.body.className = "uploading";
-            let fd = new FormData();
-            fd.append("image", file);
-            let xhr = new XMLHttpRequest();
-            xhr.open("POST", "https://api.imageban.ru/v1");
-            xhr.onload = function () {
-                let url = JSON.parse(xhr.responseText).data.link;
-                $.ajax({
-                    type: "POST",
-                    contentType: 'application/json; charset=utf-8',
-                    dataType: 'json',
-                    url: "/dashboard/about/load",
-                    data: JSON.stringify(url),
-                    success: function () {
-                        alert("save");
-                    }
-                });
-            }
-            xhr.setRequestHeader('Authorization', 'TOKEN QhNXGda8SZpFGoEMGJob');
-            xhr.send(fd);
-        }
-    }
-</script>
 
 </body>
 </html>

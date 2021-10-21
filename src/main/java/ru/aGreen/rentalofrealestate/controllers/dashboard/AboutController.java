@@ -52,11 +52,7 @@ public class AboutController {
         AboutCompany aboutCompany = aboutCompanyReposiroty.findById(id).orElseThrow(() -> new NoSuchElementException(""));
         aboutCompany.setTitle(title);
         aboutCompany.setDescriptions(descriptions);
-        if (!Images.getImage().equals("")) {
-            aboutCompany.setImage(Images.getImage());
-        }
         aboutCompanyReposiroty.save(aboutCompany);
-        Images.setImage("");
         return "redirect:/dashboard";
     }
 
@@ -64,13 +60,6 @@ public class AboutController {
     public String aboutRemove(@PathVariable(value = "id") Long id, Model model) {
         AboutCompany aboutCompany = aboutCompanyReposiroty.findById(id).orElseThrow(() -> new NoSuchElementException(""));
         aboutCompanyReposiroty.delete(aboutCompany);
-        return "redirect:/dashboard";
-    }
-
-    @PostMapping("/dashboard/about/load")
-    public String aboutLoad(@RequestBody String url, Model model) {
-        System.out.println(url);
-        Images.setImage(url);
         return "redirect:/dashboard";
     }
 }

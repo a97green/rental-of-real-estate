@@ -43,19 +43,11 @@
                                                   method="post">
                                                 <h4 class="card-title mb-4 text-center">Основное</h4>
                                                 <div class="form-group row">
-                                                    <label class="col-sm-3 col-form-label">Название организации</label>
+                                                    <label class="col-sm-3 col-form-label">Название компании</label>
                                                     <div class="col-sm-9">
                                                         <input th:value="${homeHeaders.getTitle()}" type="text"
                                                                class="form-control form-beginning" name="title" disabled
                                                                required>
-                                                    </div>
-                                                </div>
-                                                <div class="form-group row">
-                                                    <label class="col-sm-3 col-form-label">Подзаголовок</label>
-                                                    <div class="col-sm-9">
-                                                        <input th:value="${homeHeaders.getSubtitle()}" type="text"
-                                                               class="form-control form-beginning" name="subtitle"
-                                                               disabled required>
                                                     </div>
                                                 </div>
                                                 <div class="form-group row">
@@ -66,14 +58,22 @@
                                                                disabled required>
                                                     </div>
                                                 </div>
-<!--                                                <div class="form-group row">-->
-<!--                                                    <label class="col-sm-3 col-form-label">Правила проживания</label>-->
-<!--                                                    <div class="col-sm-9">-->
-<!--                                                        <textarea th:text="${homeHeaders.getRules()}" name="rules"-->
-<!--                                                                  class="form-control form-beginning" disabled-->
-<!--                                                                  required></textarea>-->
-<!--                                                    </div>-->
-<!--                                                </div>-->
+                                                <div class="form-group row">
+                                                    <label class="col-sm-3 col-form-label">Слоган</label>
+                                                    <div class="col-sm-9">
+                                                        <input th:value="${homeHeaders.getSubtitle()}" type="text"
+                                                               class="form-control form-beginning" name="subtitle"
+                                                               disabled required>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group row">
+                                                    <label class="col-sm-3 col-form-label">Подзаголовок (Снять квартиру)</label>
+                                                    <div class="col-sm-9">
+                                                        <input th:value="${homeHeaders.getPortfolioDescriptions()}"
+                                                               type="text" class="form-control form-beginning"
+                                                               name="portfolioDescriptions" disabled required>
+                                                    </div>
+                                                </div>
                                                 <div id="hide-row-beginning" class="row" style="display: none">
                                                     <div class="col-sm-6">
                                                         <button id="btn-save-beginning" class="btn btn-success"
@@ -98,49 +98,6 @@
                                             </div>
                                             <br>
 
-                                            <form th:action="'/dashboard/rent/save/' + ${homeHeaders.getId()}"
-                                                  method="post">
-                                                <div class="border-top"><br></div>
-                                                <h4 class="card-title mb-4 text-center">Снять квартиру</h4>
-                                                <div class="form-group row">
-                                                    <label class="col-sm-3 col-form-label">Подзаголовок</label>
-                                                    <div class="col-sm-9">
-                                                        <input th:value="${homeHeaders.getPortfolioSubtitle()}"
-                                                               type="text" class="form-control form-rent"
-                                                               name="portfolioSubtitle" disabled required>
-                                                    </div>
-                                                </div>
-                                                <div class="form-group row">
-                                                    <label class="col-sm-3 col-form-label">Описание</label>
-                                                    <div class="col-sm-9">
-                                                        <input th:value="${homeHeaders.getPortfolioDescriptions()}"
-                                                               type="text" class="form-control form-rent"
-                                                               name="portfolioDescriptions" disabled required>
-                                                    </div>
-                                                </div>
-                                                <div id="hide-row-rent" class="row" style="display: none">
-                                                    <div class="col-sm-6">
-                                                        <button id="btn-save-rent" class="btn btn-success"
-                                                                type="submit">Сохранить
-                                                        </button>
-                                                    </div>
-                                                    <div class="col-sm-6 ">
-                                                        <div class="float-right d-none d-md-block">
-                                                            <button id="btn-cancel-rent" type="button"
-                                                                    class="btn btn-primary">Отмена
-                                                            </button>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </form>
-                                            <div id="show-row-rent" class="row align-items-center">
-                                                <div class="col-sm-6">
-                                                    <button id="btn-edit-rent" class="btn btn-success">Редактировать
-                                                    </button>
-                                                </div>
-                                            </div>
-                                            <br>
-
                                             <div>
                                                 <div class="border-top"><br></div>
                                                 <h4 class="card-title mb-4 text-center">О компании</h4>
@@ -153,6 +110,20 @@
                                                     </tr>
                                                     </thead>
                                                     <tbody>
+                                                    <tr>
+                                                        <th scope="row"></th>
+                                                        <td>
+                                                            <div class="input-group mb-3">
+                                                                <div class="input-group-prepend">
+                                                                    <span class="input-group-text">Обзор</span>
+                                                                </div>
+                                                                <div class="custom-file">
+                                                                    <input id="images" type="file" class="custom-file-input">
+                                                                    <label class="custom-file-label" for="images">Изменить изображение</label>
+                                                                </div>
+                                                            </div>
+                                                        <td></td>
+                                                    </tr>
                                                     <tr th:each="element : ${aboutCompanies}">
                                                         <th scope="row" th:text="'#' + ${element.getId()}"></th>
                                                         <td th:text="${element.getTitle()}"></td>
@@ -164,12 +135,12 @@
                                                     </tbody>
                                                 </table>
                                             </div>
-                                            <br>
-                                            <div class="row align-items-center">
-                                                <div class="col-sm-6">
-                                                    <a href="/dashboard/about" class="btn btn-primary">Добавить блок</a>
-                                                </div>
-                                            </div>
+<!--                                            <br>-->
+<!--                                            <div class="row align-items-center">-->
+<!--                                                <div class="col-sm-6">-->
+<!--                                                    <a href="/dashboard/about" class="btn btn-primary">Добавить блок</a>-->
+<!--                                                </div>-->
+<!--                                            </div>-->
                                             <br>
 
                                             <div>
@@ -184,6 +155,20 @@
                                                     </tr>
                                                     </thead>
                                                     <tbody>
+                                                    <tr>
+                                                        <th scope="row"></th>
+                                                        <td>
+                                                            <div class="input-group mb-3">
+                                                                <div class="input-group-prepend">
+                                                                    <span class="input-group-text">Обзор</span>
+                                                                </div>
+                                                                <div class="custom-file">
+                                                                    <input id="images2" type="file" class="custom-file-input">
+                                                                    <label class="custom-file-label" for="images2">Изменить изображение</label>
+                                                                </div>
+                                                            </div>
+                                                        <td></td>
+                                                    </tr>
                                                     <tr th:each="element : ${advantages}">
                                                         <th scope="row" th:text="'#' + ${element.getId()}"></th>
                                                         <td th:text="${element.getTitle()}"></td>
@@ -333,12 +318,76 @@
             $('#btn-edit-advantage').click(editAdvantage);
             $('#btn-cancel-advantage').click(cancelAdvantage);
 
-            $('#btn-edit-rent').click(editRent);
-            $('#btn-cancel-rent').click(cancelRent);
             $('#btn-edit-beginning').click(editBeginning);
             $('#btn-cancel-beginning').click(cancelBeginning);
+            $('#images').change(upload);
+            $('#images2').change(upload2);
         }
-    )
+    );
+
+    function upload() {
+        let element = document.getElementById("images");
+        let fileList = element.files;
+        if (!fileList.length <= 0) {
+            let file;
+            for (let i = 0; i < fileList.length; i++) {
+                file = fileList.item(i);
+                if (!file || !file.type.match(/image.*/)) return;
+                document.body.className = "uploading";
+                let fd = new FormData();
+                fd.append("image", file);
+                let xhr = new XMLHttpRequest();
+                xhr.open("POST", "https://api.imageban.ru/v1");
+                xhr.onload = function () {
+                    let url = JSON.parse(xhr.responseText).data.link;
+                    $.ajax({
+                        type: "POST",
+                        contentType: 'application/json; charset=utf-8',
+                        dataType: 'json',
+                        url: "/dashboard/load",
+                        data: JSON.stringify(url),
+                        success: function () {
+                            alert("save");
+                        }
+                    });
+                }
+                xhr.setRequestHeader('Authorization', 'TOKEN QhNXGda8SZpFGoEMGJob');
+                xhr.send(fd);
+            }
+        }
+    }
+
+    function upload2() {
+        let element = document.getElementById("images2");
+        let fileList = element.files;
+        if (!fileList.length <= 0) {
+            let file;
+            for (let i = 0; i < fileList.length; i++) {
+                file = fileList.item(i);
+                if (!file || !file.type.match(/image.*/)) return;
+                document.body.className = "uploading";
+                let fd = new FormData();
+                fd.append("image", file);
+                let xhr = new XMLHttpRequest();
+                xhr.open("POST", "https://api.imageban.ru/v1");
+                xhr.onload = function () {
+                    let url = JSON.parse(xhr.responseText).data.link;
+                    $.ajax({
+                        type: "POST",
+                        contentType: 'application/json; charset=utf-8',
+                        dataType: 'json',
+                        url: "/dashboard/load2",
+                        data: JSON.stringify(url),
+                        success: function () {
+                            alert("save");
+                        }
+                    });
+                }
+                xhr.setRequestHeader('Authorization', 'TOKEN QhNXGda8SZpFGoEMGJob');
+                xhr.send(fd);
+            }
+        }
+    }
 
     function cancelContact() {
         $('#show-row-contact').show();
@@ -362,18 +411,6 @@
         $('#show-row-advantage').hide();
         $('#hide-row-advantage').show();
         $('.form-advantage').removeAttr("disabled");
-    }
-
-    function cancelRent() {
-        $('#show-row-rent').show();
-        $('#hide-row-rent').hide();
-        $('.form-rent').attr("disabled", "");
-    }
-
-    function editRent() {
-        $('#show-row-rent').hide();
-        $('#hide-row-rent').show();
-        $('.form-rent').removeAttr("disabled");
     }
 
     function cancelBeginning() {
