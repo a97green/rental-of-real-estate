@@ -14,6 +14,7 @@
     <link href="/../assets/css/icons.min.css" rel="stylesheet" type="text/css"/>
     <!-- App Css-->
     <link href="/../assets/css/app.min.css" id="app-style" rel="stylesheet" type="text/css"/>
+
 </head>
 
 <body data-topbar="dark" data-layout="horizontal">
@@ -305,7 +306,7 @@
         for (let i = 0; i < strings.length; i++) {
             $('.carousel-inner').append('' +
                 '<div class="carousel-item" id="image' + i + '">\n' +
-                '   <img src="' + strings[i] + '" class="d-block img-fluid" alt="...">\n' +
+                '   <img width="auto" height="600"  src="' + strings[i] + '" class="d-block img-dtls img" alt="...">\n' +
                 '</div>'
             );
         }
