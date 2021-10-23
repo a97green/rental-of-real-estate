@@ -10,7 +10,7 @@
           name="description"/>
     <meta content="" name="author"/>
     <!-- favicon -->
-    <link rel="shortcut icon" href="images/favicon.ico">
+    <link rel="shortcut icon" href="https://glyphicons.com/img/glyphicons/basic/2x/glyphicons-basic-21-home@2x.png">
     <!-- Bootstrap -->
     <link href="/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
     <!-- Icon -->
@@ -177,11 +177,9 @@
                                             <td></td>
                                         </tr>
                                         <tr>
-                                            <td class="text-left"><a href=""><h4><i class="mdi mdi-phone mr-1"></i><b
-                                                    class="text-primary" th:text="${homeHeaders.getPhoneNumber()}"></b>
-                                            </h4></a></td>
-                                            <td class="text-center"><h4><b
-                                                    th:text="${apartament.getPrice()} + ' рублей/сутки'"></b></h4></td>
+                                            <td class="text-left"><a href=""><h5><b class="text-primary" th:text="${homeHeaders.getPhoneNumber()}"></b>
+                                            </h5></a></td>
+                                            <td class="text-center"><h5><b th:text="${apartament.getPrice()} + ' Р./сутки'"></b></h5></td>
                                         </tr>
                                         </tbody>
                                     </table>
@@ -279,18 +277,18 @@
                     <a class="footer-logo" href="#" th:text="${homeHeaders.getTitle()}"></a>
                     <p class="text-foot mt-3" th:text="${homeHeaders.getPortfolioSubtitle()}"></p>
                     <ul class="list-unstyled social-icon social mb-0">
-                        <li class="list-inline-item"><a th:href="${homeHeaders.getTelegram()}"><i
+                        <li class="list-inline-item"><a target="_blank" th:href="${homeHeaders.getTelegram()}"><i
                                 class="mdi mdi-telegram"
                                 title="Мы в Telegram"></i></a>
                         </li>
-                        <li class="list-inline-item"><a th:href="${homeHeaders.getWhasApp()}"><i
+                        <li class="list-inline-item"><a target="_blank" th:href="${homeHeaders.getWhasApp()}"><i
                                 class="mdi mdi-whatsapp"
                                 title="Мы в WhatsApp"></i></a>
                         </li>
-                        <li class="list-inline-item"><a th:href="${homeHeaders.getViber()}"><i class="mdi mdi-phone"
+                        <li class="list-inline-item"><a target="_blank" th:href="${homeHeaders.getViber()}"><i class="mdi mdi-phone"
                                                                                                title="Мы в Viber"></i></a>
                         </li>
-                        <li class="list-inline-item"><a th:href="${homeHeaders.getInstagram()}"><i
+                        <li class="list-inline-item"><a target="_blank" th:href="${homeHeaders.getInstagram()}"><i
                                 class="mdi mdi-instagram"
                                 title="Мы в Instagram"></i></a>
                         </li>
@@ -446,11 +444,12 @@
             $('.apartments').append('' +
                 '<div class="col-lg-4 col-md-6 col-12 mt-4 pt-2">' +
                 '    <div class="team-content position-relative text-center bg-light rounded" >' +
-                '        <img class="img-detail" width="356" height="236" src="' + photo + '"' +
+                '        <img class="img-detail" width="100%" height="auto" width="auto" height="auto" style="max-width: 100%; max-height: 236px;" src="' + photo + '"' +
                 '             class="img-fluid rounded-top" alt="" onclick="clickDetails(' + apartment.id + ')">' +
                 '        <div class="detail pt-3 pb-3 p-1">' +
                 '            <h4 class="mb-0"><a href="javascript:void(0)" class="name text-dark" onclick="clickDetails(' + apartment.id + ')">' + apartment.title + '</a></h4>' +
-                '            <small class="posting text-muted" >' + apartment.address + '</small>' +
+                '            <small class="posting text-muted" ><i\n' +
+                '                                class="mdi mdi-map-marker me-2"></i>' + apartment.address + '</small>' +
                 '            <h5 class="mb-0">от <a href="javascript:void(0)" class="name text-dark" onclick="clickDetails(' + apartment.id + ')">' + apartment.price + '</a> рублей/сутки</h5><br>' +
                 '            <button type="button" class="btn btn-primary" data-bs-toggle="modal"' +
                 '                    data-bs-target="#modalCallback">Забронировать' +
