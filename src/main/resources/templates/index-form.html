@@ -1,0 +1,470 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="utf-8"/>
+    <title th:text="'Квартиры посуточно в Красноярске - ' + ${homeHeaders.getTitle()}"></title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="keywords" content="bootstrap 4, premium, marketing, multipurpose"/>
+    <meta content="Квартиры посуточно в Красноярске. Снять квартиру посуточно, не дорого, всегда чистые квартиры, правый берег. Лучшие цены. Положительные отзывы."
+          name="description"/>
+    <meta content="" name="author"/>
+    <!-- favicon -->
+    <link rel="shortcut icon" href="images/favicon.ico">
+    <!-- Bootstrap -->
+    <link href="/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
+    <!-- Icon -->
+    <link href="/css/materialdesignicons.min.css" rel="stylesheet" type="text/css"/>
+    <link href="/css/pe-icon-7-stroke.css" rel="stylesheet" type="text/css"/>
+    <!-- SLICK SLIDER -->
+    <link rel="stylesheet" href="/css/tiny-slider.css"/>
+    <!-- Custom Css -->
+    <link href="/css/style.min.css" rel="stylesheet" type="text/css"/>
+
+    <style>
+        tr {
+            border: hidden;
+        }
+        *{
+            padding:0;
+            margin:0;
+        }
+    </style>
+</head>
+
+<body data-bs-spy="scroll" data-bs-target="#navbar-navlist" data-bs-offset="20">
+<div id="preloader">
+    <div id="status">
+        <div class="spinner">
+            <div class="bounce1"></div>
+            <div class="bounce2"></div>
+            <div class="bounce3"></div>
+        </div>
+    </div>
+</div>
+
+<nav id="navbar" class="navbar navbar-expand-lg fixed-top navbar-custom navbar-light sticky">
+    <div class="container">
+        <a class="navbar-brand" href="#" th:text="${homeHeaders.getTitle()}"></a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse"
+                aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="mdi mdi-menu"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul id="navbar-navlist" class="navbar-nav ms-auto">
+                <li class="nav-item">
+                    <a class="nav-link active" href="/#home">Главная</a>
+                </li><!--end nav item-->
+                <li class="nav-item">
+                    <a class="nav-link" href="#apartments">Квартиры</a>
+                </li><!--end nav item-->
+                <li class="nav-item">
+                    <a class="nav-link" href="/#about">О Нас</a>
+                </li><!--end nav item-->
+                <li class="nav-item">
+                    <a class="nav-link" href="/#testimonial">Достопримечательности</a>
+                </li><!--end nav item-->
+                <li class="nav-item">
+                    <a class="nav-link" href="/#blog">Отзывы</a>
+                </li><!--end nav item-->
+                <li>
+                    <a class="nav-link" href="#contact" data-toggle="modal" data-target=".bd-example-modal-sm">Заказать
+                        звонок</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<section class="bg-home d-table w-100"
+         style="background-image:url('https://mykaleidoscope.ru/uploads/posts/2020-02/1582548147_3-p-stilnie-sovremennie-intereri-8.jpg')"
+         id="home">
+    <div class="bg-overlay"></div>
+    <div class="home-center">
+        <div class="home-desc-center">
+            <div class="row align-items-center justify-content-center">
+                <div class="col-lg-10 col-md-10 justify-content-center">
+                    <div class="bg-inline rounded text-primary">
+                        <div class="row justify-content-center">
+                            <div class="col-lg-6 col-sm-12 col-md-12">
+                                <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
+                                    <div class="carousel-inner">
+                                        <div class="carousel-item" th:each="element : ${strings}" th:id="${element}">
+                                            <div class="testi-box text-center mt-4">
+                                                <img width="auto" height="auto" style="max-width: 100%; max-height: 600px;" th:src="${element}">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="carousel-indicators mt-5 pt-4">
+                                        <button type="button" data-bs-target="#carouselExampleIndicators"
+                                                th:each="element : ${integers}"
+                                                th:data-bs-slide-to="${element}"
+                                                class="text-start" aria-current="true"
+                                                th:aria-label="'Slide' + ${element}">
+                                        </button>
+                                    </div>
+                                    <div class="d-none d-lg-inline-block">
+                                        <button class="carousel-control-prev" type="button"
+                                                data-bs-target="#carouselExampleIndicators"
+                                                data-bs-slide="prev">
+                                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                            <span class="visually-hidden">Previous</span>
+                                        </button>
+                                        <button class="carousel-control-next" type="button"
+                                                data-bs-target="#carouselExampleIndicators"
+                                                data-bs-slide="next">
+                                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                            <span class="visually-hidden">Next</span>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-6 col-sm-12 col-md-12">
+                                <div class="table-responsive">
+                                    <h5 class="text-uppercase text-center mt-5" th:text="${apartament.getTitle()}"></h5><br>
+                                    <table class="table table-inline mb-0 text-primary">
+                                        <thead>
+                                        <tr>
+
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                        <tr>
+                                            <td class="text-left">Район</td>
+                                            <td class="text-center" th:text="${apartament.getDistrict().getTitle()}">
+                                                <b></b></td>
+                                        </tr>
+                                        <tr>
+                                            <td class="text-left">Тип жилья</td>
+                                            <td class="text-center"
+                                                th:text="${apartament.getHousingType().getTitle()}"></td>
+                                        </tr>
+                                        <tr>
+                                            <td class="text-left">Класс жилья</td>
+                                            <td class="text-center"
+                                                th:text="${apartament.getHousingClass().getTitle()}"></td>
+                                        </tr>
+                                        <tr>
+                                            <td class="text-left">Адрес</td>
+                                            <td class="text-center" th:text="${apartament.getAddress()}"></td>
+                                        </tr>
+                                        <tr>
+                                            <td class="text-left">Общая площадь</td>
+                                            <td class="text-center"
+                                                th:text="${apartament.getTotalArea()} + ' м.кв.'"></td>
+                                        </tr>
+                                        <tr>
+                                            <td class="text-left">Этаж</td>
+                                            <td class="text-center" th:text="${apartament.getFloor()}"
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="text-left">Кол-во спальный мест</td>
+                                            <td class="text-center" th:text="${apartament.getBedsNumber()} + ' шт.'">
+                                                <b></b></td>
+                                        </tr>
+                                        <tr>
+                                            <td class="text-left">Стоянка</td>
+                                            <td class="text-center" th:text="${apartament.getParking()}"><b></b></td>
+                                        </tr>
+                                        <tr>
+                                            <td class="text-left">Снузел</td>
+                                            <td class="text-center" th:text="${apartament.getBathroom()}"><b></b></td>
+                                        </tr>
+                                        <tr>
+                                            <td></td>
+                                            <td></td>
+                                        </tr>
+                                        <tr>
+                                            <td class="text-left"><a href=""><h4><i class="mdi mdi-phone mr-1"></i><b
+                                                    class="text-primary" th:text="${homeHeaders.getPhoneNumber()}"></b>
+                                            </h4></a></td>
+                                            <td class="text-center"><h4><b
+                                                    th:text="${apartament.getPrice()} + ' рублей/сутки'"></b></h4></td>
+                                        </tr>
+                                        </tbody>
+                                    </table>
+                                    <button type="button" class="form-control btn btn-primary" data-bs-toggle="modal"
+                                            data-bs-target="#modalCallback">Забронировать
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row justify-content-center pt-5 mt-5">
+                                <div class="col-lg-10 col-md-10 col-sm-10">
+                                    <h3 style="margin-left: 20px" >Описание</h3>
+                                    <p style="margin-left: 20px" th:text="${apartament.getDescription()}"></p>
+                                </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="section" id="apartments">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-12 text-center">
+                <div class="section-title">
+                    <h4 class="title text-uppercase fw-normal mb-4">Снять <span
+                            class="text-primary fw-bold">квартиру</span>
+                    </h4>
+                    <p class="text-muted mx-auto para-desc mb-0" th:text="${homeHeaders.getDescriptions()}"></p>
+                </div>
+            </div>
+        </div>
+
+        <div class="row justify-content-center apartments"></div>
+    </div>
+</section>
+
+<section class="section" id="contact">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-12 text-center">
+                <div class="section-title">
+                    <h4 class="title text-uppercase fw-normal mb-4">Закажите <span
+                            class="text-primary fw-bold">обратный звонок !</span></h4>
+                    <p class="text-muted mx-auto para-desc mb-0">Мы с удовольствием перезвоним вам прямо сейчас, просто
+                        скажите номер:</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="row justify-content-center mt-4 pt-2">
+            <div class="col-lg-8">
+                <form name="formTest" method="" action="">
+                    <p id="error-msg" class="mb-0"></p>
+                    <div id="simple-msg"></div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="mb-3">
+                                <label class="form-label">Ваше имя <span class="text-danger">*</span></label>
+                                <input name="name" id="name" type="text" class="nameCall form-control"
+                                       placeholder="Имя :"
+                                       required>
+                            </div>
+                        </div>
+
+                        <div class="col-md-6">
+                            <div class="mb-3">
+                                <label class="form-label">Ваш номер телефона <span class="text-danger">*</span></label>
+                                <input name="phone" id="phone" type="text" class="phoneCall form-control"
+                                       placeholder="Номер телефон :" required>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-12">
+                        <div class="">
+                            <button type="submit" class="btn rounded-pill w-100 btn-primary">
+                                Позвоните мне
+                            </button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="footer">
+    <footer class="footer py-5 bg-dark">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-4 col-md-12">
+                    <a class="footer-logo" href="#" th:text="${homeHeaders.getTitle()}"></a>
+                    <p class="text-foot mt-3" th:text="${homeHeaders.getPortfolioSubtitle()}"></p>
+                    <ul class="list-unstyled social-icon social mb-0">
+                        <li class="list-inline-item"><a th:href="${homeHeaders.getTelegram()}"><i
+                                class="mdi mdi-telegram"
+                                title="Мы в Telegram"></i></a>
+                        </li>
+                        <li class="list-inline-item"><a th:href="${homeHeaders.getWhasApp()}"><i
+                                class="mdi mdi-whatsapp"
+                                title="Мы в WhatsApp"></i></a>
+                        </li>
+                        <li class="list-inline-item"><a th:href="${homeHeaders.getViber()}"><i class="mdi mdi-phone"
+                                                                                               title="Мы в Viber"></i></a>
+                        </li>
+                        <li class="list-inline-item"><a th:href="${homeHeaders.getInstagram()}"><i
+                                class="mdi mdi-instagram"
+                                title="Мы в Instagram"></i></a>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="col-lg-2 col-md-4 mt-4 pt-2 mt-lg-0 pt-lg-0"></div>
+
+                <div class="col-lg-3 col-md-4 mt-4 pt-2 mt-lg-0 pt-lg-0"></div>
+
+                <div class="col-lg-3 col-md-4 mt-4 pt-2 mt-lg-0 pt-lg-0">
+                    <h4 class="text-light text-uppercase footer-head">Наши контакты</h4>
+                    <ul class="list-unstyled contact-foot text-foot footer-list mt-4 mb-0">
+                        <li class="mt-2"><a href="" class="video-play-icon text-foot"><i
+                                class="mdi mdi-map-marker me-2"></i> <i th:text="${homeHeaders.getAddress()}"></i></a>
+                        </li>
+                        <li class="mt-2"><a href="" class="text-foot"><i class="mdi mdi-email me-2"></i> <i
+                                th:text="${homeHeaders.getEmail()}"></i></a></li>
+                        <li class="mt-2"><a href="" class="text-foot"><i class="mdi mdi-phone me-2"></i> <i
+                                th:text="${homeHeaders.getPhoneNumber()}"></i></a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <a href="#" class="back-to-top" id="back-to-top" title="Back to home">
+            <i class="mdi mdi-chevron-up"> </i>
+        </a>
+    </footer>
+    <footer class="footer bg-dark footer-bar py-4">
+        <div class="container text-foot text-center">
+            <p class="mb-0">©
+                <script>document.write(new Date().getFullYear())</script>
+                <a href="" target="_blank" class="text-reset"></a>
+            </p>
+        </div>
+    </footer>
+</section>
+
+<section class="modals">
+    <div class="modalCallback">
+        <div class="modal fade" id="modalCallback" data-bs-backdrop="static" tabindex="-1"
+             aria-labelledby="modalCallbackLabel" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="modalCallbackLabel">Бронирование квартиры</h5>
+                        <button type="button" class="btn-close closeModalCallback" data-bs-dismiss="modal"
+                                aria-label="Close"></button>
+                    </div>
+                    <form name="formTest" method="" action="">
+                        <div class="modal-body">
+                            <div class="row">
+                                <p class="text-center">Чтобы забронировать квартиру, введите ваше Имя и номер
+                                    телефона</p>
+                                <div class="form-group row">
+                                    <label class="col-sm-4 col-form-label">Введите имя</label>
+                                    <div class="col-sm-8">
+                                        <input type="text" placeholder="Ваше имя" class="phoneCall form-control"
+                                               name="name" required/>
+                                    </div>
+                                </div>
+                                <div class="form-group row mt-2">
+                                    <label class="col-sm-4 col-form-label">Введите номер</label>
+                                    <div class="col-sm-8">
+                                        <input type="text" placeholder="Ваш номер телефона"
+                                               class="nameCall form-control" name="phone" required/>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <div class="row">
+                                <button id="smTg" type="submit" class="btn btn-primary">Забронировать</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modalInformation">
+        <button id="smInf" type="button" class="btn btn-primary" data-bs-toggle="modal"
+                data-bs-target="#modalInformation" style="display: none"></button>
+        <div class="modal fade" id="modalInformation" data-bs-backdrop="static" tabindex="-1"
+             aria-labelledby="modalInformation" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Ваша заявка принята!</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <p class="text-center">В течении 2-х минут мы с Вами свяжемся!</p>
+                    </div>
+                    <div class="modal-footer text-center">
+                        <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Ок</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- javascript -->
+<script src="/js/jquery.min.js"></script>
+<script src="/js/bootstrap.bundle.min.js"></script>
+<!-- SLIDER -->
+<script src="/js/tiny-slider.js "></script>
+<!-- Parallax -->
+<script src="/js/parallax.js"></script>
+<!-- Main Js -->
+<script src="/js/app.js"></script>
+<!-- Send telegram -->
+<script type="text/javascript" th:inline="javascript">
+    $(document).ready(
+        function () {
+            placeApartments();
+            $('form').submit(function (e) {
+                e.preventDefault()
+                let name = $('.nameCall').val();
+                let phone = $('.phoneCall').val();
+                let text = "ВНИМАНИЕ НОВАЯ ЗАЯВКА!\n" +
+                    "👤 Клиент: " + name + "\n" +
+                    "📞 Номер телефона: " + phone;
+
+                $.ajax({
+                    type: "POST",
+                    url: "https://api.telegram.org/bot2037072837:AAExxZDtKuoKS-Ta-uuYtuHEwp1FhogPBBE/sendMessage?chat_id=-1001333963171&text=" + text,
+                    success: function () {
+                    }
+                });
+                $('#smInf').click();
+                $('.closeModalCallback').click();
+                document.getElementById("name").value = "";
+                document.getElementById("phone").value = "";
+            });
+            $('.carousel-inner .carousel-item').slice(0, 1).addClass('active');
+            $('.carousel-indicators .text-start').slice(0, 1).addClass('active');
+        }
+    );
+</script>
+<!-- place apartments -->
+<script type="text/javascript" th:inline="javascript">
+    function placeApartments() {
+        let apartmets = [[${apartaments}]];
+        for (let i = 0; i < apartmets.length; i++) {
+            apartment = apartmets[i];
+
+            photos = apartment.photo.split(";");
+            photo = photos[0].replaceAll("\"", "");
+            $('.apartments').append('' +
+                '<div class="col-lg-4 col-md-6 col-12 mt-4 pt-2">' +
+                '    <div class="team-content position-relative text-center bg-light rounded" >' +
+                '        <img class="img-detail" width="356" height="236" src="' + photo + '"' +
+                '             class="img-fluid rounded-top" alt="" onclick="clickDetails(' + apartment.id + ')">' +
+                '        <div class="detail pt-3 pb-3 p-1">' +
+                '            <h4 class="mb-0"><a href="javascript:void(0)" class="name text-dark" onclick="clickDetails(' + apartment.id + ')">' + apartment.title + '</a></h4>' +
+                '            <small class="posting text-muted" >' + apartment.address + '</small>' +
+                '            <h5 class="mb-0">от <a href="javascript:void(0)" class="name text-dark" onclick="clickDetails(' + apartment.id + ')">' + apartment.price + '</a> рублей/сутки</h5><br>' +
+                '            <button type="button" class="btn btn-primary" data-bs-toggle="modal"' +
+                '                    data-bs-target="#modalCallback">Забронировать' +
+                '            </button>' +
+                '        </div>' +
+                '    </div>' +
+                '</div>');
+        }
+    }
+
+    function clickDetails(id) {
+        document.location.href = "/apartment/" + id;
+    }
+</script>
+</body>
+
+</html>
