@@ -41,9 +41,7 @@
         </div>
     </div>
 </div>
-<!-- Loader End -->
 
-<!-- Navbar Start -->
 <nav id="navbar" class="navbar navbar-expand-lg fixed-top navbar-custom navbar-light sticky">
     <div class="container">
         <a class="navbar-brand" href="#" th:text="${homeHeaders.getTitle()}"></a>
@@ -84,10 +82,31 @@
     <div class="bg-overlay"></div>
     <div class="container">
         <div class="row justify-content-center">
+            <div class="container">
+            <div class="row">
+                <div class="col-12 text-center">
+                    <div class="section-title">
+                        <h4 class="title text-uppercase text-white mb-4"> Свяжитесь с нам</h4>
+                        <h5 class="text-white-50 mx-auto para-desc mb-0">
+                            Вы можете уточнить интересующую  информацию или забронировать квартиру, позвонив по телефону
+                            <b th:text="${homeHeaders.getPhoneNumber()}"></b></h5>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row justify-content-center">
+                <div class="col-md-8 text-center">
+                    <a href="#footer" class="btn btn-primary rounded-pill">Связаться с нами</a>
+                </div>
+            </div>
+        </div>
+        </div>
+
+        <div class="row justify-content-center">
             <div class="col-lg-10 text-center">
                 <div class="title-heading mt-5 pt-4">
                     <h1 class="heading text-white mb-3"
-                        th:text="'«' + ${homeHeaders.getTitle()} + '» – это недорого!'"></h1>
+                        th:text="${homeHeaders.getTitle()}"></h1>
                     <p class="para-desc mx-auto text-white-50" th:text="${homeHeaders.getDescriptions()}"></p>
                     <div class="mt-4 pt-2">
                         <a href="#apartments" class="btn btn-primary rounded-pill mb-2 me-2">Смотреть квартиры</a>
@@ -108,35 +127,12 @@
                     <h4 class="title text-uppercase fw-normal mb-4">Снять <span
                             class="text-primary fw-bold">квартиру</span>
                     </h4>
-                    <p class="text-muted mx-auto para-desc mb-0" th:text="${homeHeaders.getDescriptions()}"></p>
+                    <p class="text-muted mx-auto para-desc mb-0" th:text="${homeHeaders.getPortfolioDescriptions()}"></p>
                 </div>
             </div>
         </div>
 
         <div class="row justify-content-center apartments"></div>
-    </div>
-</section>
-
-<section class="section"
-         style="background: url('https://www.vbu.fi/files/2019-06/shutterstock-291867131.jpg') center center">
-    <div class="bg-overlay"></div>
-    <div class="container">
-        <div class="row">
-            <div class="col-12 text-center">
-                <div class="section-title">
-                    <h4 class="title text-uppercase text-white mb-4"> Позвоните нам</h4>
-                    <p class="text-white-50 mx-auto para-desc mb-0">Уточнить интересующую вас информацию вы можете
-                        позвонив по номеру <b th:text="${homeHeaders.getPhoneNumber()}"></b> или закажите обратный
-                        звонок и мы сразу перезвоним вам!</p>
-                </div>
-            </div>
-        </div>
-
-        <div class="row justify-content-center">
-            <div class="col-md-8 text-center">
-                <a href="#contact" class="btn btn-primary rounded-pill">Заказать звонок</a>
-            </div>
-        </div>
     </div>
 </section>
 
@@ -423,7 +419,7 @@
     </div>
 </section>
 
-<section class="footer">
+<section class="footer" id="footer">
     <footer class="footer py-5 bg-dark">
         <div class="container">
             <div class="row">

@@ -66,6 +66,25 @@ public class MainController {
         return "index-form";
     }
 
+    @GetMapping("/qqw")
+    public String greetinыыывg(Model model) {
+        Iterable<HomeHeaders> homeHeaders = homeHeadersRepository.findAll();
+        for (HomeHeaders headers : homeHeaders) {
+            model.addAttribute("homeHeaders", headers);
+        }
+        List<AboutCompany> aboutCompany = aboutCompanyReposiroty.findAll();
+        List<Advantage> advantages = advantageRepository.findAll();
+        Iterable<Apartaments> apartaments = apartamentsRepository.findAll();
+        Iterable<Attractions> attractions = attractionsRepository.findAll();
+        model.addAttribute("aboutCompany", aboutCompany);
+        model.addAttribute("advantages", advantages);
+        model.addAttribute("apartaments", apartaments);
+        model.addAttribute("attractions", attractions);
+        return "index";
+    }
+
+
+
     @GetMapping("/error")
     public String error(Model model) {
         return "error";
