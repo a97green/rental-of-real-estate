@@ -1,0 +1,83 @@
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8"/>
+    <title th:text="'Панель управления - ' + ${title}"></title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta content="Панель управления для сайта - квартиры посуточно в Красноярске" name="description"/>
+    <meta content="Михаил Евгеньевич" name="author"/>
+    <!-- App favicon -->
+    <link rel="shortcut icon" href="/../assets/images/favicon.ico">
+    <!-- Bootstrap Css -->
+    <link href="/../assets/css/bootstrap.min.css" id="bootstrap-style" rel="stylesheet" type="text/css"/>
+    <!-- Icons Css -->
+    <link href="/../assets/css/icons.min.css" rel="stylesheet" type="text/css"/>
+    <!-- App Css-->
+    <link href="/../assets/css/app.min.css" id="app-style" rel="stylesheet" type="text/css"/>
+</head>
+
+<body data-topbar="dark" data-layout="horizontal">
+
+<div id="layout-wrapper">
+    <header th:insert="dashboard/header :: header"></header>
+    <div class="main-content">
+        <div class="page-content">
+            <div class="container-fluid">
+                <div class="row align-items-center">
+                    <div class="col-sm-6">
+                        <div class="page-title-box">
+                            <h4 class="font-size-18" th:text="${title}"></h4>
+                            <ol class="breadcrumb mb-0">
+                                <li class="breadcrumb-item active" th:text="${descriptions}"></li>
+                            </ol>
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="float-right d-none d-md-block">
+                            <a href="/dashboard/review/add" class="btn btn-primary"><i
+                                    class="mdi mdi-hospital mr-2"></i> Добавить отзыв</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col">
+                        <div class="card">
+                            <div class="card-body">
+                                <h4 class="card-title mb-4" th:text="${title}"></h4>
+                                <div class="table-responsive">
+                                    <table class="table table-hover table-centered table-nowrap mb-0">
+                                        <thead>
+                                        <tr>
+                                            <th scope="col">Имя</th>
+                                            <th scope="col">Отзыв</th>
+                                            <th class="text-right" scope="col"></th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                        <tr th:each="element : ${reviews}">
+                                            <td th:text="${element.getName()}"></td>
+                                            <td th:text="${element.getDiscription()}"></td>
+                                            <td class="text-right">
+                                                <a th:href="'/dashboard/review/' + ${element.getId()}"
+                                                   class="btn btn-success">Подробнее</a>
+                                            </td>
+                                        </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div th:insert="dashboard/footer :: footer"></div>
+</div>
+
+<script src="/../assets/js/jquery/jquery.min.js"></script>
+<script src="/../assets/js/bootstrap/js/bootstrap.bundle.min.js"></script>
+<script src="/../assets/js/peity/jquery.peity.min.js"></script>
+
+</body>
+</html>

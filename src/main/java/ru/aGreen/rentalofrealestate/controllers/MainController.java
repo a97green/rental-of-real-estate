@@ -20,14 +20,16 @@ public class MainController {
     private final ApartamentsRepository apartamentsRepository;
     private final AdvantageRepository advantageRepository;
     private final AttractionsRepository attractionsRepository;
+    private final ReviewRepository reviewRepository;
 
     @Autowired
-    public MainController(HomeHeadersRepository homeHeadersRepository, AboutCompanyReposiroty aboutCompanyReposiroty, ApartamentsRepository apartamentsRepository, AdvantageRepository advantageRepository, AttractionsRepository attractionsRepository) {
+    public MainController(HomeHeadersRepository homeHeadersRepository, AboutCompanyReposiroty aboutCompanyReposiroty, ApartamentsRepository apartamentsRepository, AdvantageRepository advantageRepository, AttractionsRepository attractionsRepository, ReviewRepository reviewRepository) {
         this.homeHeadersRepository = homeHeadersRepository;
         this.aboutCompanyReposiroty = aboutCompanyReposiroty;
         this.apartamentsRepository = apartamentsRepository;
         this.advantageRepository = advantageRepository;
         this.attractionsRepository = attractionsRepository;
+        this.reviewRepository = reviewRepository;
     }
 
     @GetMapping("/")
@@ -40,10 +42,12 @@ public class MainController {
         List<Advantage> advantages = advantageRepository.findAll();
         Iterable<Apartaments> apartaments = apartamentsRepository.findAll();
         Iterable<Attractions> attractions = attractionsRepository.findAll();
+        Iterable<Review> reviews = reviewRepository.findAll();
         model.addAttribute("aboutCompany", aboutCompany);
         model.addAttribute("advantages", advantages);
         model.addAttribute("apartaments", apartaments);
         model.addAttribute("attractions", attractions);
+        model.addAttribute("reviews", reviews);
         return "index-parallax";
     }
 

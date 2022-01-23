@@ -88,8 +88,8 @@
                     <div class="section-title">
                         <h4 class="title text-uppercase text-white mb-4"> Свяжитесь с нами</h4>
                         <h5 class="text-white-50 mx-auto para-desc mb-0">
-                            Вы можете уточнить интересующую  информацию или забронировать квартиру, позвонив по телефону
-                            <b th:text="${homeHeaders.getPhoneNumber()}"></b></h5>
+                            Вы можете уточнить интересующую информацию или забронировать квартиру, позвонив по телефону
+                            <b th:text="' ' + ${homeHeaders.getPhoneNumber()}"></b></h5>
                     </div>
                 </div>
             </div>
@@ -321,41 +321,13 @@
                                 <i class="mdi mdi-instagram mdi-48px text-primary"></i>
                             </div>
                             <div class="tiny-single-item">
-                                <div class="tiny-slide">
+                                <div class="tiny-slide" th:each="element : ${reviews}">
                                     <div class="testimonial text-center">
                                         <div class="content-review">
-                                            <p class="review fst-italic text-muted mt-3">Жили в двух квартирах, чисто,
-                                                уютно Вид из окна просто космос, слева горы, справа Енисей</p>
-                                            <h5 class="name mb-1 mt-3 text-dark">Максим</h5>
+                                            <p class="review fst-italic text-muted mt-3" th:text="${element.getDiscription()}"></p>
+                                            <h5 class="name mb-1 mt-3 text-dark" th:text="${element.getName()}"></h5>
                                         </div>
                                     </div><!--end content-->
-                                </div>
-                                <div class="tiny-slide">
-                                    <div class="testimonial text-center">
-                                        <div class="content-review">
-                                            <p class="review fst-italic text-muted mt-3">Чистая, уютная)))</p>
-                                            <h5 class="name mb-1 mt-3 text-dark">Elena</h5>
-                                        </div>
-                                    </div><!--end content-->
-                                </div>
-                                <div class="tiny-slide">
-                                    <div class="testimonial text-center">
-                                        <div class="content-review">
-                                            <p class="review fst-italic text-muted mt-3">Замечательная квартир рядом с
-                                                набережной снимал 2 дня, всё понравилось, на кухне всё имеется для
-                                                приготовления в общем уютненькая атмосферная квартирка)</p>
-                                            <h5 class="name mb-1 mt-3 text-dark">artem_42</h5>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="tiny-slide">
-                                    <div class="testimonial text-center">
-                                        <div class="content-review">
-                                            <p class="review fst-italic text-muted mt-3">Добрый вечер) уже 2 раза
-                                                снимали эту кватиру, всё чисто, уютно)) всем советую))</p>
-                                            <h5 class="name mb-1 mt-3 text-dark">aleksa_five</h5>
-                                        </div>
-                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -425,7 +397,7 @@
             <div class="row">
                 <div class="col-lg-4 col-md-12">
                     <a class="footer-logo" href="#" th:text="${homeHeaders.getTitle()}"></a>
-                    <p class="text-foot mt-3" th:text="${homeHeaders.getPortfolioSubtitle()}"></p>
+                    <p class="text-foot mt-3" th:text="${homeHeaders.getSubtitle()}"></p>
                     <ul class="list-unstyled social-icon social mb-0">
                         <li class="list-inline-item"><a target="_blank" th:href="${homeHeaders.getTelegram()}"><i
                                 class="mdi mdi-telegram"
@@ -591,7 +563,7 @@
             $('.apartments').append('' +
                 '<div class="col-lg-4 col-md-6 col-12 mt-4 pt-2">' +
                 '    <div class="team-content position-relative text-center bg-light rounded">' +
-                '        <img class="img-detail" width="356" height="236" src="' + photo + '"' +
+                '        <img class="img-detail" width="356" height="auto" src="' + photo + '"' +
                 '             class="img-fluid rounded-top" alt="" onclick="clickDetails(' + apartment.id + ')">' +
                 '        <div class="detail pt-3 pb-3 p-1">' +
                 '            <h4 class="mb-0"><a href="javascript:void(0)" class="name text-dark" onclick="clickDetails(' + apartment.id + ')">' + apartment.title + '</a></h4>' +
